@@ -22,15 +22,15 @@ O aplicativo oferecerá um serviço para locais como escolinhas de futebol, even
 
 ---
 
-Introdução
+## Introdução
 
 O SporTchê é um aplicativo de esportes no formato de rede social envolvendo todos os tipos de esportes, onde o usuário pode postar seus treinos, entrar em grupos esportivos, descobrir  espaços esportivos entre outros e até mesmo dar check-in em jogos que necessitam de pessoa para completar o time. 
 
-Objetivo
+## Objetivo
 
 Em um mundo onde a tecnologia está cada vez mais levando as pessoas ao sedentarismo, o objetivo do aplicativo Sportchê é trazer de uma forma acessivél os esportes para perto de você.
 
-Funcionalidades do APP:
+## Funcionalidades do APP:
 
 1. Feed
     - Curtir o post.
@@ -45,3 +45,26 @@ Funcionalidades do APP:
 5. Check-in
     - Um usuário cria uma sala, indicando lugar, hora, numero de membros e esporte.
     - Você pode entrar nessa sala para poder jogar com este pessoal.
+
+## Tecnologias
+O Sportchê tem como missão alcançar o máximo de pessoas, para isso decidimos criar um aplicativo mobile e também criar um site web, os dois aplicativos contendo as mesmas funcionalidades mas em ambientes diferentes.
+
+Tecnologias:
+
+Mobile
+- Javascript
+- React Native
+
+Web
+- TypeScript || JavaScript
+- Algular || NextJs || ReactJs
+- HTML
+- tailwind CSS || Bootstrap
+
+### Banco de dados:
+
+Usaremos o banco de dados web firestore do firebase, que servirá tanto para o aplicativo mobile tanto para web.
+
+Diagrama simples das possíveis coleções no firebase
+
+> Para as integrações de notícias ainda estamos discutindo sobre o assunto.
