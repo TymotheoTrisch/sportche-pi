@@ -66,5 +66,6 @@ Web
 Usaremos o banco de dados web firestore do firebase, que servirá tanto para o aplicativo mobile tanto para web.
 
 Diagrama simples das possíveis coleções no firebase
+![](https://github.com/TymotheoTrisch/sportche-projeto-itegrador/edit/main/Diagrama.png)
 
 > Para as integrações de notícias ainda estamos discutindo sobre o assunto.
