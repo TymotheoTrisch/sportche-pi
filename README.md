@@ -67,3 +67,12 @@ Diagrama simples das possíveis coleções no firebase
 ![Diagrama](https://github.com/TymotheoTrisch/sportche-projeto-itegrador/blob/main/Diagrama.png)
 
 > Para as integrações de notícias ainda estamos discutindo sobre o assunto.
+
+# Plano de Ação
+1. Escolher quais tecnologias iremos utilizar de fato no nosso projeto.
+2. Estudar e compreender sobre as tecnologias escolhidas.
+3. Aprender como implementa-las e como usa-las em conjuntos.
+4. Dividir as tarefas entre o grupo.
+5. Desenvolver o projeto.
+6. Documentar o projeto.
+7. Apresentar pra a banca.
