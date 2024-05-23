@@ -10,17 +10,8 @@
         6. **Plano de Ação:** Descrever brevemente as etapas principais do projeto e o cronograma básico.
         7. **Conclusão:** Finalizar com a importância do projeto e as expectativas do grupo.
 
----
-
----
-
-No aplicativo o usuário poderá achar companheiros para formarem times, procurar por locais de serviços como campos de futebol, quadras de basket, campos de areia, entre outros. 
-
-Dentro do app também terá uma aba de notícias sobre o esporte favorito do usuário, e também contará com uma rede social apenas para posts relacionados ao esporte.
-
-O aplicativo oferecerá um serviço para locais como escolinhas de futebol, eventos (torneios, peneiras), divulgarem os seus serviços e planos de assinatura, ou apenas anunciar eventos importantes.
-
----
+### Resumo
+Nosso sistema será um aplicativo/site que o foco é aproximar e incentivar pessoas a praticar o esporte. Em si o aplicativo vai conter participação de grupos de determinados esportes, onde os usuários poderão dar check-in em jogos, procurar serviços de esporte e uma rede social exclusiva para pessoas que praticam e amam o esporte. 
 
 ## Introdução
 
@@ -28,7 +19,14 @@ O SporTchê é um aplicativo de esportes no formato de rede social envolvendo to
 
 ## Objetivo
 
-Em um mundo onde a tecnologia está cada vez mais levando as pessoas ao sedentarismo, o objetivo do aplicativo Sportchê é trazer de uma forma acessivél os esportes para perto de você.
+Em um mundo onde a tecnologia está cada vez mais levando as pessoas ao sedentarismo, o objetivo do aplicativo Sportchê é trazer de uma forma acessível os esportes para perto de você.
+
+No aplicativo o usuário poderá achar companheiros para formarem times, procurar por locais de serviços como campos de futebol, quadras de basket, campos de areia, entre outros. 
+
+Dentro do app também terá uma aba de notícias sobre o esporte favorito do usuário, e também contará com uma rede social apenas para posts relacionados ao esporte.
+
+O aplicativo oferecerá um serviço para locais como escolinhas de futebol, eventos (torneios, peneiras), divulgarem os seus serviços e planos de assinatura, ou apenas anunciar eventos importantes.
+
 
 ## Funcionalidades do APP:
 
