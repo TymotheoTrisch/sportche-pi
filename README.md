@@ -76,3 +76,7 @@ Diagrama simples das possíveis coleções no firebase
 5. Desenvolver o projeto.
 6. Documentar o projeto.
 7. Apresentar pra a banca.
+
+# Design
+Rascunho do design do nosso projeto no figma:
+[Link Figma](https://www.figma.com/design/YAOnHQFfVGWExzsqqdSoeZ/Sportch%C3%AA?node-id=0-1&t=PLs5l83oen4JsBRv-0)
