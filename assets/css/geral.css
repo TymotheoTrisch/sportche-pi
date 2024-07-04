@@ -21,6 +21,10 @@ body {
   background-color: var(--white-bg);
 }
 
+body main {
+  padding: 56px 30px;
+}
+
 /*.font-bebas {
   font-family: "Bebas Neue", sans-serif;
   font-size: 128px;
