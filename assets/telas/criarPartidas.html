@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Import CSS geral e o da página -->
+    <link rel="stylesheet" href="/assets/css/geral.css">
+    <link rel="stylesheet" href="../css/criarPartidas.css">
+    
+    <!-- Inport Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <title>Sportchê - Criar partidas</title>
+</head>
+
+<body>
+    <header>
+
+        <div class="titulo">
+            <h1 class="font-poppins">Sportchê</h1>
+        </div>
+
+        <div class="title-partidas">
+            <h3>Partidas</h3>
+        </div>
+    </header>
+
+    <main>
+        <form action="">
+            <div class="nome-partida">
+                <label for="input-nome">Nome da Partida</label>
+                <input type="text" name="input-nome" id="input-nome-partida">
+            </div>
+            <div class="local-partida">
+                <label for="input-local">Local da Partida</label>
+                <input type="text" name="input-local" id="input-local-partida">
+            </div>
+            <div class="esporte-partida">
+                <label for="input-esporte">Esporte</label>
+                <input type="text" name="input-esporte" id="input-esporte-partida">
+            </div>
+            <div class="data-partida">
+                <label for="input-data">Data</label>
+                <input type="date" name="input-data" id="input-data-partida">
+            </div>
+            <div class="participantes-partida">
+                <label for="input-participantes">Nome da Partida</label>
+                <div class="input-incrementor">
+                    <span class="number-decrement">-</span>
+                    <input type="number" name="input-participantes" id="input-participantes-partida" value="1" min="1">
+                    <span class="number-increment">+</span>
+                </div>
+            </div>
+            <div class="horario-partida">
+                <label for="input-horario">Nome da Partida</label>
+                <input type="time" name="input-horario" id="input-horario-partida">
+            </div>
+            <div class="descricao-partida">
+                <label for="input-descricao">Nome da Partida</label>
+                <textarea name="input-descricao" id="input-descricao-partida" rows="5" cols="33"></textarea>
+            </div>
+        </form>
+    </main>
+    
+    <script src="../js/criarPartidas.js"></script>
+</body>
+
+</html>

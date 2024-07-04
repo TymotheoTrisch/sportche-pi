@@ -11,6 +11,8 @@
         height: 32vh;
         width: 100%;
         background-color: #6F50FF;
+        position: relative;
+        
     }
 
     .titulo {
@@ -30,12 +32,15 @@
     }
 
     .font-bebas {
-        /* margin-top: 15%; */
         color: #ffffff4d;
-        margin-left: 43%;
+        width: fit-content;
+        
+        position: absolute;
+        right: 0;
+        
 
         font-family: var(--bebas);
-        font-size: 100px;
+        font-size: 128px;
 
     }
 
@@ -46,21 +51,17 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-
-        margin-top: 15%;
     }
 
     .emailSenha div {
         font-family: var(--manrope);
-        width: 86%;
+        width: 100%;
         height: 48px;
         background-color: var(--white-default);
 
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        padding: 0 15px;
     }
 
     .emailSenha a {
@@ -69,11 +70,19 @@
 
     .input-email input,
     .input-password input {
-        border: none;
-        font-size: 20px;
-        background-color: var(--white-default);
         width: 100%;
+        font-size: 20px;
+        
+        background-color: var(--white-default);
+        color: var(--grey-font);
+        
+        border: none;
         outline: none;
+        
+        margin: 0 15px;
+    }
+    
+    input::placeholder {
         color: var(--grey-font);
     }
 
