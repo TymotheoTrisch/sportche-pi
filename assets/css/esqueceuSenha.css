@@ -1,4 +1,4 @@
-@import url("geral.css");
+@import url("./geral.css");
 
 
 @media (max-width : 720px) {
@@ -8,45 +8,43 @@
         padding: 0;
     }
 
-header{
+header {
     height: 20vh;
     width: 100%;
     background-color:var(--purple-default);
 }
 
-.titulo{
+.titulo {
     padding-top: 10%;
     background-color:var(--purple-default);
     
 }
-.font-poppins{
+.font-poppins {
     font-family: var(--poppins);
     color: #FFFFFF;
     margin-left: 15px;    
 }
 
-.emailSenha{
+.email {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
     margin-top: 15%;
+
+    gap: 10px;
 }
-.emailSenha input{
+.email input{
     font-family: var(--manrope);
     width: 86%;
     height: 48px;
     font-size: 20px;
     background-color: var( --white-default);
     border: var( --white-default);
-
-}
-#inputemail{
-    margin-bottom: 34px;
-}
-#inputemail::placeholder{
-    padding-left: 24px;
+    outline: none;
+    padding: 0 15px;
+    color: var(--grey-font);
 }
 
 .botaoEnviar{

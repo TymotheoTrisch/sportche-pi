@@ -1,46 +1,47 @@
-@import url("geral.css");
+@import url("./geral.css");
 
 @media (max-width : 720px) {
 
-    *{
+    * {
         margin: 0;
         padding: 0;
     }
 
-    header{
+    header {
         height: 32vh;
         width: 100%;
-        background-color: #6F50FF; 
+        background-color: #6F50FF;
     }
-    .titulo{
-        padding-top: 10%;
-        background-color:var(--purple-default);
-        
-    }
-    
 
-    .font-poppins{
-    
+    .titulo {
+        padding-top: 10%;
+        background-color: var(--purple-default);
+
+    }
+
+
+    .font-poppins {
+
         font-family: var(--poppins);
         color: #FFFFFF;
-        margin-left: 15px; 
+        margin-left: 15px;
 
-        
+
     }
 
-    .font-bebas{
+    .font-bebas {
         /* margin-top: 15%; */
         color: #ffffff4d;
         margin-left: 43%;
-        
+
         font-family: var(--bebas);
         font-size: 100px;
-       
+
     }
 
     /* fim do header */
 
-    .emailSenha{
+    .emailSenha {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -48,35 +49,50 @@
 
         margin-top: 15%;
     }
-    .emailSenha input{
+
+    .emailSenha div {
         font-family: var(--manrope);
         width: 86%;
         height: 48px;
-        font-size: 20px;
-        background-color: var( --white-default);
-        border: var( --white-default);
+        background-color: var(--white-default);
 
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 15px;
     }
-    #inputemail{
-        margin-bottom: 34px;
+
+    .emailSenha a {
+        color: var(--black-default);
     }
-    #inputemail::placeholder{
-        padding-left: 24px;
+
+    .input-email input,
+    .input-password input {
+        border: none;
+        font-size: 20px;
+        background-color: var(--white-default);
+        width: 100%;
+        outline: none;
+        color: var(--grey-font);
     }
-    #password::placeholder {
-        padding-left: 24px;
-        background-image: url(../img/password.svg);
-        background-repeat: no-repeat; 
-        background-position: right center;
+
+    .input-email {
+        margin-bottom: 37px;
     }
-    .text-small{
+
+    .input-password i {
+        font-size: 27px;
+    }
+
+    .text-small {
         margin-left: 60%;
         margin-top: 3%;
     }
 
     /* fim dos inputs email e senha */
 
-    .entrarOuCadastrar{
+    .entrarOuCadastrar {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -84,9 +100,9 @@
 
         margin-top: 11%;
     }
-   
 
-    .botaoEntrar{
+
+    .botaoEntrar {
         width: 86%;
         height: 48px;
         font-family: var(--poppins);
@@ -95,31 +111,34 @@
         border-radius: 5px;
         border: #4024C0;
     }
+
     /* fim do botão cadastrar */
 
-    .entrarOuCadastrar .text{
+    .entrarOuCadastrar .text {
         text-align: center;
         margin-top: 3%;
     }
-    .entrarOuCadastrar h3{
+
+    .entrarOuCadastrar h3 {
         margin-top: 3%;
         font-family: var(--manrope);
         margin-bottom: 3%;
     }
+
     /* fim do textos entre os botões */
 
-    .botaoCadastrar{
+    .botaoCadastrar {
         width: 86%;
         height: 48px;
         font-family: var(--poppins);
-        background-color: var( --black-default);
+        background-color: var(--black-default);
         color: var(--white-bg);
         border-radius: 5px;
         border: var(--black-default);
         margin-bottom: 10%;
     }
 
-    
-  
+
+
 
 }
