@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sportchê</title>
     <link rel="stylesheet" href="./assets/css/geral.css">
     <link rel="stylesheet" href="./assets/css/signIn.css">
-
+    
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <title>Sportchê - Login</title>
     
 </head>
 <body>
@@ -22,12 +23,14 @@
 
     <main>
         <div class="emailSenha">
-            <input id="inputemail" type="email" placeholder="email" />
+            <div class="input-email">
+                <input id="inputemail" type="email" placeholder="email" />
+            </div>
             <div class="input-password">
                 <input id="password" type="password" placeholder="senha" />
-                <i class='bx bx-show' style='color:#cdcdcd'  ></i>
+                <i class='bx bx-show' id="view-password" style='color:#cdcdcd'  ></i>
             </div>
-            <p class="text-small">esqueceu senha ?</p>
+            <a href="./assets/telas/esqueceuSenha.html" class="text-small">esqueceu senha ?</a>
         </div>
 
 
@@ -39,7 +42,7 @@
 
 
 
-                <p class="text">se ja possui uma conta
+                <p class="text">Se ja possui uma conta
                     cadastrada faça login
                 </p>
 
@@ -51,6 +54,8 @@
                 </button>
         </div>
     </main>
+
+    <script src="./assets/js/index.js"></script>
 </body>
 </html>
 

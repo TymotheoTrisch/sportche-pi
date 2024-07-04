@@ -55,10 +55,11 @@ h3 {
 .text {
   font-size: 14px;
   font-weight: 300;
-
+  font-family: var(--manrope);
 }
 
 .text-small {
   font-size: 12px;
   font-weight: 300;
+  font-family: var(--manrope);
 } 
