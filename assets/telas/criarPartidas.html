@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Import CSS geral e o da página -->
+    <!-- Link CSS geral e o da página -->
     <link rel="stylesheet" href="/assets/css/geral.css">
     <link rel="stylesheet" href="../css/criarPartidas.css">
+    <link rel="stylesheet" href="../css/menu.css">
     
     <!-- Inport Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <!-- Link Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <title>Sportchê - Criar partidas</title>
 </head>
@@ -25,7 +29,7 @@
         <div class="title-partidas">
             <h3>Partidas</h3>
         </div>
-    </header>
+    </header> <!--Fim header-->
 
     <main>
         <form action="">
@@ -61,8 +65,36 @@
                 <label for="input-descricao">Nome da Partida</label>
                 <textarea name="input-descricao" id="input-descricao-partida" rows="5" cols="33"></textarea>
             </div>
-        </form>
-    </main>
+            
+            <div class="buttons">
+                <button type="button" id="btn-cancelar">Cancelar</button>
+                <button type="button" id="btn-adicionar-partida">Adicionar Partida</button>
+            </div>
+        </form> <!--Fim form-->
+        
+    </main> <!--Fim main-->
+    
+    <footer>
+        <div class="menu-mobile">
+            <a href="" class="icon pesquisar">
+                <i class='bx bx-search'></i>
+            </a>
+            <a href="" class="icon criar-partidas">
+                <i class='bx bx-add-to-queue select'></i>
+                <!-- <div class="icon square">
+                    <i class='bx bx-plus' ></i>
+                </div hre> -->
+            </a>
+            
+            <a href="" class="icon profile">
+                <i class='bx bx-user' ></i>
+            </a>
+        </div>
+        
+        <div class="footer-desktop">
+            
+        </div>
+    </footer>
     
     <script src="../js/criarPartidas.js"></script>
 </body>

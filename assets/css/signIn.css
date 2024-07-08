@@ -2,11 +2,6 @@
 
 @media (max-width : 720px) {
 
-    * {
-        margin: 0;
-        padding: 0;
-    }
-
     header {
         height: 32vh;
         width: 100%;
@@ -42,6 +37,10 @@
         font-family: var(--bebas);
         font-size: 128px;
 
+    }
+    
+    .font-bebas-desktop {
+        display: none;
     }
 
     /* fim do header */
@@ -92,6 +91,7 @@
 
     .input-password i {
         font-size: 27px;
+        margin-right: 15px;
     }
 
     .text-small {
@@ -150,4 +150,31 @@
 
 
 
+}
+
+@media (min-width: 721px) {
+    body {
+        width: 100%;
+        height: 100vh;
+        background: #6F50FF url('../img/Texto-sportche-login.svg');
+    }
+    
+    header {
+        text-align: center;
+        color: #fff;
+    }
+    
+    .font-bebas {
+        display: none;
+    }
+    
+    .font-poppins {
+        
+    }
+}
+
+.font-poppins {
+
+    font-family: var(--poppins);
+    color: #FFFFFF;
 }

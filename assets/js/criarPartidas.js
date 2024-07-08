@@ -1,11 +1,11 @@
-$('.input-number-increment').click(function() {
-    var $input = $(this).parents('.input-number-group').find('.input-number');
+$('.number-increment').click(function() {
+    var $input = $(this).parents('.input-incrementor').find('#input-participantes-partida');
     var val = parseInt($input.val(), 10);
     $input.val(val + 1);
   });
   
-  $('.input-number-decrement').click(function() {
-    var $input = $(this).parents('.input-number-group').find('.input-number');
+  $('.number-decrement').click(function() {
+    var $input = $(this).parents('.input-incrementor').find('#input-participantes-partida');
     var val = parseInt($input.val(), 10);
     $input.val(val - 1);
   })
