@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <header>
+    <header class="header_login">
         <div class="titulo">
             <h1 class="font-poppins">Sportchê</h1>
         </div>
@@ -24,18 +24,36 @@
 
     </header>
 
-    <main>
+    <!-- fim do header do login -->
+
+
+    <header class="header_cadastro">
+        <div class="titulo">
+            <h1 class="font-poppins">Sportchê</h1>
+        </div>
+
+        <h2 class="font-bebas">Sign Up</h2>
+
+    </header>
+
+
+    <!-- fim do header do cadastro -->
+
+    
+
+
+    <main class="main_login">
         <h2 class="font-bebas-desktop">Sign-In</h2>
-        <div class="emailSenha">
-            <div class="input-email">
+        <form>
+            <div class="input email">
                 <input id="inputemail" type="email" placeholder="email" />
             </div>
-            <div class="input-password">
+            <div class="input password">
                 <input id="password" type="password" placeholder="senha" />
                 <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
             </div>
             <a href="./assets/telas/esqueceuSenha.html" class="text-small">esqueceu senha ?</a>
-        </div>
+        </form>
 
 
         <div class="entrarOuCadastrar">
@@ -58,6 +76,65 @@
             </button>
         </div>
     </main>
+
+
+
+
+<!-- fim do main login -->
+
+
+
+    <main class="main_cadastro">
+        <h2 class="font-bebas-desktop">Sign-In</h2>
+        <form>
+
+            <div class="input nome">
+                <input id="nameCadastro" type="text" placeholder="nome"/>
+            </div>
+
+            <div class="input email">
+                <input id="inputemailCadastro" type="email" placeholder="email" />
+            </div>
+
+            <div class="input password">
+                <input id="password" type="password" placeholder="senha" />
+                <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
+            </div>
+
+                <p class="senhaSegura">Crie uma senha segura de no minimo oito digitos</p>
+
+
+             <div class="input password">
+                    <input id="password_confirm" type="password" placeholder="confirme sua senha" />
+                    <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
+            </div>
+        </form>
+
+
+        <div class="entrarOuCadastrar">
+
+
+            <button class="botaoCadastrar">
+                <h2>Cadastrar</h2>
+            </button>
+
+           
+
+
+
+
+
+            <h3>Ou</h3>
+
+            <button class="botaoEntrar">
+                <h2>Entrar</h2>
+            </button>
+
+        </div>
+    </main>
+
+
+    <!-- fim do header cadastro -->
 
     <script src="./assets/js/index.js"></script>
 </body>
