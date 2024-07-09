@@ -18,4 +18,43 @@ iconPassword.forEach(icon => {
     })
 })
 
+// variaveis dos botões
+const botaoCadastrar = document.getElementById('botaoCadastrar') 
+const botaoEntrar = document.getElementById('botaoEntrar')
+// variaveis dos botões
+
+// variaveis do cadastro
+const mainCadastro = document.getElementById('mainCadastro')
+const headerCadastro = document.getElementById('headerCadastro')
+// variaveis do cadastro
+
+// variaveis do login
+const mainLogin = document.getElementById('mainLogin')
+const headerLogin = document.getElementById('headerLogin')
+// variaveis do login
+
+
+
+botaoCadastrar.addEventListener('click',()=>{
+        mainLogin.style.display = "none"
+        headerLogin.style.display = "none"
+
+        if(mainLogin.style.display === "none" && headerLogin.style.display === "none"){
+            mainCadastro.style.display = "block" 
+            headerCadastro.style.display = "block"
+        }
+})
+
+
+botaoEntrar.addEventListener('click',()=>{
+    mainCadastro.style.display = "none"
+    headerCadastro.style.display = "none"
+
+    if(mainCadastro.style.display === "none" && headerCadastro.style.display === "none"){
+        mainLogin.style.display = "block" 
+        headerLogin.style.display = "block"
+    }
+})
+
+
 
