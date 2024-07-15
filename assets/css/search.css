@@ -1,0 +1,52 @@
+@import url("geral.css");
+
+* {
+    font-family: var(--poppins);
+}
+
+@media screen and (max-width: 720px) {
+
+    #header-container {
+        padding: 15px 10px;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #header-container .bx-user {
+        background-repeat: no-repeat;
+        font-size: 24px;
+    }
+
+    #search-box {
+        padding: 10px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: var(--white-default);
+        margin: 0 20px;
+    }
+
+    #search-box i  {
+        font-size: 3vh;
+    }
+
+    #search-box input[type="search"] {
+        border: none;
+        padding: inherit;
+        width: 80%;
+        height: 4vh;
+        background: inherit;
+    }
+
+    main {
+        margin: 10px;
+        box-shadow: 1px 1px 10px rgb(88, 88, 88);
+        width: inherit;
+        height: 110vh;
+        border-radius: 25px;
+        background: var(--grey-font);
+    }
+}
