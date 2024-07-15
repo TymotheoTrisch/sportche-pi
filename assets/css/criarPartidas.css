@@ -69,7 +69,7 @@ header {
 }
 
 .font-poppins {
-
+    display: block !important;
     font-family: var(--poppins);
     color: #FFFFFF;
 }
