@@ -1,3 +1,286 @@
+@import url('../css/geral.css');
+
 @media (max-width: 720px) {
+    form {
+        width: 100%;
+    }
+
+    /* Main */
+    body main {
+        padding-bottom: 120px;
+    }
     
+    .participantes {
+        width: 100%;
+    }
+    
+    .horario {
+        width: 100%;
+    }
 }
+
+@media (min-width: 721px) {
+
+    body main {
+        padding: 40px;
+        padding-bottom: 30px;
+    }
+
+    form {
+        width: min(100%, 720px);
+        margin: auto;
+    }
+    
+    .participantes {
+        width: 45%;
+    }
+    
+    .horario {
+        width: 45%;
+    }
+
+    footer {
+        display: none;
+    }
+
+    #btn-cancelar:hover {
+        outline: 1px solid var(--button-cancelar);
+        background-color: transparent;
+        color: var(--button-cancelar);
+    }
+
+    #btn-adicionar-partida:hover {
+        outline: 1px solid var(--button-adicionar);
+        background-color: transparent;
+        color: var(--button-adicionar);
+    }
+
+}
+
+/* Começo header */
+header {
+    width: 100%;
+    background-color: var(--purple-default); 
+}
+
+.titulo {
+    padding: 40px 25px 70px;
+    margin: 0 10px;
+}
+
+.font-poppins {
+
+    font-family: var(--poppins);
+    color: #FFFFFF;
+}
+
+.title-partidas {
+    width: 100%;
+    padding: 5px 0;
+    text-align: center;
+
+    border-top: 2px solid var(--purple-relative);
+}
+
+h3 {
+    color: #FFFFFF;
+    font-family: var(--poppins);
+    font-size: 24px;
+
+}
+
+/* Fim Header */
+
+/* Formulário */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Iputs */
+.div-partida {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    font-family: var(--manrope);
+
+    margin-bottom: 15px;
+}
+
+.div-partida input,
+.select-btn {
+    padding: 0 15px;
+    height: 50px;
+    outline: none;
+    background-color: var(--white-default);
+    border: none;
+    color: var(--color-input);
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+.div-partida textarea {
+    background-color: var(--white-default);
+    border: none;
+    outline: none;
+    color: var(--color-input);
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 400;
+    border-radius: 3px;
+}
+
+.nome {
+    width: 100%;
+}
+
+.local {
+    width: 100%;
+}
+
+.esporte {
+    width: 45%;
+}
+
+.data {
+    width: 45%;
+}
+
+.descricao {
+    width: 100%;
+}
+
+input[type="number"] {
+    width: 90%;
+    text-align: center;
+}
+
+.input-incrementor {
+    background-color: var(--white-default);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 15px;
+}
+
+.input-incrementor button {
+    font-size: 24px;
+    border: none;
+    background-color: transparent;
+    color: var(--color-input);
+    cursor: pointer;
+}
+
+/* Começo Input div select */
+.select {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: .5s;
+    z-index: 3;
+}
+
+.select-btn,
+.options li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.select-btn {
+    padding: 0 12px;
+    background-color: var(--white-default);
+    justify-content: space-between;
+    color: var(--color-input);
+}
+
+.select-btn i {
+    font-size: 31px;
+    transition: transform 0.3s linear;
+}
+
+.select.active .select-btn i {
+    transform: rotate(-180deg);
+}
+
+/* Começo div itens esporte */
+.content {
+    top: 5vh;
+    display: none;
+    width: 100%;
+    padding: 5px;
+    margin-top: 15px;
+    border: 1px solid var(--color-input);
+    background: var(--white-default);
+    border-radius: 3px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.select.active .content {
+    display: block;
+    position: absolute;
+}
+
+/* Fim div itens esporte */
+
+/* Começo Itens esporte */
+.content .options {
+    margin-top: 10px;
+    overflow-y: auto;
+    padding-right: 7px;
+}
+
+.options::-webkit-scrollbar {
+    width: 7px;
+}
+
+.options li {
+    width: 100%;
+    padding: 10px 13px;
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--color-input);
+
+}
+
+.options li:hover,
+li.selected {
+    border-radius: 3px;
+    background: #ecece6;
+}
+
+/* Fim Itens esporte */
+/* Fim Input div select */
+/* Fim iputs */
+
+/* Buttons adicionar e cancelar */
+.buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.buttons button {
+    padding: 15px 20px;
+    border: none;
+    font-size: 17px;
+    border-radius: 3px;
+    color: var(--white-bg);
+    cursor: pointer;
+    transition: .2s;
+}
+
+#btn-cancelar {
+    background-color: var(--button-cancelar);
+}
+
+#btn-adicionar-partida {
+    background-color: var(--button-adicionar);
+}
+
+/* Fim adicionar e cancelar */
+/* Fim Formulário */

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Link CSS geral e o da página -->
-    <link rel="stylesheet" href="/assets/css/geral.css">
+    <!-- <link rel="stylesheet" href="/assets/css/geral.css"> -->
     <link rel="stylesheet" href="../css/criarPartidas.css">
     <link rel="stylesheet" href="../css/menu.css">
     
@@ -24,46 +24,75 @@
 
         <div class="titulo">
             <h1 class="font-poppins">Sportchê</h1>
+            <div class="menu-desktop" id="menu-desktop">
+                <i class='bx bx-menu'></i>
+            </div>
         </div>
+        
+        <nav class="itens" style="position: absolute; opacity: 0;">
+            <a href="" class="icon pesquisar">
+                <i class='bx bx-search'></i>
+                <h2>Buscar</h2>
+            </a>
+            <a href="" class="icon criar-partidas">
+                <i class='bx bx-add-to-queue'></i>
+                <h2>Criar Partida</h2>
+            </a>
+            
+            <a href="" class="icon profile">
+                <i class='bx bx-user' ></i>
+                <h2>Perfil</h2>
+            </a>
+        </nav>
 
         <div class="title-partidas">
-            <h3>Partidas</h3>
+            <h3>Criar Partidas</h3>
         </div>
+
+
     </header> <!--Fim header-->
 
     <main>
         <form action="">
-            <div class="nome-partida">
+            <div class="nome div-partida">
                 <label for="input-nome">Nome da Partida</label>
                 <input type="text" name="input-nome" id="input-nome-partida">
             </div>
-            <div class="local-partida">
+            <div class="local div-partida">
                 <label for="input-local">Local da Partida</label>
                 <input type="text" name="input-local" id="input-local-partida">
             </div>
-            <div class="esporte-partida">
+            <div class="esporte div-partida">
                 <label for="input-esporte">Esporte</label>
-                <input type="text" name="input-esporte" id="input-esporte-partida">
+                <div class="select">
+                    <div class="select-btn">
+                        <span data-id="">Esporte</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content">
+                        <ul class="options"></ul>
+                    </div>
+                </div>
             </div>
-            <div class="data-partida">
+            <div class="data div-partida">
                 <label for="input-data">Data</label>
                 <input type="date" name="input-data" id="input-data-partida">
             </div>
-            <div class="participantes-partida">
-                <label for="input-participantes">Nome da Partida</label>
+            <div class="participantes div-partida">
+                <label for="input-participantes">Participantes</label>
                 <div class="input-incrementor">
-                    <span class="number-decrement">-</span>
+                    <button type="button" class="number-decrement">-</button>
                     <input type="number" name="input-participantes" id="input-participantes-partida" value="1" min="1">
-                    <span class="number-increment">+</span>
+                    <button type="button" class="number-increment">+</button>
                 </div>
             </div>
-            <div class="horario-partida">
-                <label for="input-horario">Nome da Partida</label>
+            <div class="horario div-partida">
+                <label for="input-horario">Horário</label>
                 <input type="time" name="input-horario" id="input-horario-partida">
             </div>
-            <div class="descricao-partida">
-                <label for="input-descricao">Nome da Partida</label>
-                <textarea name="input-descricao" id="input-descricao-partida" rows="5" cols="33"></textarea>
+            <div class="descricao div-partida">
+                <label for="input-descricao">Descrição</label>
+                <textarea name="input-descricao" id="input-descricao-partida" rows="4" cols="35"></textarea>
             </div>
             
             <div class="buttons">
@@ -78,16 +107,16 @@
         <div class="menu-mobile">
             <a href="" class="icon pesquisar">
                 <i class='bx bx-search'></i>
+                <h2>Buscar</h2>
             </a>
-            <a href="" class="icon criar-partidas">
-                <i class='bx bx-add-to-queue select'></i>
-                <!-- <div class="icon square">
-                    <i class='bx bx-plus' ></i>
-                </div hre> -->
+            <a href="" class="icon criar-partidas selected">
+                <i class='bx bx-add-to-queue'></i>
+                <h2>Criar</h2>
             </a>
             
             <a href="" class="icon profile">
                 <i class='bx bx-user' ></i>
+                <h2>Perfil</h2>
             </a>
         </div>
         
