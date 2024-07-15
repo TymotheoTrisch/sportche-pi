@@ -46,19 +46,26 @@
         <h2 class="font-bebas-desktop">Sign-In</h2>
         <form>
             <div class="input email">
-                <input id="inputemail" type="email" placeholder="email" />
+                <input id="email" type="email" placeholder="email" />
             </div>
+
+            <div id="email-invalid-error" class="error" style="display: none;">Email inválido</div>
+            <div id="email-required-error" class="error" style="display: none;">Email obrigatório</div>
+         
+
             <div class="input password">
                 <input id="password" type="password" placeholder="senha" />
                 <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
             </div>
+
+            <div id="password-required-error" class="error" style="display: none;">Senha obrigatória</div>
             <a href="./assets/telas/esqueceuSenha.html" class="text-small">esqueceu senha ?</a>
         </form>
 
 
         <div class="entrarOuCadastrar">
 
-            <button class="botaoEntrar">
+            <button id="botaoEntrarLogin" class="botaoEntrar">
                 <h2>Entrar</h2>
              </button>
 
@@ -95,6 +102,7 @@
             <div class="input email">
                 <input id="inputemailCadastro" type="email" placeholder="email" />
             </div>
+           
 
             <div class="input password">
                 <input id="password" type="password" placeholder="senha" />

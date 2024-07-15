@@ -65,7 +65,7 @@
         flex-direction: column;
     }
 
-    form div {
+    form div:not(.error) {
         font-family: var(--manrope);
         width: 100%;
         height: 48px;
@@ -116,6 +116,10 @@
         font-family: var(--manrope);
         margin-top: 5%;
         margin-bottom: 5%;
+    }
+
+    .error {
+        color: #ff0000;
     }
 
     /* fim dos inputs email e senha */
@@ -188,12 +192,33 @@
     .main_cadastro{
         display: none;
     }
+    .titulo{
+        display: none;
+    }
+    .entrarOuCadastrar p{
+        display: none;
+    }
+    .entrarOuCadastrar h3 {
+        display: none;
+    }
+    /* nones e blocks */
+
+
+
+
+
+
+
     body {
         width: 100%;
         height: 100vh;
         background: #6F50FF url('../img/Texto-sportche-login.svg');
+        display: flex;
+        justify-content: center;
+        align-items: center;
        
     }
+    
     
     header {
         text-align: center;
@@ -203,14 +228,126 @@
     .font-bebas {
         display: none;
     }
-    
-    .font-poppins {
+    /* css do login*/
+    .main_login {
+        background-color: #fffffff8;
+        width: 30%;
+        height: 50%;
+        border-radius: 7px;
+    }
+    .main_login h2 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .font-bebas-desktop{
+        font-family: var(--bebas);
+        font-size: 70px;
+        color: var(--purple-default);
+    }
+    /* css dos inputs */
+    .input{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        background-color: var(--white-default);
+        margin: auto;
+        border-radius: 7px;
+
+    }
+    .input input{
+        width: 100%;
+        padding: 10px 20px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        font-size: 18px;
+
+    }
+    .bx{
+        font-size: 25px;
+    }
+    .email{
+        margin-bottom: 1.5%;
+    }
+
+
+
+    /* esqueceu a senha */
+    form{
+        margin-bottom: 10%;
+    }
+    form a{
+        float: right;
+        margin-right: 22%;
         
+    }
+
+    /* botões de login e cadastro*/
+    .entrarOuCadastrar{
+        
+        display: flex;
+        justify-content: space-around;
+        
+        
+    }
+    .botaoEntrar {
+        width: 30%;
+        height: 50px;
+        font-family: var(--poppins);
+        background-color: #4024C0;
+        color: var(--white-bg);
+        border-radius: 5px;
+        border: #4024C0;
+        cursor: pointer;
+    }
+    .botaoCadastrar {
+        width: 30%;
+        height: 50px;
+        font-family: var(--poppins);
+        background-color: var(--black-default);
+        color: var(--white-bg);
+        border-radius: 5px;
+        border: var(--black-default);
+        margin-bottom: 2%;
+        cursor: pointer;
+    }
+
+    /* avisos de email ou senha errados  */
+    .error{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 22%;
+        margin-bottom: 2%;
+        font-family: var(--manrope);
+    }
+    /* fim do css login */
+
+
+    /*css do cadastro*/
+    .main_cadastro {
+        background-color: #fffffff8;
+        width: 30%;
+        height: 50%;
+        border-radius: 7px;
+    }
+    .main_cadastro h2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .main_cadastro .input {
+        margin-bottom: 1.5%;
+        margin-top: 1%;
+    }
+    .main_cadastro p{
+        text-align: center;
     }
 }
 
 .font-poppins {
-
     font-family: var(--poppins);
     color: #FFFFFF;
 }
