@@ -83,7 +83,7 @@ header {
         font-family: var(--poppins);
         color: #ffffff49;
         margin-left: 55%; 
-        font-size: 70px; 
+        font-size: 60px; 
     }
     .email {
         display: flex;
@@ -91,7 +91,7 @@ header {
         align-items: center;
         flex-direction: column;
     
-        margin-top: 5%;
+        margin-top: 7%;
     
         gap: 50px;
     }
