@@ -336,7 +336,7 @@ linhan 338
     .main_cadastro {
         background-color: #fffffff8;
         width: 50vh;
-        height: 50%;
+        height: 60%;
         border-radius: 7px;
     }
     .main_cadastro h2{
@@ -345,11 +345,14 @@ linhan 338
         align-items: center;
     }
     .main_cadastro .input {
-        margin-bottom: 1.5%;
+        margin-bottom: 4.5%;
         margin-top: 1%;
     }
     .main_cadastro p{
         text-align: center;
+        margin-bottom: 5%;
+        font-size: small;
+        color: rgba(0, 0, 0, 0.897);
     }
 }
 
