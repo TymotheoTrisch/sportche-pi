@@ -1,4 +1,8 @@
 @import url("./geral.css");
+/* mudanças : 
+linha 237 - 239
+linhan 338
+*/
 
 @media (max-width : 720px) {
 
@@ -231,7 +235,9 @@
     /* css do login*/
     .main_login {
         background-color: #fffffff8;
-        width: 30%;
+        /* mudança */
+        /* width: 30%; */
+        width: 50vh;
         height: 50%;
         border-radius: 7px;
     }
@@ -303,7 +309,7 @@
         cursor: pointer;
     }
     .botaoCadastrar {
-        width: 30%;
+        width: 35%;
         height: 50px;
         font-family: var(--poppins);
         background-color: var(--black-default);
@@ -329,7 +335,7 @@
     /*css do cadastro*/
     .main_cadastro {
         background-color: #fffffff8;
-        width: 30%;
+        width: 50vh;
         height: 50%;
         border-radius: 7px;
     }
