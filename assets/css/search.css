@@ -7,7 +7,7 @@
 @media screen and (max-width: 720px) {
 
     #header-container {
-        padding: 15px 10px;
+        padding: 15px 22px;
         width: 100%;
 
         display: flex;
@@ -17,7 +17,7 @@
 
     #header-container .bx-user {
         background-repeat: no-repeat;
-        font-size: 24px;
+        font-size: 32px;
     }
 
     #search-box {
@@ -29,7 +29,7 @@
         margin: 0 20px;
     }
 
-    #search-box i  {
+    #search-box i {
         font-size: 3vh;
     }
 
@@ -39,14 +39,194 @@
         width: 80%;
         height: 4vh;
         background: inherit;
+        outline: none;
+    }
+
+    #s-box::-webkit-search-cancel-button {
+
+
+        -webkit-appearance: none;
+        height: 24px;
+        width: 24px;
+        background-image: url(../img/x-regular-24.png);
     }
 
     main {
         margin: 10px;
         box-shadow: 1px 1px 10px rgb(88, 88, 88);
         width: inherit;
-        height: 110vh;
+        height: 110dvh;
         border-radius: 25px;
-        background: var(--grey-font);
+        background: var(--white-bg);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2%;
+
+
+    }
+
+    .game-holder {
+        height: 25dvh;
+        width: inherit;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        box-shadow: 1px 1px 5px rgb(141, 141, 141);
+        border-radius: 25px;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 2dvw;
+    }
+
+    .game-holder .game-image {
+        height: 100%;
+        width: 50%;
+        border-radius: 25px 0 0 25px;
+    }
+
+    .game-info {
+        padding: 10px;
+    }
+
+    .game-info #game-title {
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .info-match {
+
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .info-match i {
+        display: flex;
+        font-size: 16px;
+        font-family: var(--poppins);
+    }
+
+    .game-info p {
+
+        font-size: 14px;
+
     }
 }
+
+
+
+
+@media screen and (max-width: 510px) {
+
+    #search-box {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background: var(--white-default);
+        margin: 0 20px;
+    }
+
+    #search-box i {
+        font-size: 3vh;
+    }
+
+    #search-box input[type="search"] {
+        border: none;
+        padding: inherit;
+        width: 80%;
+        height: 4vh;
+        background: inherit;
+        outline: none;
+    }
+
+    main {
+
+        box-shadow: 1px 1px 10px rgb(88, 88, 88);
+        width: inherit;
+
+        border-radius: 25px;
+        background: var(--white-bg);
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2%;
+
+
+    }
+
+    .game-holder {
+        height: 180px;
+        width: inherit;
+        border: 1px solid rgba(0, 0, 0, 0.25);
+        box-shadow: 1px 1px 5px rgb(141, 141, 141);
+        border-radius: 25px;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 2dvw;
+    }
+
+    .game-holder .game-image {
+        height: 100%;
+        width: 50%;
+        border-radius: 25px 0 0 25px;
+    }
+
+    .game-info {
+        padding: 10px;
+    }
+
+    .game-info p {
+        margin: 2px;
+        font-size: 10px;
+    }
+
+    .game-info #game-title {
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .info-match {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .info-match i {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-family: var(--poppins);
+    }
+
+    .info-match i p {
+        margin-bottom: 2px;
+    }
+
+}
+
+
+/*
+<div class="game-holder">
+            <img src="../img/arena-do-gremio.jpg" class="game-image">
+            <div class="game-info">
+                <span id="game-title">Fut das Favelas</span>
+                <div class="info-match">
+                    <i class='bx bx-football'> +2</i>
+                    <i class='bx bx-current-location'>2km</i>
+                </div>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium, corrupti quasi. Blanditiis est
+                    nobis maiores unde repellendus neque nihil rem, temporibus eum. Voluptate in voluptas earum
+                    voluptatem corporis, suscipit delectus.</p>
+            </div>
+        </div>
+
+*/
