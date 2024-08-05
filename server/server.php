@@ -1,9 +1,9 @@
 <?php
 // Configurações do banco de dados
 $servername = "localhost"; // Nome do servidor MySQL
-$username = "tdssl231t_kainnawantsin"; // Nome de usuário do banco de dados
-$password = "Pfz3RpUXD8rxzFc"; // Senha do banco de dados
-$dbname = "tdssl231t_kainnawantsin"; // Nome do banco de dados
+$username = "tdssl231t_tymotheooliveira"; // Nome de usuário do banco de dados
+$password = "oqJQBjk6XhRxuVa"; // Senha do banco de dados
+$dbname = "tdssl231t_tymotheooliveira"; // Nome do banco de dados
 
 // Cria conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -26,23 +26,24 @@ if (isset($_GET['action'])) {
 
     // Ação para registrar um novo usuário
     if ($action == 'register') {
-        $username = $input['username']; // Obtém o nome de usuário do input JSON
+        // $username = $input['username']; // Obtém o nome de usuário do input JSON
         $password = password_hash($input['password'], PASSWORD_DEFAULT); // Cria um hash da senha fornecida
         $email = $input['email']; // Obtém o email do input JSON
+        $nome = $input['nome']; // Obtém o nome do input JSON
 
         // Verifica se o nome de usuário já existe no banco de dados
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
-        $stmt->bind_param("s", $username);
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
         // Se o nome de usuário já estiver em uso, retorna mensagem de erro
         if ($result->num_rows > 0) {
-            echo json_encode(['success' => false, 'message' => 'Username already exists']);
+            echo json_encode(['success' => false, 'message' => 'email already exists']);
         } else {
             // Insere um novo usuário no banco de dados
-            $stmt = $conn->prepare("INSERT INTO users (username, password, email) VALUES (?, ?, ?)");
-            $stmt->bind_param("sss", $username, $password, $email);
+            $stmt = $conn->prepare("INSERT INTO users (password, email, username) VALUES (?, ?, ?)");
+            $stmt->bind_param("sss", $password, $email, $nome);
             
             // Verifica se a inserção foi bem-sucedida e retorna mensagem correspondente
             if ($stmt->execute()) {
@@ -55,12 +56,12 @@ if (isset($_GET['action'])) {
     } 
     // Ação para realizar login de usuário
     elseif ($action == 'login') {
-        $username = $input['username']; // Obtém o nome de usuário do input JSON
+        $email = $input['email']; // Obtém o nome de usuário do input JSON
         $password = $input['password']; // Obtém a senha do input JSON
 
         // Verifica se o nome de usuário e a senha estão corretos
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
-        $stmt->bind_param("s", $username);
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -79,39 +80,39 @@ if (isset($_GET['action'])) {
         $stmt->close(); // Fecha a declaração preparada
     } 
     // Ação para atualizar dados do usuário
-    elseif ($action == 'update') {
-        $username = $input['username']; // Obtém o nome de usuário do input JSON
-        $password = password_hash($input['password'], PASSWORD_DEFAULT); // Cria um novo hash da senha
-        $email = $input['email']; // Obtém o email do input JSON
+    // elseif ($action == 'update') {
+    //     $username = $input['username']; // Obtém o nome de usuário do input JSON
+    //     $password = password_hash($input['password'], PASSWORD_DEFAULT); // Cria um novo hash da senha
+    //     $email = $input['email']; // Obtém o email do input JSON
 
-        // Atualiza os dados do usuário no banco de dados
-        $stmt = $conn->prepare("UPDATE users SET password=?, email=? WHERE username=?");
-        $stmt->bind_param("sss", $password, $email, $username);
+    //     // Atualiza os dados do usuário no banco de dados
+    //     $stmt = $conn->prepare("UPDATE users SET password=?, email=? WHERE username=?");
+    //     $stmt->bind_param("sss", $password, $email, $username);
         
-        // Verifica se a atualização foi bem-sucedida e retorna mensagem correspondente
-        if ($stmt->execute()) {
-            echo json_encode(['success' => true, 'message' => 'Update successful']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Error: ' . $stmt->error]);
-        }
-        $stmt->close(); // Fecha a declaração preparada
-    } 
+    //     // Verifica se a atualização foi bem-sucedida e retorna mensagem correspondente
+    //     if ($stmt->execute()) {
+    //         echo json_encode(['success' => true, 'message' => 'Update successful']);
+    //     } else {
+    //         echo json_encode(['success' => false, 'message' => 'Error: ' . $stmt->error]);
+    //     }
+    //     $stmt->close(); // Fecha a declaração preparada
+    // } 
     // Ação para deletar um usuário
-    elseif ($action == 'delete') {
-        $username = $input['username']; // Obtém o nome de usuário do input JSON
+    // elseif ($action == 'delete') {
+    //     $username = $input['username']; // Obtém o nome de usuário do input JSON
 
-        // Deleta o usuário do banco de dados
-        $stmt = $conn->prepare("DELETE FROM users WHERE username=?");
-        $stmt->bind_param("s", $username);
+    //     // Deleta o usuário do banco de dados
+    //     $stmt = $conn->prepare("DELETE FROM users WHERE username=?");
+    //     $stmt->bind_param("s", $username);
         
-        // Verifica se a exclusão foi bem-sucedida e retorna mensagem correspondente
-        if ($stmt->execute()) {
-            echo json_encode(['success' => true, 'message' => 'User deleted successfully']);
-        } else {
-            echo json_encode(['success' => false, 'message' => 'Error: ' . $stmt->error]);
-        }
-        $stmt->close(); // Fecha a declaração preparada
-    }
+    //     // Verifica se a exclusão foi bem-sucedida e retorna mensagem correspondente
+    //     if ($stmt->execute()) {
+    //         echo json_encode(['success' => true, 'message' => 'User deleted successfully']);
+    //     } else {
+    //         echo json_encode(['success' => false, 'message' => 'Error: ' . $stmt->error]);
+    //     }
+    //     $stmt->close(); // Fecha a declaração preparada
+    // }
 }
 
 $conn->close(); // Fecha a conexão com o banco de dados

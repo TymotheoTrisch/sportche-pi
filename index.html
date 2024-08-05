@@ -94,10 +94,10 @@
 
     <main id="mainCadastro" class="main_cadastro">
         <h2 class="font-bebas-desktop">Sign-In</h2>
-        <form>
+        <form id="cadastroForm">
 
             <div class="input nome">
-                <input id="nameCadastro" type="text" placeholder="nome"/>
+                <input id="nomeCadastro" type="text" placeholder="nome"/>
             </div>
 
             <div class="input email">
@@ -173,23 +173,22 @@
         });
 
         // Submissão do formulário de cadastro
-        document.getElementById('registerForm').addEventListener('submit', async function(event) {
+        document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
-            const username = document.getElementById('registerUsername').value;
-            const password = document.getElementById('registerPassword').value;
-            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('password').value;
+            const email = document.getElementById('inputemailCadastro').value;
+            const nome = document.getElementById('nomeCadastro').value;
 
             // Envia os dados de registro para o servidor
             const response = await fetch('server.php?action=register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password, email })
+                body: JSON.stringify({password, email, nome })
             });
 
             const result = await response.json(); // Converte a resposta em JSON
-            document.getElementById('registerResponse').innerText = result.message; // Exibe a mensagem de resposta
             if (result.success) {
-                document.getElementById('showLogin').click(); // Volta para o formulário de login
+                document.getElementById('./assets/telas/search.html').click(); // Volta para o formulário de login
             }
         });
     </script>
