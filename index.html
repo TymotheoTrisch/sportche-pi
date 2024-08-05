@@ -106,7 +106,7 @@
            
 
             <div class="input password">
-                <input id="password" type="password" placeholder="senha" />
+                <input id="passwordCadastro" type="password" placeholder="senha" />
                 <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
             </div>
 
@@ -117,13 +117,15 @@
                     <input id="password_confirm" type="password" placeholder="confirme sua senha" />
                     <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
             </div>
+        <p id="registerResponse"></p>
+       
         </form>
 
 
         <div class="entrarOuCadastrar">
 
 
-            <button class="botaoCadastrar">
+            <button class="botaoCadastrar" id="botaoSubmit">
                 <h2>Cadastrar</h2>
             </button>
 
@@ -143,13 +145,14 @@
     </main>
 
 
+
     <!-- fim do header cadastro -->
 
     <script src="./assets/js/index.js"></script>
+    <script src="./server/server.php"></script>
 
 
     <script>
-
         // Submissão do formulário de login
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
@@ -173,9 +176,9 @@
         });
 
         // Submissão do formulário de cadastro
-        document.getElementById('cadastroForm').addEventListener('submit', async function(event) {
+        document.getElementById('botaoSubmit').addEventListener('click', async function(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
-            const password = document.getElementById('password').value;
+            const password = document.getElementById('passwordCadastro').value;
             const email = document.getElementById('inputemailCadastro').value;
             const nome = document.getElementById('nomeCadastro').value;
 
@@ -187,10 +190,13 @@
             });
 
             const result = await response.json(); // Converte a resposta em JSON
+            console.log(result);
+            document.getElementById('registerResponse').innerHTML = result.message;
             if (result.success) {
                 document.getElementById('./assets/telas/search.html').click(); // Volta para o formulário de login
             }
         });
+
     </script>
 </body>
 
