@@ -1,4 +1,4 @@
-const iconPassword = document.querySelectorAll('#view-password')
+const iconPassword = document.querySelectorAll('.view-password')
 
 iconPassword.forEach(icon => {
     icon.addEventListener('click', () => {
