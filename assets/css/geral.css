@@ -5,10 +5,14 @@
 
 :root {
   --purple-default: #6F50FF;
+  --purple-relative: #4024C0;
   --black-default: #0A122A;
   --white-bg: #FFF;
   --white-default: #F4F4ED;
   --grey-font: #939393;
+  --color-input: #ADABAB;
+  --button-cancelar: #FF6767;
+  --button-adicionar: #4285F4;
 
   --bebas: "Bebas Neue", sans-serif;
   --manrope: "Manrope", sans-serif;

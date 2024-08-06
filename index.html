@@ -21,7 +21,7 @@
         </div>
 
         <h2 class="font-bebas">Sign In</h2>
-        
+
 
     </header>
 
@@ -40,7 +40,7 @@
 
     <!-- fim do header do cadastro -->
 
-    
+
 
 
     <main id="mainLogin" class="main_login">
@@ -90,7 +90,7 @@
 
 
 
-<!-- fim do main login -->
+    <!-- fim do main login -->
 
 
 
@@ -99,29 +99,29 @@
         <form id="cadastroForm">
 
             <div class="input nome">
-                <input id="nomeCadastro" type="text" placeholder="nome"/>
+                <input id="nomeCadastro" type="text" placeholder="nome" />
             </div>
 
             <div class="input email">
                 <input id="inputemailCadastro" type="email" placeholder="email" />
             </div>
-           
+
 
             <div class="input password">
                 <input id="passwordCadastro" type="password" placeholder="senha" />
-                <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
+                <i class='bx bx-show' class="view-password" style='color:#cdcdcd'></i>
             </div>
 
-                <p class="senhaSegura">Crie uma senha segura de no minimo oito digitos</p>
+            <p class="senhaSegura">Crie uma senha segura de no minimo oito digitos</p>
 
 
-             <div class="input password">
-                    <input id="password_confirm" type="password" placeholder="confirme sua senha" />
-                    <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
+            <div class="input password">
+                <input id="password_confirm" type="password" placeholder="confirme sua senha" />
+                <i class='bx bx-show' class="view-password" style='color:#cdcdcd'></i>
             </div>
-        <p id="registerResponse"></p>
+            <p id="registerResponse"></p>
        
-      
+        </form>
 
 
         <div class="entrarOuCadastrar">
@@ -135,12 +135,23 @@
 
 
 
-            <button class="botaoCadastrar" id="botaoSubmit">
+            <button class="botaoCadastrar" id="botaoCadastrarRegister">
                 <h2>Cadastrar</h2>
             </button>
 
+           
 
-        </form>
+
+
+
+
+            <h3>Ou</h3>
+
+            <button id="botaoEntrar" class="botaoEntrar">
+                <h2>Entrar</h2>
+            </button>
+            
+
         </div>
     </main>
 
@@ -149,30 +160,35 @@
     <!-- fim do header cadastro -->
 
     <script src="./assets/js/index.js"></script>
-   
+    
 
 
     <script>
         // Submissão do formulário de login
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        document.getElementById('botaoEntrarLogin').addEventListener('click', async function (event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Envia os dados do login para o servidor
-            const response = await fetch('server.php?action=login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
+            try {
+                const response = await fetch('./server/server.php?action=login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const result = await response.json(); // Converte a resposta em JSON
 
-            const result = await response.json(); // Converte a resposta em JSON
-
-            if (result.success) {
-                // sessionStorage.setItem('username', username); // Armazena o nome de usuário na sessão
-                sessionStorage.setItem('email', result.email); // Armazena o email na sessão
-                window.location.href = './assets/telas/search.html'; // Redireciona para a página de perfil
+                if (result.success) {
+                    // sessionStorage.setItem('username', username); // Armazena o nome de usuário na sessão
+                    sessionStorage.setItem('email', result.email); // Armazena o email na sessão
+                    window.location.href = './assets/telas/search.html'; // Redireciona para a página de perfil
+                }
+            } catch(error) {
+                console.error(error);
             }
+            
+
+            
         });
 
         // Submissão do formulário de cadastro
@@ -183,17 +199,17 @@
             const nome = document.getElementById('nomeCadastro').value;
 
             // Envia os dados de registro para o servidor
-            const response = await fetch('server.php?action=register', {
+            const response = await fetch('./server/server.php?action=register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({password, email, nome })
+                body: JSON.stringify({ password, email, nome })
             });
 
             const result = await response.json(); // Converte a resposta em JSON
             console.log(result);
             document.getElementById('registerResponse').innerHTML = result.message;
             if (result.success) {
-                document.getElementById('./assets/telas/search.html').click(); // Volta para o formulário de login
+                window.location.href = './assets/telas/search.html'; // Volta para o formulário de login
             }
         });
 
