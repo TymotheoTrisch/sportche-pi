@@ -22,9 +22,10 @@
         bottom: 30px;
         width: fit-content;
         padding: 15px;
-        background-color: #ffffff6b;
-        
-        backdrop-filter: blur(15px);
+        /* background-color: #ffffff6b; */
+        background-color: #ffffff;
+
+        /* backdrop-filter: blur(15px); */
 
         display: flex;
         justify-content: space-between;
@@ -43,8 +44,8 @@
         border-radius: 20px;
         padding: 7px 15px;
         transition: .4s;
-        
-        
+
+
     }
 
     .icon i {
@@ -53,57 +54,66 @@
         align-items: center;
         justify-content: center;
     }
-    
+
     .icon h2 {
         font-size: 15px;
         font-family: var(--manrope);
         display: none;
     }
-    
-
-    /* .icon:hover {
-        color: #0A0911;
-        background-color: #adabab50;
-    }
-    
-    .icon:hover h2 {
-        display: flex;
-    } */
 
     .icon.selected h2 {
         display: flex;
     }
-    
+
     .icon.selected {
-        /* color: var(--white-bg); */
         color: #0A0911;
         background-color: #adabab33;
-        backdrop-filter: blur(10px);
+        /* backdrop-filter: blur(10px); */
 
     }
 
-    .menu-desktop, .itens {
+    .menu-desktop,
+    .itens {
         display: none;
     }
 }
 
+.title-tela h3 {
+    font-size: 24px;
+}
+
 @media (min-width: 721px) {
+    header {
+        width: 100%;
+        background-color: var(--purple-default);
+    }
+
     .titulo {
-        
+
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         padding: 40px 25px 0px;
-        margin: 0 10px;
         position: relative;
         z-index: 2;
-        background-color: var(--purple-default);
         width: 100%;
     }
-    
+
+    .title-tela {
+        font-family: var(--poppins);
+        color: var(--white-bg);
+        width: 100%;
+        padding: 5px 0;
+        text-align: center;
+
+        border-top: 2px solid var(--purple-relative);
+    }
+
     .font-poppins {
         margin-bottom: 15px;
+        font-family: var(--poppins);
+        color: #FFFFFF;
     }
 
     .menu-mobile {
@@ -115,20 +125,18 @@
         font-size: 38px;
         border-radius: 3px 3px 0 0;
         transition: .5s;
-        
-        /* display: flex;
-        align-items: center; */
+
         position: absolute;
         top: 57px;
         right: 50px;
-        
+
         cursor: pointer;
     }
 
     .menu-desktop i:hover {
         background-color: var(--purple-relative);
     }
-    
+
     .active {
         background-color: var(--purple-relative);
     }
@@ -138,80 +146,64 @@
         justify-content: space-evenly;
         width: 100%;
         transition: border-radius 1s, opacity .5s;
-    
+
         opacity: 1;
-        /* transform: translate(0%, -80%); */
         border-radius: 0 50% 0 0;
 
         background-color: var(--purple-relative);
-        
-        padding: 50px 35px;        
+
+        padding: 50px 35px;
     }
-    
+
     .openAnimationMenu {
-        /* animation: OpenMenu .5s normal; */
         opacity: 1;
-        transform: translate(0px, 0px);
+        transform: translate(0px, 0px) !important;
         border-radius: 0%;
     }
-    
+
     .closeAnimationMenu {
-        /* animation: OpenMenu .5s reverse; */
         opacity: 0;
         border-radius: 0 50% 0 0;
         transform: translate(0%, -80%);
     }
-    
-    
+
+
     .icon {
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 5px  20px;
+        padding: 5px 20px;
         border-radius: 40px;
         border: 1px solid #fff;
-        
+
         color: var(--white-bg);
         font-family: var(--poppins);
         text-decoration: none;
-        
+
         transition: .2s;
     }
-    
+
     .icon i {
         font-size: 32px;
     }
-    
+
     .icon h2 {
         font-size: 28px;
         transition: .2s;
         font-weight: 400;
-        
+
     }
-    
+
     .icon:hover {
         background-color: var(--purple-relative);
         border: none;
     }
-    
+
     .icon:hover h2 {
         font-weight: 700;
     }
-    
-    .icon.selected h2 {
-        font-weight: 700; 
-    }
-}
 
-@keyframes OpenMenu{
-    0% {
-        opacity: 0;
-        border-radius: 100%;
-        transform: translate(0%, -10%);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(0px, 0px);
-        border-radius: 0%;
+    .icon.selected h2 {
+        font-weight: 700;
     }
 }

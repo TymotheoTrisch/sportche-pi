@@ -32,10 +32,6 @@ const sports = [
   {
     "id": 4,
     "name": "Tênis"
-  },
-  {
-    "id": 5,
-    "name": "Futsal"
   }
 ]
 
