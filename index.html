@@ -50,8 +50,8 @@
                 <input id="email" type="email" placeholder="email" />
             </div>
 
-            <div id="email-invalid-error" class="error" style="display: none;">Email inválido</div>
-            <div id="email-required-error" class="error" style="display: none;">Email obrigatório</div>
+            <div id="email-invalid-error" class="error" style="display: none; color: red;">Email inválido</div>
+            <div id="email-required-error" class="error" style="display: none; color: red;">Email obrigatório</div>
          
 
             <div class="input password">
@@ -59,16 +59,16 @@
                 <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
             </div>
 
-            <div id="password-required-error" class="error" style="display: none;">Senha obrigatória</div>
+            <div id="password-required-error" class="error" style="display: none; color: red;">Senha obrigatória</div>
             <a href="./assets/telas/esqueceuSenha.html" class="text-small">esqueceu senha ?</a>
         </form>
 
 
         <div class="entrarOuCadastrar">
 
-            <button id="botaoEntrarLogin" class="botaoEntrar">
-                <h2>Entrar</h2>
-             </button>
+            <button id="botaoCadastrar" class="botaoCadastrar">
+                <h2>Cadastrar</h2>
+            </button>
 
 
 
@@ -79,9 +79,11 @@
 
             <h3>Ou</h3>
 
-            <button id="botaoCadastrar" class="botaoCadastrar">
-                <h2>Cadastrar</h2>
-            </button>
+            
+
+            <button id="botaoEntrarLogin" class="botaoEntrar">
+                <h2>Entrar</h2>
+             </button>
         </div>
     </main>
 
@@ -119,28 +121,26 @@
             </div>
         <p id="registerResponse"></p>
        
-        </form>
+      
 
 
         <div class="entrarOuCadastrar">
+
+
+            <button id="botaoEntrar" class="botaoEntrar">
+                <h2>Entrar</h2>
+            </button>
+           
+            <h3>Ou</h3>
+
 
 
             <button class="botaoCadastrar" id="botaoSubmit">
                 <h2>Cadastrar</h2>
             </button>
 
-           
 
-
-
-
-
-            <h3>Ou</h3>
-
-            <button id="botaoEntrar" class="botaoEntrar">
-                <h2>Entrar</h2>
-            </button>
-
+        </form>
         </div>
     </main>
 
@@ -149,7 +149,7 @@
     <!-- fim do header cadastro -->
 
     <script src="./assets/js/index.js"></script>
-    <script src="./server/server.php"></script>
+   
 
 
     <script>
@@ -176,7 +176,7 @@
         });
 
         // Submissão do formulário de cadastro
-        document.getElementById('botaoSubmit').addEventListener('click', async function(event) {
+        document.getElementById('cadastroForm').addEventListener('click', async function(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
             const password = document.getElementById('passwordCadastro').value;
             const email = document.getElementById('inputemailCadastro').value;
