@@ -1,232 +1,190 @@
 @import url("geral.css");
 
-* {
+/* * {
     font-family: var(--poppins);
-}
+} */
 
-@media screen and (max-width: 720px) {
+@media (max-width: 720px) {
 
-    #header-container {
-        padding: 15px 22px;
+    .title-tela {
+        font-family: var(--poppins);
+        margin: 15px;
+    }
+
+    .title-tela h3 {
+        font-size: 26px;
+    }
+
+    .search-container {
+        width: 90%;
+        margin: auto;
+        display: flex;
+
+    }
+
+    body main {
+        padding: 56px 15px !important;
+    }
+
+    .section-list-games {
+        margin-bottom: 100px;
         width: 100%;
-
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
-
-    #header-container .bx-user {
-        background-repeat: no-repeat;
-        font-size: 32px;
+    
+    .desktop {
+        display: none;
     }
+}
 
-    #search-box {
-        padding: 10px;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        background: var(--white-default);
-        margin: 0 20px;
-    }
-
-    #search-box i {
-        font-size: 3vh;
-    }
-
-    #search-box input[type="search"] {
-        border: none;
-        padding: inherit;
+@media (min-width: 1000px) {
+    .section-list-games {
         width: 80%;
-        height: 4vh;
-        background: inherit;
-        outline: none;
+        margin: auto;
+    }
+    
+    .search-container {
+        width: 700px !important;
+    }
+}
+
+@media (min-width: 721px) {
+    .mobile {
+        display: none;
     }
 
-    #s-box::-webkit-search-cancel-button {
-
-
-        -webkit-appearance: none;
-        height: 24px;
-        width: 24px;
-        background-image: url(../img/x-regular-24.png);
-    }
-
-    main {
-        margin: 10px;
-        box-shadow: 1px 1px 10px rgb(88, 88, 88);
-        width: inherit;
-        height: 110dvh;
-        border-radius: 25px;
-        background: var(--white-bg);
-
+    .desktop {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2%;
-
-
     }
 
-    .game-holder {
-        height: 25dvh;
-        width: inherit;
-        border: 1px solid rgba(0, 0, 0, 0.25);
-        box-shadow: 1px 1px 5px rgb(141, 141, 141);
-        border-radius: 25px;
-
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        gap: 2dvw;
+    .search-container {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 70px;
     }
-
-    .game-holder .game-image {
-        height: 100%;
-        width: 50%;
-        border-radius: 25px 0 0 25px;
+    
+    .sport {
+        width: 15%;
     }
-
-    .game-info {
-        padding: 10px;
+    
+    .content {
+        width: 85% !important;
     }
+}
 
-    .game-info #game-title {
-        font-size: 20px;
-        font-weight: 700;
-    }
+.search-container {
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
 
-    .info-match {
+    background: var(--white-default);
+}
 
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 20px;
-    }
+.icon-search,
+.icon-close {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 
-    .info-match i {
-        display: flex;
-        font-size: 16px;
-        font-family: var(--poppins);
-    }
+.icon-close {
+    display: none;
+}
 
-    .game-info p {
-
-        font-size: 14px;
-
-    }
+.search-container input {
+    border: none;
+    padding: 15px 5px;
+    margin: 0 10px;
+    width: 100%;
+    height: 50px;
+    background: none;
+    outline: none;
 }
 
 
 
+.game-holder {
+    display: flex;
+    width: 100%;
+}
 
-@media screen and (max-width: 510px) {
+.sport {
+    width: 17%;
+    padding: 15px;
+    text-align: end;
+}
 
-    #search-box {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        background: var(--white-default);
-        margin: 0 20px;
-    }
+.sport img {
+    width: 24px;
+}
 
-    #search-box i {
-        font-size: 3vh;
-    }
+.content {
+    width: 83%;
+    padding: 11px 0;
+    border-top: 1px solid #d8d5d5;
+    font-family: var(--manrope);
+}
 
-    #search-box input[type="search"] {
-        border: none;
-        padding: inherit;
-        width: 80%;
-        height: 4vh;
-        background: inherit;
-        outline: none;
-    }
+.content .game-title {
+    margin-bottom: 47px;
+}
 
-    main {
+.game-title #title {
+    font-family: var(--poppins);
+    margin-bottom: 5px;
+}
 
-        box-shadow: 1px 1px 10px rgb(88, 88, 88);
-        width: inherit;
+.location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
 
-        border-radius: 25px;
-        background: var(--white-bg);
+.players,
+.time {
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: 15px;
+    padding: 5px 10px;
+    gap: 5px;
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
+    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
+    /* box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px; */
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2%;
+.location #city {
+    font-size: 14px;
+}
 
-
-    }
-
-    .game-holder {
-        height: 180px;
-        width: inherit;
-        border: 1px solid rgba(0, 0, 0, 0.25);
-        box-shadow: 1px 1px 5px rgb(141, 141, 141);
-        border-radius: 25px;
-
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        gap: 2dvw;
-    }
-
-    .game-holder .game-image {
-        height: 100%;
-        width: 50%;
-        border-radius: 25px 0 0 25px;
-    }
-
-    .game-info {
-        padding: 10px;
-    }
-
-    .game-info p {
-        margin: 2px;
-        font-size: 10px;
-    }
-
-    .game-info #game-title {
-        font-size: 15px;
-        font-weight: 700;
-        text-transform: capitalize;
-    }
-
-    .info-match {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        gap: 20px;
-    }
-
-    .info-match i {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 20px;
-        font-family: var(--poppins);
-    }
-
-    .info-match i p {
-        margin-bottom: 2px;
-    }
-
+.info-match {
+    display: flex;
+    gap: 10px;
 }
 
 
-/*
-<div class="game-holder">
-            <img src="../img/arena-do-gremio.jpg" class="game-image">
-            <div class="game-info">
-                <span id="game-title">Fut das Favelas</span>
-                <div class="info-match">
-                    <i class='bx bx-football'> +2</i>
-                    <i class='bx bx-current-location'>2km</i>
-                </div>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium, corrupti quasi. Blanditiis est
-                    nobis maiores unde repellendus neque nihil rem, temporibus eum. Voluptate in voluptas earum
-                    voluptatem corporis, suscipit delectus.</p>
-            </div>
-        </div>
 
-*/
+/* section details */
+.section-details {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #00000070; 
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.content-game {
+    height: 60%;
+    background-color: #fff;
+}

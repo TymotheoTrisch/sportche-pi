@@ -22,9 +22,10 @@
         bottom: 30px;
         width: fit-content;
         padding: 15px;
-        background-color: #ffffff6b;
+        /* background-color: #ffffff6b; */
+        background-color: #ffffff;
 
-        backdrop-filter: blur(15px);
+        /* backdrop-filter: blur(15px); */
 
         display: flex;
         justify-content: space-between;
@@ -60,25 +61,14 @@
         display: none;
     }
 
-
-    /* .icon:hover {
-        color: #0A0911;
-        background-color: #adabab50;
-    }
-    
-    .icon:hover h2 {
-        display: flex;
-    } */
-
     .icon.selected h2 {
         display: flex;
     }
 
     .icon.selected {
-        /* color: var(--white-bg); */
         color: #0A0911;
         background-color: #adabab33;
-        backdrop-filter: blur(10px);
+        /* backdrop-filter: blur(10px); */
 
     }
 
@@ -88,7 +78,16 @@
     }
 }
 
+.title-tela h3 {
+    font-size: 24px;
+}
+
 @media (min-width: 721px) {
+    header {
+        width: 100%;
+        background-color: var(--purple-default);
+    }
+
     .titulo {
 
         display: flex;
@@ -96,11 +95,19 @@
         justify-content: space-between;
 
         padding: 40px 25px 0px;
-        margin: 0 10px;
         position: relative;
         z-index: 2;
-        background-color: var(--purple-default);
         width: 100%;
+    }
+
+    .title-tela {
+        font-family: var(--poppins);
+        color: var(--white-bg);
+        width: 100%;
+        padding: 5px 0;
+        text-align: center;
+
+        border-top: 2px solid var(--purple-relative);
     }
 
     .font-poppins {
@@ -119,8 +126,6 @@
         border-radius: 3px 3px 0 0;
         transition: .5s;
 
-        /* display: flex;
-        align-items: center; */
         position: absolute;
         top: 57px;
         right: 50px;
@@ -143,7 +148,6 @@
         transition: border-radius 1s, opacity .5s;
 
         opacity: 1;
-        /* transform: translate(0%, -80%); */
         border-radius: 0 50% 0 0;
 
         background-color: var(--purple-relative);
@@ -152,14 +156,12 @@
     }
 
     .openAnimationMenu {
-        /* animation: OpenMenu .5s normal; */
         opacity: 1;
-        transform: translate(0px, 0px);
+        transform: translate(0px, 0px) !important;
         border-radius: 0%;
     }
 
     .closeAnimationMenu {
-        /* animation: OpenMenu .5s reverse; */
         opacity: 0;
         border-radius: 0 50% 0 0;
         transform: translate(0%, -80%);
@@ -203,19 +205,5 @@
 
     .icon.selected h2 {
         font-weight: 700;
-    }
-}
-
-@keyframes OpenMenu {
-    0% {
-        opacity: 0;
-        border-radius: 100%;
-        transform: translate(0%, -10%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0px, 0px);
-        border-radius: 0%;
     }
 }
