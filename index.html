@@ -84,7 +84,6 @@
             </button>
         </div>
     </main>
-    <a href="./assets/telas/criarPartidas.html">Partidas</a>
 
 
 
@@ -93,7 +92,7 @@
 
 
 
-    <main class="main_cadastro">
+    <main id="mainCadastro" class="main_cadastro">
         <h2 class="font-bebas-desktop">Sign-In</h2>
         <form id="cadastroForm">
 
@@ -126,15 +125,9 @@
         <div class="entrarOuCadastrar">
 
 
-            <button class="botaoCadastrar" id="botaoSubmit">
+            <button class="botaoCadastrar" id="botaoCadastrarRegister">
                 <h2>Cadastrar</h2>
             </button>
-
-           
-
-
-
-
 
             <h3>Ou</h3>
 
@@ -150,12 +143,12 @@
     <!-- fim do header cadastro -->
 
     <script src="./assets/js/index.js"></script>
-    <script src="./server/server.php"></script>
+    <!-- <script src="./server/server.php"></script> -->
 
 
     <script>
         // Submissão do formulário de login
-        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+        document.getElementById('botaoEntrarLogin').addEventListener('click', async function(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -177,7 +170,7 @@
         });
 
         // Submissão do formulário de cadastro
-        document.getElementById('botaoSubmit').addEventListener('click', async function(event) {
+        document.getElementById('botaoCadastrarRegister').addEventListener('click', async function(event) {
             event.preventDefault(); // Previne o comportamento padrão do formulário
             const password = document.getElementById('passwordCadastro').value;
             const email = document.getElementById('inputemailCadastro').value;
