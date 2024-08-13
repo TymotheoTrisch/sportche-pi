@@ -24,7 +24,7 @@
         padding: 15px;
         background-color: #ffffff6b;
         
-        backdrop-filter: blur(15px);
+        backdrop-filter: blur(10px);
 
         display: flex;
         justify-content: space-between;
