@@ -119,23 +119,23 @@
             </div>
             <p id="registerResponse"></p>
 
+
+
+            <div class="entrarOuCadastrar">
+
+
+                <button class="botaoCadastrar" id="botaoCadastrarRegister">
+                    <h2>Cadastrar</h2>
+                </button>
+
+                <h3>Ou</h3>
+
+                <button id="botaoEntrar" class="botaoEntrar">
+                    <h2>Entrar</h2>
+                </button>
+
+            </div>
         </form>
-
-
-        <div class="entrarOuCadastrar">
-
-
-            <button class="botaoCadastrar" id="botaoCadastrarRegister">
-                <h2>Cadastrar</h2>
-            </button>
-
-            <h3>Ou</h3>
-
-            <button id="botaoEntrar" class="botaoEntrar">
-                <h2>Entrar</h2>
-            </button>
-
-        </div>
     </main>
 
 
@@ -166,12 +166,12 @@
                     sessionStorage.setItem('email', result.email); // Armazena o email na sessão
                     window.location.href = './assets/telas/search.html'; // Redireciona para a página de perfil
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error(error);
             }
-            
 
-            
+
+
         });
 
         // Submissão do formulário de cadastro

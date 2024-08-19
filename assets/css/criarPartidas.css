@@ -129,10 +129,10 @@ form {
     border-radius: 3px;
 }
 
-.nome, .endereco, .descricao {
+.nome, .endereco, .telefone, .descricao {
     width: 100%;
 }
-.data, .horario, .esporte, .estado, .cidade {
+.data, .horario, .esporte, .estado, .cidade, .participantes {
     width: 45%;
 }
 
