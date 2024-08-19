@@ -15,19 +15,20 @@
 </head>
 
 <body>
-    <header class="header_login">
+    <header id="headerLogin" class="header_login">
         <div class="titulo">
             <h1 class="font-poppins">Sportchê</h1>
         </div>
 
         <h2 class="font-bebas">Sign In</h2>
 
+
     </header>
 
     <!-- fim do header do login -->
 
 
-    <header class="header_cadastro">
+    <header id="headerCadastro" class="header_cadastro">
         <div class="titulo">
             <h1 class="font-poppins">Sportchê</h1>
         </div>
@@ -39,26 +40,33 @@
 
     <!-- fim do header do cadastro -->
 
-    
 
 
-    <main class="main_login">
+
+    <main id="mainLogin" class="main_login">
         <h2 class="font-bebas-desktop">Sign-In</h2>
-        <form>
+        <form id="loginForm">
             <div class="input email">
-                <input id="inputemail" type="email" placeholder="email" />
+                <input id="email" type="email" placeholder="email" />
             </div>
+
+            <div id="email-invalid-error" class="error" style="display: none;">Email inválido</div>
+            <div id="email-required-error" class="error" style="display: none;">Email obrigatório</div>
+
+
             <div class="input password">
                 <input id="password" type="password" placeholder="senha" />
                 <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
             </div>
+
+            <div id="password-required-error" class="error" style="display: none;">Senha obrigatória</div>
             <a href="./assets/telas/esqueceuSenha.html" class="text-small">esqueceu senha ?</a>
         </form>
 
 
         <div class="entrarOuCadastrar">
 
-            <button class="botaoEntrar">
+            <button id="botaoEntrarLogin" class="botaoEntrar">
                 <h2>Entrar</h2>
             </button>
 
@@ -71,73 +79,124 @@
 
             <h3>Ou</h3>
 
-            <button class="botaoCadastrar">
+            <button id="botaoCadastrar" class="botaoCadastrar">
                 <h2>Cadastrar</h2>
             </button>
         </div>
     </main>
-    <a href="./assets/telas/criarPartidas.html">Partidas</a>
 
 
 
 
-<!-- fim do main login -->
+    <!-- fim do main login -->
 
 
 
-    <main class="main_cadastro">
+    <main id="mainCadastro" class="main_cadastro">
         <h2 class="font-bebas-desktop">Sign-In</h2>
-        <form>
+        <form id="cadastroForm">
 
             <div class="input nome">
-                <input id="nameCadastro" type="text" placeholder="nome"/>
+                <input id="nomeCadastro" type="text" placeholder="nome" />
             </div>
 
             <div class="input email">
                 <input id="inputemailCadastro" type="email" placeholder="email" />
             </div>
 
+
             <div class="input password">
-                <input id="password" type="password" placeholder="senha" />
-                <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
+                <input id="passwordCadastro" type="password" placeholder="senha" />
+                <i class='bx bx-show' class="view-password" style='color:#cdcdcd'></i>
             </div>
 
-                <p class="senhaSegura">Crie uma senha segura de no minimo oito digitos</p>
+            <p class="senhaSegura">Crie uma senha segura de no minimo oito digitos</p>
 
 
-             <div class="input password">
-                    <input id="password_confirm" type="password" placeholder="confirme sua senha" />
-                    <i class='bx bx-show' id="view-password" style='color:#cdcdcd'></i>
+            <div class="input password">
+                <input id="password_confirm" type="password" placeholder="confirme sua senha" />
+                <i class='bx bx-show' class="view-password" style='color:#cdcdcd'></i>
+            </div>
+            <p id="registerResponse"></p>
+
+
+
+            <div class="entrarOuCadastrar">
+
+
+                <button class="botaoCadastrar" id="botaoCadastrarRegister">
+                    <h2>Cadastrar</h2>
+                </button>
+
+                <h3>Ou</h3>
+
+                <button id="botaoEntrar" class="botaoEntrar">
+                    <h2>Entrar</h2>
+                </button>
+
             </div>
         </form>
-
-
-        <div class="entrarOuCadastrar">
-
-
-            <button class="botaoCadastrar">
-                <h2>Cadastrar</h2>
-            </button>
-
-           
-
-
-
-
-
-            <h3>Ou</h3>
-
-            <button class="botaoEntrar">
-                <h2>Entrar</h2>
-            </button>
-
-        </div>
     </main>
+
 
 
     <!-- fim do header cadastro -->
 
     <script src="./assets/js/index.js"></script>
+    <!-- <script src="./server/server.php"></script> -->
+
+
+    <script>
+        // Submissão do formulário de login
+        document.getElementById('botaoEntrarLogin').addEventListener('click', async function (event) {
+            event.preventDefault(); // Previne o comportamento padrão do formulário
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('./server/server.php?action=login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const result = await response.json(); // Converte a resposta em JSON
+
+                if (result.success) {
+                    // sessionStorage.setItem('username', username); // Armazena o nome de usuário na sessão
+                    sessionStorage.setItem('email', result.email); // Armazena o email na sessão
+                    window.location.href = './assets/telas/search.html'; // Redireciona para a página de perfil
+                }
+            } catch (error) {
+                console.error(error);
+            }
+
+
+
+        });
+
+        // Submissão do formulário de cadastro
+        document.getElementById('botaoCadastrarRegister').addEventListener('click', async function (event) {
+            event.preventDefault(); // Previne o comportamento padrão do formulário
+            const password = document.getElementById('passwordCadastro').value;
+            const email = document.getElementById('inputemailCadastro').value;
+            const nome = document.getElementById('nomeCadastro').value;
+
+            // Envia os dados de registro para o servidor
+            const response = await fetch('./server/server.php?action=register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password, email, nome })
+            });
+
+            const result = await response.json(); // Converte a resposta em JSON
+            console.log(result);
+            document.getElementById('registerResponse').innerHTML = result.message;
+            if (result.success) {
+                window.location.href = './assets/telas/search.html'; // Volta para o formulário de login
+            }
+        });
+
+    </script>
 </body>
 
 </html>

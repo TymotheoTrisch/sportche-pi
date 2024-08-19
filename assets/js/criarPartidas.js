@@ -3,13 +3,14 @@ const options = select.querySelector(".content .options");
 const selectBtn = select.querySelector('.select-btn');
 
 $('.number-increment').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-participantes-partida');
+  var $input = $(this).parents('.input-incrementor').find('#input-participantes');
   var val = parseInt($input.val(), 10);
+  
   $input.val(val + 1);
 });
 
 $('.number-decrement').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-participantes-partida');
+  var $input = $(this).parents('.input-incrementor').find('#input-participantes');
   var val = parseInt($input.val(), 10);
   if (val > 1) {
     $input.val(val - 1);
@@ -32,10 +33,6 @@ const sports = [
   {
     "id": 4,
     "name": "Tênis"
-  },
-  {
-    "id": 5,
-    "name": "Futsal"
   }
 ]
 

@@ -65,16 +65,15 @@ header {
 
 .titulo {
     padding: 40px 25px 70px;
-    margin: 0 10px;
 }
 
 .font-poppins {
     display: block !important;
     font-family: var(--poppins);
-    color: #FFFFFF;
+    color: var(--white-bg);
 }
 
-.title-partidas {
+.title-tela {
     width: 100%;
     padding: 5px 0;
     text-align: center;
@@ -85,8 +84,6 @@ header {
 h3 {
     color: #FFFFFF;
     font-family: var(--poppins);
-    font-size: 24px;
-
 }
 
 /* Fim Header */
@@ -132,27 +129,14 @@ form {
     border-radius: 3px;
 }
 
-.nome {
+.nome, .endereco, .telefone, .descricao {
     width: 100%;
 }
-
-.local {
-    width: 100%;
-}
-
-.esporte {
+.data, .horario, .esporte, .estado, .cidade, .participantes {
     width: 45%;
 }
 
-.data {
-    width: 45%;
-}
-
-.descricao {
-    width: 100%;
-}
-
-input[type="number"] {
+#input-participantes {
     width: 90%;
     text-align: center;
 }
