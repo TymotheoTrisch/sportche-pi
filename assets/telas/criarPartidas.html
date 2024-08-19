@@ -30,22 +30,22 @@
         </div>
         
         <nav class="itens" style="position: absolute; opacity: 0;">
-            <a href="" class="icon pesquisar">
+            <a href="./search.html" class="icon pesquisar">
                 <i class='bx bx-search'></i>
                 <h2>Buscar</h2>
             </a>
-            <a href="" class="icon criar-partidas">
+            <a href="#" class="icon criar-partidas">
                 <i class='bx bx-add-to-queue'></i>
                 <h2>Criar Partida</h2>
             </a>
             
-            <a href="" class="icon profile">
+            <a href="./perfil.html" class="icon profile">
                 <i class='bx bx-user' ></i>
                 <h2>Perfil</h2>
             </a>
         </nav>
 
-        <div class="title-partidas">
+        <div class="title-tela">
             <h3>Criar Partidas</h3>
         </div>
 
@@ -53,14 +53,22 @@
     </header> <!--Fim header-->
 
     <main>
-        <form action="">
-            <div class="nome div-partida">
+        <form action="" id="form">
+            <div class="nome-partida">
                 <label for="input-nome">Nome da Partida</label>
-                <input type="text" name="input-nome" id="input-nome-partida">
+                <input type="text" name="input-nome" id="input-nome">
             </div>
-            <div class="local div-partida">
-                <label for="input-local">Local da Partida</label>
-                <input type="text" name="input-local" id="input-local-partida">
+            <div class="endereco div-partida">
+                <label for="input-endereco">Endereço</label>
+                <input type="text" name="input-endereco" id="input-endereco">
+            </div>
+            <div class="cidade div-partida">
+                <label for="input-cidade">Cidade</label>
+                <input type="text" name="input-cidade" id="input-cidade">
+            </div>
+            <div class="estado div-partida">
+                <label for="input-estado">Estado</label>
+                <input type="text" name="input-estado" id="input-estado">
             </div>
             <div class="esporte div-partida">
                 <label for="input-esporte">Esporte</label>
@@ -76,23 +84,27 @@
             </div>
             <div class="data div-partida">
                 <label for="input-data">Data</label>
-                <input type="date" name="input-data" id="input-data-partida">
+                <input type="date" name="input-data" id="input-data">
             </div>
             <div class="participantes div-partida">
                 <label for="input-participantes">Participantes</label>
                 <div class="input-incrementor">
                     <button type="button" class="number-decrement">-</button>
-                    <input type="number" name="input-participantes" id="input-participantes-partida" value="1" min="1">
+                    <input type="number" name="input-participantes" id="input-participantes" value="1" min="1">
                     <button type="button" class="number-increment">+</button>
                 </div>
             </div>
             <div class="horario div-partida">
                 <label for="input-horario">Horário</label>
-                <input type="time" name="input-horario" id="input-horario-partida">
+                <input type="time" name="input-horario" id="input-horario">
+            </div>
+            <div class="telefone div-partida">
+                <label for="input-telefone">Telefone contato</label>
+                <input type="number" name="input-telefone" id="input-telefone">
             </div>
             <div class="descricao div-partida">
                 <label for="input-descricao">Descrição</label>
-                <textarea name="input-descricao" id="input-descricao-partida" rows="4" cols="35"></textarea>
+                <textarea name="input-descricao" id="input-descricao" rows="4" cols="35"></textarea>
             </div>
             
             <div class="buttons">
@@ -105,28 +117,38 @@
     
     <footer>
         <div class="menu-mobile">
-            <a href="" class="icon pesquisar">
+            <a href="./search.html" class="icon pesquisar">
                 <i class='bx bx-search'></i>
                 <h2>Buscar</h2>
             </a>
-            <a href="" class="icon criar-partidas selected">
+            <a href="#" class="icon criar-partidas selected">
                 <i class='bx bx-add-to-queue'></i>
                 <h2>Criar</h2>
             </a>
             
-            <a href="" class="icon profile">
+            <a href="./perfil.html" class="icon profile">
                 <i class='bx bx-user' ></i>
                 <h2>Perfil</h2>
             </a>
         </div>
-        
-        <div class="footer-desktop">
-            
-        </div>
     </footer>
     
     <script src="../js/criarPartidas.js"></script>
-    <script src="../js/menu.js"></script>
+
+      <!-- <script>
+
+        document.getElementById('form').addEventListener('click', async function(event) {
+            event.preventDefault();
+            const nomePartida = document.getElementById('input-nome-partida');
+            const localPartida = document.getElementById('input-local-partida');
+            const esporte = document.getElementById('input-esporte-partida');
+            const data = document.getElementById('input-data-partida');
+
+            
+        })
+
+
+    </script> -->
 </body>
 
 </html>

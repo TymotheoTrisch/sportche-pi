@@ -1,0 +1,165 @@
+@import url('../css/geral.css'); 
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: var(--poppins);
+}
+
+.text-icon {
+    display: flex;
+    gap: 10px;
+}
+
+.item-user {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+   
+
+}
+
+.informacoes-main {
+    width: 100%;
+    display: flex;
+}
+
+.favoritos-main {
+    width: 100%;
+    display: flex;
+}
+
+.item-favoritos {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.text-fav{
+    display: flex;
+    gap: 10px;
+}
+
+.esportes-main {
+    display: flex;
+    width: 100%;
+}
+
+.item-esportes{
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.text-esportes{
+    display: flex;
+    gap: 10px;
+}
+
+
+.config-main {
+    display: flex;
+    width: 100%;
+}
+
+.item-config{
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.text-config{
+    display: flex;
+    gap: 10px;
+}
+
+.access-main {
+    display: flex;
+    width: 100%;
+}
+
+.item-access{
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.text-access{
+    display: flex;
+    gap: 10px;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 20px;
+    
+}
+
+.header-main{
+    background-color: var(--purple-default);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0px 0px 25px 25px;
+    height: 243px;
+    gap: 10px;
+}
+
+#img-user{
+    background-image: url(../img/user.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+}
+
+.header-conquista{
+    display: flex;
+    padding-left: 5px;
+    gap: 20px;
+    padding-top: 5px;
+    background-color: #3920B0;
+    border-radius: 10px;
+    height: 65px;
+    width: 95%;
+    justify-content: center;
+    margin: 10px;
+    position: absolute;
+    top: 210px;
+    transform: translateX(-30px);
+    color: aliceblue;
+}
+
+#header-partidas{
+    text-align: center;
+}
+
+#header-avaliaçoes{
+    text-align: center;
+}
+
+#header-esportes{
+    text-align: center;
+}
+
+header{
+    width: 100%;
+    color: aliceblue;
+    gap: 20px;
+}
+
+@media (min-width: 721px) {
+    .header-main {
+        display: none;
+    }
+
+    .header-conquista{
+        position: inherit;
+    }
+}
