@@ -119,40 +119,23 @@
                 <input id="password_confirm" type="password" placeholder="confirme sua senha" />
                 <i class='bx bx-show' class="view-password" style='color:#cdcdcd'></i>
             </div>
-            <p id="registerResponse"></p>
-       
+            <p id="registerResponse"></p> 
         </form>
 
 
-        <div class="entrarOuCadastrar">
+            <div class="entrarOuCadastrar">
 
+                <button class="botaoCadastrar" id="botaoCadastrarRegister">
+                    <h2>Cadastrar</h2>
+                </button>
 
-            <button id="botaoEntrar" class="botaoEntrar">
-                <h2>Entrar</h2>
-            </button>
-           
-            <h3>Ou</h3>
+                <h3>Ou</h3>
 
+                <button id="botaoEntrar" class="botaoEntrar">
+                    <h2>Entrar</h2>
+                </button>
 
-
-            <button class="botaoCadastrar" id="botaoCadastrarRegister">
-                <h2>Cadastrar</h2>
-            </button>
-
-           
-
-
-
-
-
-            <h3>Ou</h3>
-
-            <button id="botaoEntrar" class="botaoEntrar">
-                <h2>Entrar</h2>
-            </button>
-            
-
-        </div>
+            </div>
     </main>
 
 
@@ -183,12 +166,12 @@
                     sessionStorage.setItem('email', result.email); // Armazena o email na sessão
                     window.location.href = './assets/telas/search.html'; // Redireciona para a página de perfil
                 }
-            } catch(error) {
+            } catch (error) {
                 console.error(error);
             }
-            
 
-            
+
+
         });
 
         // Submissão do formulário de cadastro

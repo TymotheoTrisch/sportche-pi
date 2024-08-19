@@ -1,9 +1,5 @@
 @import url("geral.css");
 
-/* * {
-    font-family: var(--poppins);
-} */
-
 @media (max-width: 720px) {
 
     .title-tela {
@@ -30,46 +26,16 @@
         margin-bottom: 100px;
         width: 100%;
     }
-    
+
     .desktop {
         display: none;
     }
-}
 
-@media (min-width: 1000px) {
-    .section-list-games {
-        width: 80%;
-        margin: auto;
-    }
-    
-    .search-container {
-        width: 700px !important;
+    .content-game {
+        padding: 0 20px;
     }
 }
 
-@media (min-width: 721px) {
-    .mobile {
-        display: none;
-    }
-
-    .desktop {
-        display: flex;
-    }
-
-    .search-container {
-        width: 80%;
-        margin: auto;
-        margin-bottom: 70px;
-    }
-    
-    .sport {
-        width: 15%;
-    }
-    
-    .content {
-        width: 85% !important;
-    }
-}
 
 .search-container {
     padding: 0 20px;
@@ -132,6 +98,7 @@
 .game-title #title {
     font-family: var(--poppins);
     margin-bottom: 5px;
+    font-size: 25px;
 }
 
 .location {
@@ -177,14 +144,194 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #00000070; 
+    background-color: #00000070;
     z-index: 1000;
     display: flex;
     flex-direction: column;
     justify-content: end;
 }
 
+.icon-close-section {
+    /* background-color: red; */
+    display: flex;
+    font-size: 30px;
+    justify-content: end;
+    width: calc(100% - 20px);
+    margin-right: 20px;
+    cursor: pointer;
+}
+
 .content-game {
-    height: 60%;
+    height: fit-content;
     background-color: #fff;
+    font-family: var(--manrope);
+    padding-right: 30px;
+    padding-bottom: 20px;
+
+
+    /* display: ; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.content-game .game-title #title {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+
+.location-details {
+    margin-bottom: 25px;
+}
+
+#city-state {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: var(--poppins);
+}
+
+#address {
+    color: var(--color-input);
+}
+
+.description {
+    border-top: 1px solid #d8d5d5;
+    padding-top: 15px;
+}
+
+.content-game .info-match {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    border-top: 1px solid #d8d5d5;
+    padding-top: 15px;
+}
+
+.players-details,
+.time-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-details {
+    border-top: 1px solid #d8d5d5;
+    padding-top: 15px;
+    margin-top: 5px;
+}
+
+.text-quantity,
+.text-time {
+    font-weight: 900;
+}
+
+.content-game #quant-players,
+.content-game #time {
+    color: var(--color-input);
+}
+
+.contato-participar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20%;
+    gap: 5px;
+}
+
+#btn-contato,
+#btn-participar {
+    padding: 10px;
+    font-size: 17px;
+    font-family: var(--manrope);
+    color: var(--white-default);
+    border: none;
+    border-radius: 3px
+}
+
+#btn-contato {
+    /* background-color: #5595D2; */
+    background-color: #F21F42;
+    /* background-color: #10F157; */
+    /* background-color: #FF860F; */
+    /* background-color: #545AF9; */
+}
+
+#btn-participar {
+    background-color: var(--purple-default);
+}
+
+@media (min-width: 721px) {
+    .mobile {
+        display: none;
+    }
+
+    .desktop {
+        display: flex;
+    }
+
+    .search-container {
+        width: 80%;
+        margin: auto;
+        margin-bottom: 70px;
+    }
+
+    .sport {
+        width: 15%;
+    }
+
+    .content {
+        width: 85% !important;
+    }
+
+    .content-game {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+}
+
+
+@media (min-width: 1000px) {
+    .section-list-games {
+        width: 80%;
+        margin: auto;
+    }
+
+    .search-container {
+        width: 700px !important;
+    }
+
+    .content-game {
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+
+    .content-game .game-title #title {
+        font-size: 36px;
+    }
+
+    #city-state {
+        font-size: 27px;
+    }
+
+    #address {
+        font-size: 19px;
+    }
+
+    .description {
+        font-size: 17px;
+    }
+
+    .text-quantity,
+    .text-time {
+        font-size: 17px;
+    }
+
+    .content-game #quant-players,
+    .content-game #time {
+        font-size: 18px;
+    }
+
+    .contato-participar {
+        justify-content: end;
+        flex-direction: row;
+    }
 }
