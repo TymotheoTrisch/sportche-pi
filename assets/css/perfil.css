@@ -154,6 +154,12 @@ header{
     gap: 20px;
 }
 
-footer{
-    
+@media (min-width: 721px) {
+    .header-main {
+        display: none;
+    }
+
+    .header-conquista{
+        position: inherit;
+    }
 }
