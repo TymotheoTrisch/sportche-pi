@@ -146,7 +146,7 @@
     height: 100vh;
     background-color: #00000070;
     z-index: 1000;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: end;
 }
