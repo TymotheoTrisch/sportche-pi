@@ -39,7 +39,7 @@
                 <h2>Criar Partida</h2>
             </a>
             
-            <a href="" class="icon profile">
+            <a href="./perfil.html" class="icon profile">
                 <i class='bx bx-user' ></i>
                 <h2>Perfil</h2>
             </a>
@@ -53,8 +53,8 @@
     </header> <!--Fim header-->
 
     <main>
-        <form action="">
-            <div class="nome div-partida">
+        <form action="" id="form">
+            <div class="nome-partida">
                 <label for="input-nome">Nome da Partida</label>
                 <input type="text" name="input-nome" id="input-nome">
             </div>
@@ -126,19 +126,29 @@
                 <h2>Criar</h2>
             </a>
             
-            <a href="" class="icon profile">
+            <a href="./perfil.html" class="icon profile">
                 <i class='bx bx-user' ></i>
                 <h2>Perfil</h2>
             </a>
         </div>
-        
-        <div class="footer-desktop">
-            
-        </div>
     </footer>
     
     <script src="../js/criarPartidas.js"></script>
-    <script src="../js/menu.js"></script>
+
+      <!-- <script>
+
+        document.getElementById('form').addEventListener('click', async function(event) {
+            event.preventDefault();
+            const nomePartida = document.getElementById('input-nome-partida');
+            const localPartida = document.getElementById('input-local-partida');
+            const esporte = document.getElementById('input-esporte-partida');
+            const data = document.getElementById('input-data-partida');
+
+            
+        })
+
+
+    </script> -->
 </body>
 
 </html>
