@@ -15,4 +15,6 @@ inputsSearch.forEach(inputSearch => {
     })    
 })
 
-inputsSearch.forEach(inputSearch)
+inputsSearch.forEach(inputSearch => {
+    
+})
