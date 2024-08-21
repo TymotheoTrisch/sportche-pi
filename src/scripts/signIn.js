@@ -14,10 +14,10 @@ document.getElementById('botaoEntrarLogin').addEventListener('click', async func
         console.log(response);
 
         if (response.status == 201) {
-            console.log("oi");
+            // console.log("oi");
             sessionStorage.setItem('email', result.email);
 
-            // window.location.href = './assets/telas/search.html';
+            window.location.href = './assets/telas/search.html';
         }
     } catch (error) {
         console.error(error);

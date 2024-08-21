@@ -17,4 +17,4 @@ server.listen(3000, () => {
 
 server.use("/", loginRoutes); 
 server.use("/criarpartidas", criarPartidas)
-server.use("/search", search)
+// server.use("/search", search)

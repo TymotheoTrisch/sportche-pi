@@ -4,9 +4,9 @@ const getHash = require('../scripts/getHash')
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-    const { street, city, state, name, description, id_sport, date, total_player, players_needed, contact_phone, created_by } = req.body;
+    const { street, city, state, name, description, id_sport, date_match, time_match, total_player, players_needed, contact_phone, created_by } = req.body;
 
-    if (!street || !city || !state || !name || !id_sport || !date || !total_player || !players_needed || !contact_phone || !created_by) {
+    if (!street || !city || !state || !name || !id_sport || !date_match || !time_match || !total_player || !players_needed || !contact_phone || !created_by) {
         return res.status(400).json({ message: 'Missing required fields: username, email, and senha.' });
     }
 
@@ -21,8 +21,8 @@ router.post("/", async (req, res) => {
 
             const addressId = res.insertId;
             pool.query(
-                "INSERT INTO matches(name, description, address_match, id_sport, total_player, players_needed, created_by) VALUES (?, ?, ?)",
-                [name, description, addressId, id_sport, total_player, players_needed, created_by],
+                "INSERT INTO matches(name, description, address_match, id_sport, date_match, time_match, total_player, players_needed, created_by) VALUES (?, ?, ?)",
+                [name, description, addressId, id_sport, date_match, time_match, total_player, players_needed, created_by],
                 (error, res) => {
                     if (error) {
                         console.error("Error executing insert query: ", error);
