@@ -80,3 +80,6 @@ Diagrama simples das possíveis coleções no firebase
 # Design
 Rascunho do design do nosso projeto no figma:
 [Link Figma](https://www.figma.com/design/YAOnHQFfVGWExzsqqdSoeZ/Sportch%C3%AA?node-id=0-1&t=PLs5l83oen4JsBRv-0)
+
+Link da apresentação no canva:
+[Link Canva](https://www.canva.com/design/DAFr6UbItuY/DZlp9iGsWgeSDz5nlvug9g/view?utm_content=DAFr6UbItuY&utm_campaign=designshare&utm_medium=link&utm_source=editor)
