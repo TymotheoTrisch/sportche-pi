@@ -6,7 +6,7 @@ iconPassword.forEach(icon => {
         console.log(inputPassword);
         if (inputPassword.type == "password") {
             inputPassword.type = "text"
-        
+            
             icon.classList.remove('bx-show')
             icon.classList.add('bx-hide')
         } else {
