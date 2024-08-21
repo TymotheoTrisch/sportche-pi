@@ -68,16 +68,24 @@
             </div>
             <div class="estado div-partida">
                 <label for="input-estado">Estado</label>
-                <input type="text" name="input-estado" id="input-estado">
+                <div class="select-state">
+                    <div class="select-btn-state">
+                        <span data-id="">Estado</span>
+                        <i class='bx bx-chevron-down'></i>
+                    </div>
+                    <div class="content-state">
+                        <ul class="options"></ul>
+                    </div>
+                </div>
             </div>
             <div class="esporte div-partida">
                 <label for="input-esporte">Esporte</label>
-                <div class="select">
-                    <div class="select-btn">
+                <div class="select-sport">
+                    <div class="select-btn-sport">
                         <span data-id="">Esporte</span>
                         <i class='bx bx-chevron-down'></i>
                     </div>
-                    <div class="content">
+                    <div class="content-sport">
                         <ul class="options"></ul>
                     </div>
                 </div>
@@ -86,12 +94,20 @@
                 <label for="input-data">Data</label>
                 <input type="date" name="input-data" id="input-data">
             </div>
-            <div class="participantes div-partida">
-                <label for="input-participantes">Participantes</label>
+            <div class="total-jog div-partida">
+                <label for="input-total-jog">Total jogadores</label>
                 <div class="input-incrementor">
-                    <button type="button" class="number-decrement">-</button>
-                    <input type="number" name="input-participantes" id="input-participantes" value="1" min="1">
-                    <button type="button" class="number-increment">+</button>
+                    <button type="button" class="number-decrement-total">-</button>
+                    <input type="number" name="input-total-jog" id="input-total-jog" value="1" min="1">
+                    <button type="button" class="number-increment-total">+</button>
+                </div>
+            </div>
+            <div class="jogadores-res div-partida">
+                <label for="input-jogadores-res">Jogadores restantes</label>
+                <div class="input-incrementor">
+                    <button type="button" class="number-decrement-res">-</button>
+                    <input type="number" name="input-jogadores-res" id="input-jogadores-res" value="1" min="1">
+                    <button type="button" class="number-increment-res">+</button>
                 </div>
             </div>
             <div class="horario div-partida">

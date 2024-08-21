@@ -6,50 +6,41 @@ document.getElementById('botaoEntrarLogin').addEventListener('click', async func
 
     try {
         const response = await fetch('http://localhost:3000/login', {
-            method: 'GET',
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email, password: password })
         });
         const result = await response.json();
-        console.log()
+        console.log(response);
 
-        if (result.success) {
+        if (response.status == 201) {
+            console.log("oi");
             sessionStorage.setItem('email', result.email);
 
-
-            window.location.href = './assets/telas/search.html';
+            // window.location.href = './assets/telas/search.html';
         }
     } catch (error) {
         console.error(error);
     }
 });
 
+// Submissão do formulário de cadastro
 document.getElementById('botaoCadastrarRegister').addEventListener('click', async function (event) {
     event.preventDefault();
     const password = document.getElementById('passwordCadastro').value;
     const email = document.getElementById('inputemailCadastro').value;
     const username = document.getElementById('nomeCadastro').value;
 
-    try {
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: username, email: email, password: password })
-        });
-        console.log()
-
-        const data = await response.json();
-
-        document.getElementById('registerResponse').innerHTML = data.message;
-
-        if (response.status === 200) {
-            window.location.href = '../tela.html';
-        } 
-            
-           
-
+    const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: username, email: email, password: password })
+    });
     
-    } catch (err) {
-        console.error(err);
+    const result = await response.json();
+
+    document.getElementById('registerResponse').innerHTML = result.message;
+    if (response.status == 201) {
+        window.location.href = './assets/telas/search.html';
     }
 });
