@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
     const { street, city, state, name, description, id_sport, date_match, time_match, total_player, players_needed, contact_phone, created_by } = req.body;
+    console.log(req.body);
 
     if (!street || !city || !state || !name || !id_sport || !date_match || !time_match || !total_player || !players_needed || !contact_phone || !created_by) {
         return res.status(400).json({ message: 'Missing required fields: username, email, and senha.' });
@@ -40,13 +41,20 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
-    const imageID = parseInt(req.params.id);
-    const update = req.body;
-    const index = data.Images.findIndex((i) => i.id === imageID);
-
-    if (index == -1) {
-        return res.status(404).json({ message: "Image not founded." });
-    }
+    const idMatch = parseInt(req.params.id);
+    const updateMatch = req.body;
+    
+    pool.query(
+        "UPDATE matches SET name = ?, description = ?, address_match = ?, id_sport = ?, date_match = ?, time_match = ?, total_player = ?, players_needed = ?, created_by = ?) VALUES (?, ?, ?)",
+        [updateMatch.name, updateMatch.description, updateMatch.addressId, updateMatch.id_sport, updateMatch.date_match, updateMatch.time_match, updateMatch.total_player, updateMatch.players_needed, updateMatch.created_by],
+        (error, res) => {
+            if (error) {
+                console.error("Error executing insert query: ", error);
+                return res.status(500).json({ message: 'Erro ao adicionar partida.' });
+            }
+            res.status(201).json({ message: 'Partida adicionada com sucesso.' });
+        }
+    );
 
     return res.json({ message: "Update sucessfully." });
 });

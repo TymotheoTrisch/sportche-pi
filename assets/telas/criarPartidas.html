@@ -29,7 +29,7 @@
             </div>
         </div>
         
-        <nav class="itens" style="position: absolute; opacity: 0;">
+        <nav class="itens" style="position: absolute; opacity: 0; transform: translate(0px, -80%);">
             <a href="./search.html" class="icon pesquisar">
                 <i class='bx bx-search'></i>
                 <h2>Buscar</h2>
@@ -70,7 +70,7 @@
                 <label for="input-estado">Estado</label>
                 <div class="select-state">
                     <div class="select-btn-state">
-                        <span data-id="">Estado</span>
+                        <span data-id="" id="input-estado">Estado</span>
                         <i class='bx bx-chevron-down'></i>
                     </div>
                     <div class="content-state">
@@ -82,7 +82,7 @@
                 <label for="input-esporte">Esporte</label>
                 <div class="select-sport">
                     <div class="select-btn-sport">
-                        <span data-id="">Esporte</span>
+                        <span data-id="" id="input-esporte">Esporte</span>
                         <i class='bx bx-chevron-down'></i>
                     </div>
                     <div class="content-sport">
@@ -125,7 +125,7 @@
             
             <div class="buttons">
                 <button type="button" id="btn-cancelar">Cancelar</button>
-                <button type="button" id="btn-adicionar-partida">Adicionar Partida</button>
+                <button type="button" id="btn-adicionar-partida" onclick="createMatch()">Adicionar Partida</button>
             </div>
         </form> <!--Fim form-->
         
@@ -150,6 +150,7 @@
     </footer>
     
     <script src="../js/criarPartidas.js"></script>
+    <script src="../../src/scripts/criarPartidasFN.js"></script>
     <script src="../js/menu.js"></script>
 
       <!-- <script>

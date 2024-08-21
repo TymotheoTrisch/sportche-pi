@@ -11,10 +11,8 @@ document.getElementById('botaoEntrarLogin').addEventListener('click', async func
             body: JSON.stringify({ email: email, password: password })
         });
         const result = await response.json();
-        console.log(response);
 
         if (response.status == 201) {
-            // console.log("oi");
             sessionStorage.setItem('email', result.email);
 
             window.location.href = './assets/telas/search.html';
