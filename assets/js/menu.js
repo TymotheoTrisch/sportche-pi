@@ -16,7 +16,6 @@ const iconMenuDesktop = document.getElementById('menu-desktop')
 const iconMenu = iconMenuDesktop.querySelector('i')
 
 iconMenuDesktop.addEventListener('click', () => {
-  console.log(iconMenu);
   const itens = document.querySelector('.itens')
   if(itens.style.position === 'absolute' && itens.style.opacity === '0') {
     itens.style.position = 'inherit'
