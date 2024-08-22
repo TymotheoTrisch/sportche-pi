@@ -29,7 +29,7 @@
             </div>
         </div>
         
-        <nav class="itens" style="position: absolute; opacity: 0;">
+        <nav class="itens" style="position: absolute; opacity: 0; transform: translate(0px, -80%);">
             <a href="./search.html" class="icon pesquisar">
                 <i class='bx bx-search'></i>
                 <h2>Buscar</h2>
@@ -57,75 +57,115 @@
             <div class="nome div-partida">
                 <label for="input-nome">Nome da Partida</label>
                 <input type="text" name="input-nome" id="input-nome">
+                <div class="error">
+                    <p>Digite um nome para a partida válido</p>
+                </div>
             </div>
             <div class="endereco div-partida">
                 <label for="input-endereco">Endereço</label>
                 <input type="text" name="input-endereco" id="input-endereco">
+                <div class="error">
+                    <p>Digite um endereço da partida válido</p>
+                </div>
             </div>
             <div class="cidade div-partida">
                 <label for="input-cidade">Cidade</label>
                 <input type="text" name="input-cidade" id="input-cidade">
+                <div class="error">
+                    <p>Digite uma cidade da partida válida</p>
+                </div>
             </div>
             <div class="estado div-partida">
                 <label for="input-estado">Estado</label>
-                <div class="select-state">
-                    <div class="select-btn-state">
-                        <span data-id="">Estado</span>
+                <div class="select-state select">
+                    <div class="select-btn-state select-btn">
+                        <span data-id="" id="input-estado">Estado</span>
                         <i class='bx bx-chevron-down'></i>
                     </div>
                     <div class="content-state">
                         <ul class="options"></ul>
                     </div>
                 </div>
+                <div class="error">
+                    <p>Digite um estado da partida válido</p>
+                </div>
             </div>
             <div class="esporte div-partida">
                 <label for="input-esporte">Esporte</label>
-                <div class="select-sport">
-                    <div class="select-btn-sport">
-                        <span data-id="">Esporte</span>
+                <div class="select-sport select">
+                    <div class="select-btn-sport select-btn">
+                        <span data-id="" id="input-esporte">Esporte</span>
                         <i class='bx bx-chevron-down'></i>
                     </div>
                     <div class="content-sport">
                         <ul class="options"></ul>
                     </div>
                 </div>
+                <div class="error">
+                    <p>Digite um esporte válido</p>
+                </div>
             </div>
             <div class="data div-partida">
                 <label for="input-data">Data</label>
                 <input type="date" name="input-data" id="input-data">
+                <div class="error">
+                    <p>Digite uma data válida</p>
+                </div>
             </div>
-            <div class="total-jog div-partida">
-                <label for="input-total-jog">Total jogadores</label>
+            <div class="total div-partida">
+                <label for="input-total">Total jogadores</label>
                 <div class="input-incrementor">
                     <button type="button" class="number-decrement-total">-</button>
-                    <input type="number" name="input-total-jog" id="input-total-jog" value="1" min="1">
+                    <input type="number" name="input-total" id="input-total" value="2" min="2">
                     <button type="button" class="number-increment-total">+</button>
                 </div>
-            </div>
-            <div class="jogadores-res div-partida">
-                <label for="input-jogadores-res">Jogadores restantes</label>
-                <div class="input-incrementor">
-                    <button type="button" class="number-decrement-res">-</button>
-                    <input type="number" name="input-jogadores-res" id="input-jogadores-res" value="1" min="1">
-                    <button type="button" class="number-increment-res">+</button>
+                <div class="error">
+                    <p>Digite um total de jogadores válido</p>
                 </div>
             </div>
-            <div class="horario div-partida">
-                <label for="input-horario">Horário</label>
-                <input type="time" name="input-horario" id="input-horario">
+            <div class="restantes div-partida">
+                <label for="input-restantes">Jogadores restantes</label>
+                <div class="input-incrementor">
+                    <button type="button" class="number-decrement-res">-</button>
+                    <input type="number" name="input-restantes" id="input-restantes" value="1" min="1">
+                    <button type="button" class="number-increment-res">+</button>
+                </div>
+                <div class="error">
+                    <p>Digite um jogadores restantes válido</p>
+                </div>
+            </div>
+            <div class="inicio div-partida">
+                <label for="input-inicio">Início</label>
+                <input type="time" name="input-inicio" id="input-inicio">
+                <div class="error">
+                    <p>Digite um horário válido</p>
+                </div>
+            </div>
+            <div class="termino div-partida">
+                <label for="input-termino">Término</label>
+                <input type="time" name="input-termino" id="input-termino">
+                <div class="error">
+                    <p>Digite um horário válido</p>
+                </div>
             </div>
             <div class="telefone div-partida">
                 <label for="input-telefone">Telefone contato</label>
                 <input type="number" name="input-telefone" id="input-telefone">
+                <div class="error">
+                    <p>Digite um telefone válido</p>
+                </div>
             </div>
             <div class="descricao div-partida">
                 <label for="input-descricao">Descrição</label>
                 <textarea name="input-descricao" id="input-descricao" rows="4" cols="35"></textarea>
+                <div class="error">
+                    <p>Digite uma descricao válida</p>
+                </div>
             </div>
             
             <div class="buttons">
                 <button type="button" id="btn-cancelar">Cancelar</button>
-                <button type="button" id="btn-adicionar-partida">Adicionar Partida</button>
+                <button type="button" id="btn-adicionar-partida" onclick="createMatch()">Adicionar Partida</button>
             </div>
         </form> <!--Fim form-->
         
@@ -150,6 +190,7 @@
     </footer>
     
     <script src="../js/criarPartidas.js"></script>
+    <script src="../../src/scripts/criarPartidasFn.js"></script>
     <script src="../js/menu.js"></script>
 
       <!-- <script>

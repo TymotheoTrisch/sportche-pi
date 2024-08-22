@@ -7,14 +7,14 @@ const optionsState = selectState.querySelector(".content-state .options");
 const selectBtnState = selectState.querySelector('.select-btn-state');
 
 $('.number-increment-res').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-jogadores-res');
+  var $input = $(this).parents('.input-incrementor').find('#input-restantes');
   var val = parseInt($input.val(), 10);
   
   $input.val(val + 1);
 });
 
 $('.number-decrement-res').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-jogadores-res');
+  var $input = $(this).parents('.input-incrementor').find('#input-restantes');
   var val = parseInt($input.val(), 10);
   if (val > 1) {
     $input.val(val - 1);
@@ -22,17 +22,57 @@ $('.number-decrement-res').click(function () {
 });
 
 $('.number-increment-total').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-total-jog');
+  var $input = $(this).parents('.input-incrementor').find('#input-total');
   var val = parseInt($input.val(), 10);
   
   $input.val(val + 1);
 });
 
 $('.number-decrement-total').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-total-jog');
+  var $input = $(this).parents('.input-incrementor').find('#input-total');
   var val = parseInt($input.val(), 10);
   if (val > 1) {
     $input.val(val - 1);
+  }
+});
+
+$('.div-partida input').on('blur', function () {
+  var $error = $(this).siblings('.error');
+  
+  if (!$(this).val()) { 
+      $error.css('display', 'flex');
+      $(this).css('outline', '1px solid red');
+  } else {
+      $error.css('display', 'none');
+      $(this).css('outline', '0px');
+      
+  }
+});
+
+$('.div-partida textarea').on('blur', function () {
+  var $error = $(this).siblings('.error');
+  
+  if (!$(this).val()) { 
+      $error.css('display', 'flex');
+      $(this).css('outline', '1px solid red');
+  } else {
+      $error.css('display', 'none');
+      $(this).css('outline', '0px');
+      
+  }
+});
+$('.select-btn').on('click', function () {
+  var $span = $(this).find('span');
+  var $error = $(this).closest('.div-partida').find('.error');
+  
+  const $parent = $(this).closest('.select');
+    
+  if ($parent.hasClass('activeted') && $span.attr('data-id') === "") {
+      $error.css('display', 'flex');
+      $(this).css('outline', '1px solid red');
+  } else {
+      $error.css('display', 'none');
+      $(this).css('outline', '0px');
   }
 });
 
