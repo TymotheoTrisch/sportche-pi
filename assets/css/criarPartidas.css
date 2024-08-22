@@ -10,7 +10,7 @@
         padding-bottom: 120px;
     }
 
-    .jogadores-res {
+    .restantes {
         width: 100%;
     }
 
@@ -31,8 +31,8 @@
         margin: auto;
     }
 
-    .jogadores-res,
-    .total-jog, 
+    .restantes,
+    .total, 
     .inicio, .termino {
         width: 45% !important;
     }
@@ -140,13 +140,13 @@ form {
 .esporte,
 .estado,
 .cidade,
-.jogadores-res,
-.total-jog {
+.restantes,
+.total {
     width: 45%;
 }
 
-#input-jogadores-res,
-#input-total-jog {
+#input-restantes,
+#input-total {
     width: 90%;
     text-align: center;
 }
@@ -167,7 +167,7 @@ form {
     cursor: pointer;
 }
 
-/* Começo Input div select-state */
+/* Começo Input div select-state  e select-sport */
 .select-state,
 .select-sport {
     display: flex;
@@ -205,7 +205,7 @@ form {
     transform: rotate(-180deg);
 }
 
-/* Começo div itens esporte */
+/* Começo div itens esporte e estado */
 .content-state,
 .content-sport {
     top: 5vh;
@@ -225,9 +225,9 @@ form {
     position: absolute;
 }
 
-/* Fim div itens esporte */
+/* Fim div itens esporte  e estado */
 
-/* Começo Itens esporte */
+/* Começo Itens esporte e estado */
 .content-state .options,
 .content-sport .options {
     margin-top: 10px;
@@ -258,6 +258,16 @@ li.selected {
 /* Fim Itens esporte */
 /* Fim Input div select-state */
 /* Fim iputs */
+
+/* Mensagem de erro nos inputs */
+.error p {
+    font-size: 13.5px;
+    color: red;
+}
+.error {
+    display: none;
+}
+/* Fim mensagem de erro nos inputs */
 
 /* Buttons adicionar e cancelar */
 .buttons {
