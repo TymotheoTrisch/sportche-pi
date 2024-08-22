@@ -14,7 +14,7 @@
         width: 100%;
     }
 
-    .horario {
+    .inicio, .termino {
         width: 100%;
     }
 }
@@ -33,9 +33,7 @@
 
     .jogadores-res,
     .total-jog, 
-    .cidade, 
-    .telefone, 
-    .horario {
+    .inicio, .termino {
         width: 45% !important;
     }
 
@@ -133,15 +131,15 @@ form {
 .nome,
 .endereco,
 .telefone,
-.cidade,
 .descricao {
     width: 100%;
 }
 
 .data,
-.horario,
+.inicio, .termino,
 .esporte,
 .estado,
+.cidade,
 .jogadores-res,
 .total-jog {
     width: 45%;
