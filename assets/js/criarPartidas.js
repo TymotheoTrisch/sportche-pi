@@ -6,30 +6,15 @@ const selectState = document.querySelector('.select-state')
 const optionsState = selectState.querySelector(".content-state .options");
 const selectBtnState = selectState.querySelector('.select-btn-state');
 
-$('.number-increment-res').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-restantes');
+$('.number-increment').click(function () {
+  var $input = $(this).parents('.input-incrementor').find('#input-pendentes');
   var val = parseInt($input.val(), 10);
   
   $input.val(val + 1);
 });
 
-$('.number-decrement-res').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-restantes');
-  var val = parseInt($input.val(), 10);
-  if (val > 1) {
-    $input.val(val - 1);
-  }
-});
-
-$('.number-increment-total').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-total');
-  var val = parseInt($input.val(), 10);
-  
-  $input.val(val + 1);
-});
-
-$('.number-decrement-total').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-total');
+$('.number-decrement').click(function () {
+  var $input = $(this).parents('.input-incrementor').find('#input-pendentes');
   var val = parseInt($input.val(), 10);
   if (val > 1) {
     $input.val(val - 1);
@@ -75,6 +60,19 @@ $('.select-btn').on('click', function () {
       $(this).css('outline', '0px');
   }
 });
+
+const handlePhone = (event) => {
+  let input = event.target
+  input.value = phoneMask(input.value)
+}
+
+const phoneMask = (value) => {
+  if (!value) return ""
+  value = value.replace(/\D/g,'')
+  value = value.replace(/(\d{2})(\d)/,"($1) $2")
+  value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+  return value
+}
 
 const sports = [
   {

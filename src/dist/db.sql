@@ -26,13 +26,22 @@ CREATE TABLE matches (
   date_match DATE NOT NULL,
   start_match TIME NOT NULL,
   end_of_match TIME NOT NULL,
-  total_player TINYINT UNSIGNED NOT NULL,
-  players_needed TINYINT UNSIGNED NOT NULL,
+  total_players_needed TINYINT UNSIGNED NOT NULL,
+  players_registered TINYINT UNSIGNED NOT NULL,
   created_by INT NOT NULL,
+  contact_phone CHAR(15),
   FOREIGN KEY (address_match) REFERENCES addresses(id_address),
   FOREIGN KEY (id_sport) REFERENCES sports(id_sport),
   FOREIGN KEY (created_by) REFERENCES users(id_user)
 );
+
+CREATE TABLE game_players (
+  id_participants INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  user_id INT NOT NULL,
+  game_id INT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id_user),
+  FOREIGN KEY (game_id) REFERENCES matches(id_match)
+)
 
 
 use meu_banco;

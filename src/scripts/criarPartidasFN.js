@@ -3,11 +3,10 @@ async function createMatch() {
         nome: document.getElementById('input-nome').value,
         endereco: document.getElementById('input-endereco').value,
         cidade: document.getElementById('input-cidade').value,
-        estado: document.getElementById('input-estado').dataset.id,
-        esporte: document.getElementById('input-esporte').dataset.id,
+        estado: parseInt(document.getElementById('input-estado').dataset.id),
+        esporte: parseInt(document.getElementById('input-esporte').dataset.id),
         data: document.getElementById('input-data').value,
-        total: parseInt(document.getElementById('input-total').value),
-        restantes: parseInt(document.getElementById('input-restantes').value),
+        pendentes: parseInt(document.getElementById('input-pendentes').value),
         inicio: document.getElementById('input-inicio').value,
         termino: document.getElementById('input-termino').value,
         telefone: document.getElementById('input-telefone').value,
@@ -16,19 +15,19 @@ async function createMatch() {
     };
 
     for (const key in formData) {
-        if (!formData[key] && formData[key] !== 'criado_por') { 
+        if (!formData[key] && formData[key] !== 'criado_por') {
             const inputId = `input-${key.replace('_', '-')}`;
             const $input = document.getElementById(inputId);
-            
+
             if ($input) {
                 const $error = $input.closest('.div-partida').querySelector('.error');
                 if ($error) {
                     $error.style.display = 'flex';
-                    if($input.tagName != 'SPAN') {
-                        
-                        $input.style.outline = '1px solid red'; 
+                    if ($input.tagName != 'SPAN') {
+
+                        $input.style.outline = '1px solid red';
                     } else {
-                        $input.closest('.select-btn').style.outline = '1px solid red'; 
+                        $input.closest('.select-btn').style.outline = '1px solid red';
                     }
                 }
             }
@@ -36,15 +35,17 @@ async function createMatch() {
         }
     }
 
-    if (formData.total <= formData.restantes) {
-        alert("O total de jogadores deve ser maior do que os jogadores restantes.");
-        return;
-    }
-
     if (formData.inicio >= formData.termino) {
         alert("O horário de início deve ser anterior ao horário de término.");
         return;
     }
+
+    const formatContact = (value) => {
+        return value.replace(/\D/g, '');
+    }
+    
+    console.log(formatContact(formData.telefone));
+
 
     try {
         const response = await fetch('http://localhost:3000/criarpartidas', {
@@ -53,15 +54,15 @@ async function createMatch() {
             body: JSON.stringify({
                 street: formData.endereco,
                 city: formData.cidade,
-                state: parseInt(formData.estado),
+                state: formData.estado,
                 name: formData.nome,
                 description: formData.descricao,
-                id_sport: parseInt(formData.esporte),
+                id_sport: formData.esporte,
                 date_match: formData.data,
                 start_match: formData.inicio,
                 end_of_match: formData.termino,
-                total_player: formData.total,
-                players_needed: formData.restantes,
+                total_players_needed: formData.pendentes,
+                players_registered: 0,
                 contact_phone: formData.telefone,
                 created_by: formData.criado_por
             })

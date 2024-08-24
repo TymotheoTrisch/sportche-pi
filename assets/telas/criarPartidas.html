@@ -112,26 +112,15 @@
                     <p>Digite uma data válida</p>
                 </div>
             </div>
-            <div class="total div-partida">
-                <label for="input-total">Total jogadores</label>
+            <div class="pendentes div-partida">
+                <label for="input-pendentes">Jogadores pendentes</label>
                 <div class="input-incrementor">
-                    <button type="button" class="number-decrement-total">-</button>
-                    <input type="number" name="input-total" id="input-total" value="2" min="2">
-                    <button type="button" class="number-increment-total">+</button>
+                    <button type="button" class="number-decrement">-</button>
+                    <input type="number" name="input-pendentes" id="input-pendentes" value="1" min="1">
+                    <button type="button" class="number-increment">+</button>
                 </div>
                 <div class="error">
-                    <p>Digite um total de jogadores válido</p>
-                </div>
-            </div>
-            <div class="restantes div-partida">
-                <label for="input-restantes">Jogadores restantes</label>
-                <div class="input-incrementor">
-                    <button type="button" class="number-decrement-res">-</button>
-                    <input type="number" name="input-restantes" id="input-restantes" value="1" min="1">
-                    <button type="button" class="number-increment-res">+</button>
-                </div>
-                <div class="error">
-                    <p>Digite um jogadores restantes válido</p>
+                    <p>Digite uma quantidade válida</p>
                 </div>
             </div>
             <div class="inicio div-partida">
@@ -150,7 +139,7 @@
             </div>
             <div class="telefone div-partida">
                 <label for="input-telefone">Telefone contato</label>
-                <input type="number" name="input-telefone" id="input-telefone">
+                <input name="input-telefone" id="input-telefone" type="tel" maxlength="15" onkeyup="handlePhone(event)">
                 <div class="error">
                     <p>Digite um telefone válido</p>
                 </div>
