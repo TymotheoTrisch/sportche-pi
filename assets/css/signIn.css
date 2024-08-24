@@ -4,6 +4,9 @@ linha 237 - 239
 linhan 338
 */
 
+/* se eu tiver que arrumar esse codigo pela 3a vez eu saio do curso  */
+
+
 @media (max-width : 720px) {
 
     header {
@@ -256,7 +259,7 @@ linhan 338
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 300px;
+        width: 40vh;
         background-color: var(--white-default);
         margin: auto;
         border-radius: 7px;
@@ -299,7 +302,7 @@ linhan 338
         
     }
     .botaoEntrar {
-        width: 30%;
+        width: 35%;
         height: 50px;
         font-family: var(--poppins);
         background-color: #4024C0;
@@ -309,7 +312,7 @@ linhan 338
         cursor: pointer;
     }
     .botaoCadastrar {
-        width: 35%;
+        width: 48%;
         height: 50px;
         font-family: var(--poppins);
         background-color: var(--black-default);
@@ -336,7 +339,7 @@ linhan 338
     .main_cadastro {
         background-color: #fffffff8;
         width: 50vh;
-        height: 60%;
+        height: 70vh;
         border-radius: 7px;
     }
     .main_cadastro h2{
