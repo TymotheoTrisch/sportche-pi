@@ -2,6 +2,8 @@ const express = require("express");
 const pool = require("../dist/connect");
 const router = express.Router();
 
+
+
 router.post("/", async (req, res) => {
     //Problema na verificação
     const { street, city, state, name, description, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, contact_phone, created_by } = req.body;
