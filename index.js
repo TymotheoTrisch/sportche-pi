@@ -1,12 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require('cors')
+const jwt = require('jsonwebtoken')
+const server = express();
+
 const loginRoutes = require("./src/routes/login");
 const criarPartidas = require("./src/routes/criarpartidas")
 const signInRoutes = require("./src/routes/signIn")
 const search = require("./src/routes/search")
-const cors = require('cors')
-
-const server = express();
 
 server.use(express.json());
 server.use(bodyParser.json());

@@ -1,5 +1,6 @@
 const express = require("express");
 const pool = require("../dist/connect"); 
+const jwt = require('jsonwebtoken')
 const getHash = require('../scripts/getHash')
 const router = express.Router();
 
