@@ -10,6 +10,7 @@ async function getLocation() {
     }
     const matchData = await APIResponse.json();
 
+
     return matchData.city;
   } catch (error) {
     console.error("Error:", error);
@@ -41,43 +42,72 @@ function getSportIcon(number) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const city = await getLocation();
 
-    const matchResponse = await fetch("http://localhost:3000/search", {
+    const city = await getLocation();
+    const response = await fetch("http://localhost:3000/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ city: city })
     });
 
-    const matchData = await matchResponse.json();
+    const matchData = await response.json();
 
-    // const addressResponse = await fetch("http://localhost:3000/search/address", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ id: matchData.id_address })
-    // });
+    console.log(matchData);
 
-    // const addressData = await addressResponse.json();
+    addHTML(matchData)
+    
 
-    const section = document.querySelector(".section-list-games");
+  } catch (e) {
+    console.error("Error:", e);
+    alert("Erro ao consultar partidas, recarregue a página")
+  }
+});
+
+async function selectGeneral() {
+
+  try {
+    const inputName = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
+    console.log(inputName);
+
+    const response = await fetch("http://localhost:3000/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: inputName })
+    });
+
+    const matchData = await response.json();
+
+    console.log(matchData);
+    
+    addHTML(matchData)
+
+
+  } catch {
+    console.error("Error:", e);
+    alert("Erro ao consultar partidas, recarregue a página")
+  }
+}
+
+function addHTML(matchData) {
+  const section = document.querySelector(".section-list-games");
 
     const renderMatch = (match) => `
       <div class="game-holder">
         <div class="sport">
-          <img src="${getSportIcon(match.id_match)}" alt="">
+          <img src="${getSportIcon(match.id_sport)}" alt="">
         </div>
         <div class="content">
           <div class="game-title">
             <h3 id="title">${match.name}</h3>
             <div class="location">
               <i class="bx bx-map-pin"></i>
-              <p id="city">!!!{address.city}!!!</p> <!-- Corrigido para usar a cidade do endereço -->
+             <p id="city">${match.city}</p><!--   Corrigido para usar a cidade do endereço -->
             </div>
           </div>
           <div class="info-match">
             <div class="players">
               <i class='bx bx-user'></i>
-              <p id="quant-players">${match.players_registered}</p>
+              <p id="quant-players">${match.total_players_needed - match.players_registered}</p>
             </div>
             <div class="time">
               <i class='bx bx-time-five'></i>
@@ -89,25 +119,47 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
 
     section.innerHTML = Array.isArray(matchData)
-      ? matchData.map(match => renderMatch(match)).join('')  // Corrigido para passar cada match e addressData
+      ? matchData.map(match => renderMatch(match)).join('')
       : renderMatch(matchData);
+}
 
-  } catch (e) {
-    console.error("Error:", e);
-  }
-});
+let gamesList;
+let gameHolders;
 
+// gamesList = document.getElementById('games-list');
+//     gameHolders = gamesList.querySelectorAll('.game-holder');
+    
+//     inputsSearch.forEach(inputSearch => {
+//       inputSearch.addEventListener('input', () => {
+//         const query = inputSearch.value.toLowerCase();
+//         inputSearch.nextElementSibling.style.display = 'flex';
+//         filterGames(query);
+//       })
+//     })
 
 
 iconsClose.forEach((iconClose) => {
   iconClose.addEventListener("click", () => {
     iconClose.previousElementSibling.value = "";
     iconClose.style.display = "none";
+    filterGames('')
   });
 });
 
 inputsSearch.forEach((inputSearch) => {
   inputSearch.addEventListener("input", () => {
     inputSearch.nextElementSibling.style.display = "flex";
+    selectGeneral()
   });
 });
+
+function filterGames(query) {
+  gameHolders.forEach(gameHolder => {
+    const city = gameHolder.getAttribute('data-city').toLowerCase();
+    if (city.includes(query)) {
+      gameHolder.style.display = 'flex';
+    } else {
+      gameHolder.style.display = 'none';
+    }
+  });
+}
