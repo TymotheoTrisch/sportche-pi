@@ -1,3 +1,5 @@
+const token = localStorage.getItem("token");
+
 async function createMatch() {
     const formData = {
         nome: document.getElementById('input-nome').value,
@@ -50,7 +52,7 @@ async function createMatch() {
     try {
         const response = await fetch('http://localhost:3000/criarpartidas', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 street: formData.endereco,
                 city: formData.cidade,
