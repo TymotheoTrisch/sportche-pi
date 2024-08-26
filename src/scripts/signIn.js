@@ -34,11 +34,13 @@ document.getElementById('botaoCadastrarRegister').addEventListener('click', asyn
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: username, email: email, password: password })
     });
-    
+
     const result = await response.json();
 
     document.getElementById('registerResponse').innerHTML = result.message;
     if (response.status == 201) {
+        sessionStorage.setItem('email', result.email);
+        localStorage.setItem('token', result.token);
         window.location.href = './assets/telas/search.html';
     }
 });

@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
 
   pool.query(
     "SELECT * FROM users WHERE email = ? AND password = ?",
-    [email, password],
+    [email, getHash(password)],
     async (error, results) => {
       if (error) {
         console.error("Error executing query: ", error);
@@ -27,6 +27,8 @@ router.post("/", async (req, res) => {
         SECRET,
         { expiresIn: 300 }
       );
+      
+      console.log(token)
 
       return res.status(201).json({
         message: "Login realizado com sucesso",

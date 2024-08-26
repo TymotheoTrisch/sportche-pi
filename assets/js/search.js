@@ -15,7 +15,7 @@ async function getLocation() {
     return matchData.city;
   } catch (error) {
     console.error("Error:", error);
-    throw error; // Propaga o erro para ser tratado por quem chamar a função
+    throw error;
   }
 }
 
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const matchData = await response.json();
 
     console.log(matchData);
+    console.log(token);
 
     addHTML(matchData)
     

@@ -1,34 +1,12 @@
 const express = require("express");
 const pool = require("../dist/connect");
-const jwt = require('jsonwebtoken');
 const router = express.Router();
-const SECRET = "sportche"; 
 
 
-function verifyJWT(req, res, next) {
-    const authHeader = req.headers['authorization']; 
-
-    if (!authHeader) {
-        return res.status(401).json({ message: 'Token não fornecido', token: authHeader });
-    }
-
-    const token = authHeader.split(' ')[1]; 
 
 
-    jwt.verify(token, SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(403).json({ message: 'Token inválido', token: token });
-        }
 
-        req.userId = decoded.userId; 
-        req.name = decoded.name;
-        
-        next(); 
-    });
-}
-
-
-router.post("/", verifyJWT, (req, res) => {
+router.post("/", (req, res) => {
     const city = req.body.city || null;
     const name = req.body.name || null;
 
@@ -58,7 +36,7 @@ router.post("/", verifyJWT, (req, res) => {
                         return res.status(500).send("Erro ao executar a consulta.");
                     }
 
-                    
+        
                     return res.json(results);
                 }
             );
