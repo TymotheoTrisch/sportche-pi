@@ -156,7 +156,9 @@ header{
 .imagemPerfilmobile{
     display: none;
 }
-
+.userName{
+    display: none;
+}
 
 
 
