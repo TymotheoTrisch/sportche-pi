@@ -1,14 +1,16 @@
 const express = require("express");
 const pool = require("../dist/connect");
-// const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
-// const SECRET = "sportche"; 
+const SECRET = "sportche"; 
 
 router.get("/", (req, res) => {
+  console.log(req.userId + "/" + req.username);
   pool.query(
     `SELECT * FROM users WHERE id_user = ? AND username = ?;`,
-    [req.userId, req.name],
+    [req.userId, req.username],
     (err, results) => {
+      console.log(results)
       if (err) {
         return res.status(500).send("Erro ao executar a consulta.");
       }
@@ -17,8 +19,7 @@ router.get("/", (req, res) => {
         return res.status(404).send("Endereço não encontrado.");
       }
 
-      console.log(results)
-      return res.json(results);
+      return res.status(201).json(results);
     }
   );
 });

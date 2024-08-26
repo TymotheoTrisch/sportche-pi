@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   
     } catch (e) {
       console.error("Error:", e);
-      alert("Erro ao consultar partidas, recarregue a página")
+      alert("Erro ao consultar o usuário")
     }
   });

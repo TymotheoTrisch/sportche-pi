@@ -55,15 +55,24 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const matchData = await response.json();
 
-    console.log(matchData);
-    console.log(token);
+    // console.log(matchData);
+    // console.log(token);
 
     addHTML(matchData)
     
 
   } catch (e) {
     console.error("Error:", e);
-    alert("Erro ao consultar partidas, recarregue a página")
+    const response = await fetch("http://localhost:3000/search", {
+      method: "GET",
+      headers: {'authorization': `Bearer ${token}`, "Content-Type": "application/json" }
+    });
+
+    const matchData = await response.json();
+    // console.log(matchData)
+    
+    addHTML(matchData)
+    // alert("Erro ao consultar partidas, recarregue a página")
   }
 });
 
@@ -71,7 +80,7 @@ async function selectGeneral() {
 
   try {
     const inputName = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
-    console.log(inputName);
+    // console.log(inputName);
 
     const response = await fetch("http://localhost:3000/search", {
       method: "POST",
@@ -81,14 +90,13 @@ async function selectGeneral() {
 
     const matchData = await response.json();
 
-    console.log(matchData);
+    // console.log(matchData);
     
     addHTML(matchData)
 
 
   } catch {
     console.error("Error:", e);
-    alert("Erro ao consultar partidas, recarregue a página")
   }
 }
 

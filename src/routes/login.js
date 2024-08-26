@@ -3,14 +3,14 @@ const pool = require("../dist/connect");
 const jwt = require("jsonwebtoken");
 const getHash = require("../scripts/getHash");
 const router = express.Router();
-const SECRET = "sportche";
+const SECRET = "Sportche";
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
 
   pool.query(
     "SELECT * FROM users WHERE email = ? AND password = ?",
-    [email, getHash(password)],
+    [email, await getHash(password)],
     async (error, results) => {
       if (error) {
         console.error("Error executing query: ", error);
@@ -23,12 +23,12 @@ router.post("/", async (req, res) => {
 
       const user = results[0];
       const token = jwt.sign(
-        { userId: user.id_user, name: user.username },
+        { userId: user.id_user, username: user.username },
         SECRET,
-        { expiresIn: 300 }
+        { expiresIn: '1h' }
       );
       
-      console.log(token)
+      // console.log(token)
 
       return res.status(201).json({
         message: "Login realizado com sucesso",

@@ -2,13 +2,17 @@ const express = require("express");
 const pool = require("../dist/connect");
 const router = express.Router();
 
-
-
-
+router.get("/", (req, res) => {
+    pool.query(`SELECT * FROM matches`, (err, results) => {
+        return res.status(201).json(results)
+    })
+})
 
 router.post("/", (req, res) => {
     const city = req.body.city || null;
     const name = req.body.name || null;
+    
+    // console.log(req.userId)
 
     pool.query(
         `SELECT id_address FROM addresses WHERE city = ? OR ? IS NULL`,
@@ -36,7 +40,6 @@ router.post("/", (req, res) => {
                         return res.status(500).send("Erro ao executar a consulta.");
                     }
 
-        
                     return res.json(results);
                 }
             );

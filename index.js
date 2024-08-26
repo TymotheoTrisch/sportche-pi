@@ -22,7 +22,7 @@ function verifyJWT(req, res, next) {
       }
 
       req.userId = decoded.userId; 
-      req.name = decoded.name;
+      req.username = decoded.username;
       
       next(); 
   });
@@ -45,7 +45,7 @@ server.listen(3000, () => {
   console.log("Server is running.");
 });
 
-server.use("/login", verifyJWT, loginRoutes); 
+server.use("/login", loginRoutes); 
 server.use("/criarpartidas", verifyJWT, criarPartidas);
 server.use("/register", signInRoutes);
 server.use("/search", verifyJWT, search)

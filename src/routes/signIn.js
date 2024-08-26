@@ -22,8 +22,9 @@ router.post("/", async (req, res) => {
         }
 
         pool.query("SELECT id_user FROM users WHERE email = ? AND password = ?", [email, await getHash(password)], (err, results) => {
+          const user = results[0];
           const token = jwt.sign(
-          { userId: results[0].id_user, name: results[0].username },
+            { userId: user.id_user, username: user.username },
           SECRET,
           { expiresIn: 300 }
         );
