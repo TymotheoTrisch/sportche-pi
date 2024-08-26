@@ -190,6 +190,13 @@ header{
         padding: 10px;
         border-radius: 7px;
     }
+    .userName {
+        width: 100%;    
+        margin-bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     
     
     
