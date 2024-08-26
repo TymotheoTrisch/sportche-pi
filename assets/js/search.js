@@ -1,6 +1,7 @@
 const iconsClose = document.querySelectorAll(".icon-close");
 const iconsSearch = document.querySelectorAll(".icon-search");
 const inputsSearch = document.querySelectorAll("#search");
+const token = localStorage.getItem('token');
 
 async function getLocation() {
   try {
@@ -46,7 +47,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     const city = await getLocation();
     const response = await fetch("http://localhost:3000/search", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        'authorization': `Bearer ${token}`,
+        "Content-Type": "application/json" },
       body: JSON.stringify({ city: city })
     });
 
@@ -71,7 +74,7 @@ async function selectGeneral() {
 
     const response = await fetch("http://localhost:3000/search", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({ name: inputName })
     });
 
@@ -101,7 +104,7 @@ function addHTML(matchData) {
             <h3 id="title">${match.name}</h3>
             <div class="location">
               <i class="bx bx-map-pin"></i>
-             <p id="city">${match.city}</p><!--   Corrigido para usar a cidade do endereço -->
+             <p id="city">${match.street + ", " + match.city}</p><!--   Corrigido para usar a cidade do endereço -->
             </div>
           </div>
           <div class="info-match">

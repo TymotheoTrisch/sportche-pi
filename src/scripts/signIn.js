@@ -14,7 +14,7 @@ document.getElementById('botaoEntrarLogin').addEventListener('click', async func
         console.log(response.status)
         if (response.status == 201) {
             sessionStorage.setItem('email', result.email);
-
+            localStorage.setItem('token', result.token);
             window.location.href = './assets/telas/search.html';
         }
     } catch (error) {

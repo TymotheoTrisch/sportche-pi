@@ -1,79 +1,69 @@
 const express = require("express");
 const pool = require("../dist/connect");
+const jwt = require('jsonwebtoken');
 const router = express.Router();
+const SECRET = "sportche"; // Use a mesma chave secreta usada para assinar o token
 
-router.post("/", (req, res) => {
-  const city = req.body.city || null;
-  const name = req.body.name || null;
-  console.log(city, name);
-  
+// Middleware para verificar o token JWT
+function verifyJWT(req, res, next) {
+    const authHeader = req.headers['authorization']; // Usando o cabeçalho de autorização padrão
 
-  pool.query(
-    `SELECT id_address FROM addresses WHERE city = ? OR ? IS NULL`,
-    [city, city],
-    (err, results) => {
-      if (err) {
-        return res.status(500).send("Erro ao executar a consulta.");
-      }
-
-      if (results.length === 0) {
-        return res.status(404).send("Endereço não encontrado.");
-      }
-      
-      console.log(results);
-      
-
-      const idAddress =  results.length > 1 ?  null : results[0].id_address;
-      console.log(idAddress);
-      
-
-      pool.query(
-        `SELECT * 
-         FROM matches 
-         LEFT JOIN addresses ON addresses.id_address = matches.address_match 
-         WHERE (addresses.id_address = ? OR ? IS NULL)
-         AND (matches.name LIKE ? OR ? IS NULL);`,
-        [idAddress, idAddress, "%" + name + "%", name],
-        (err, results) => {
-          if (err) {
-            return res.status(500).send("Erro ao executar a consulta.");
-          }
-      
-          console.log(results);
-          return res.json(results);
-        }
-      );
+    if (!authHeader) {
+        return res.status(401).json({ message: 'Token não fornecido', token: authHeader });
     }
-  );
+
+    const token = authHeader.split(' ')[1]; // Extrai o token do cabeçalho
+
+
+    jwt.verify(token, SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: 'Token inválido', token: token });
+        }
+
+        req.userId = decoded.userId; // Dados do usuário armazenados na requisição
+        req.name = decoded.name;
+        
+        next(); // Passa para a próxima função de middleware ou rota
+    });
+}
+
+
+router.post("/", verifyJWT, (req, res) => {
+    const city = req.body.city || null;
+    const name = req.body.name || null;
+
+    pool.query(
+        `SELECT id_address FROM addresses WHERE city = ? OR ? IS NULL`,
+        [city, city],
+        (err, results) => {
+            if (err) {
+                return res.status(500).send("Erro ao executar a consulta.");
+            }
+
+            if (results.length === 0) {
+                return res.status(404).send("Endereço não encontrado.");
+            }
+      
+            const idAddress = results.length > 1 ? null : results[0].id_address;
+
+            pool.query(
+                `SELECT * 
+                 FROM matches 
+                 LEFT JOIN addresses ON addresses.id_address = matches.address_match 
+                 WHERE (addresses.id_address = ? OR ? IS NULL)
+                 AND (matches.name LIKE ? OR ? IS NULL);`,
+                [idAddress, idAddress, "%" + name + "%", name],
+                (err, results) => {
+                    if (err) {
+                        return res.status(500).send("Erro ao executar a consulta.");
+                    }
+
+                    
+                    return res.json(results);
+                }
+            );
+        }
+    );
 });
 
-
-// asd
-// teste para puxar o endereço da partida
-
-// router.post("/address", (req, res) => {
-//   const { id } = req.body; // Desestrutura para obter o id
-//   pool.query(
-//     `SELECT street FROM addresses WHERE id_address = ?;`, [id],  // Passa o id para a consulta
-//     (err, results) => {
-//       if (err) {
-//         return res.status(500).send("Erro ao executar a consulta.");
-//       }
-
-//       // Se resultados forem encontrados, retornar o primeiro item, se não, retornar um erro 404
-//       if (results.length > 0) {
-//         return res.json(results[0]);
-//       } else {
-//         return res.status(404).send("Endereço não encontrado.");
-//       }
-//     }
-//   );
-// });
-// asd
-
 module.exports = router;
-
-// // `SELECT m.name AS search, a.city AS city FROM matches m
-// INNER JOIN address a ON m.address_match = a.id_address
-// WHERE search LIKE ? AND city = ?;
-// `,
