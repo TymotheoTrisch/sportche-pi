@@ -11,6 +11,15 @@ router.get("/", (req, res) => {
     });
 });
 
+router.post("/id", (req, res) => {
+    pool.query(`SELECT * FROM matches WHERE id_match = ?`, [req.body.idMatch], (err, results) => {
+        if (err) {
+            return res.status(500).send("Erro ao executar a consulta.");
+        }
+        return res.status(200).json(results);
+    });
+});
+
 router.post("/", async (req, res) => {
     const city = req.body.city || null;
     const name = req.body.name || null;

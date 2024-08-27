@@ -1,9 +1,12 @@
-const iconsClose = document.querySelectorAll(".icon-close");
+const iconsCloseSearch = document.querySelectorAll(".icon-close");
 const iconsSearch = document.querySelectorAll(".icon-search");
 const inputsSearch = document.querySelectorAll("#search");
+const sectionDetails = document.querySelector('.section-details');
+const section = document.querySelector(".section-list-games");
+const iconCloseDetais = document.querySelector(".icon-close-section i");
 const token = localStorage.getItem('token');
 
-iconsClose.forEach((iconClose) => {
+iconsCloseSearch.forEach((iconClose) => {
   iconClose.addEventListener("click", () => {
     iconClose.previousElementSibling.value = "";
     iconClose.style.display = "none";
@@ -16,6 +19,10 @@ inputsSearch.forEach((inputSearch) => {
     inputSearch.nextElementSibling.style.display = "flex";
     selectGeneral()
   });
+});
+
+iconCloseDetais.addEventListener('click', () => {
+  sectionDetails.style.display = "none"
 });
 
 
@@ -64,28 +71,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     const city = await getLocation();
     const response = await fetch("http://localhost:3000/search", {
       method: "POST",
-      headers: { 
+      headers: {
         'authorization': `Bearer ${token}`,
-        "Content-Type": "application/json" },
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({ city: city })
     });
-    
+
     console.log(response);
 
     const matchData = await response.json();
-    addHTML(matchData)
-    
+    addHTMLMatch(matchData)
+
 
   } catch (e) {
     console.error("Error:", e);
     const response = await fetch("http://localhost:3000/search", {
       method: "GET",
-      headers: {'authorization': `Bearer ${token}`, "Content-Type": "application/json" }
+      headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" }
     });
-    
+
 
     const matchData = await response.json();
-    addHTML(matchData)
+    addHTMLMatch(matchData)
   }
 });
 
@@ -96,12 +104,12 @@ async function selectGeneral() {
 
     const response = await fetch("http://localhost:3000/search", {
       method: "POST",
-      headers: {'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
+      headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({ name: inputName })
     });
 
     const matchData = await response.json();
-    addHTML(matchData)
+    addHTMLMatch(matchData)
 
 
   } catch {
@@ -109,11 +117,10 @@ async function selectGeneral() {
   }
 }
 
-function addHTML(matchData) {
-  const section = document.querySelector(".section-list-games");
+function addHTMLMatch(matchData) {
 
-    const renderMatch = (match) => `
-      <div class="game-holder">
+  const renderMatch = (match) => `
+      <div class="game-holder" onclick="addHTMLDetailsMatch(${match.id_match})">
         <div class="sport">
           <img src="${getSportIcon(match.id_sport)}" alt="">
         </div>
@@ -139,8 +146,50 @@ function addHTML(matchData) {
       </div>
     `;
 
-    section.innerHTML = Array.isArray(matchData)
-      ? matchData.map(match => renderMatch(match)).join('')
-      : renderMatch(matchData);
+  section.innerHTML = Array.isArray(matchData)
+    ? matchData.map(match => renderMatch(match)).join('')
+    : renderMatch(matchData);
 }
 
+async function addHTMLDetailsMatch(matchId) {
+  
+  try {
+    const response = await fetch("http://localhost:3000/search/id", {
+    method: "POST",
+    headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ idMatch: matchId })
+  });
+  const result = await response.json();
+
+  sectionDetails.style.display = "flex"
+
+  const title = document.getElementById('title');
+  const cityState = document.getElementById('city-state');
+  const address = document.getElementById('address');
+  const description = document.getElementById('descruption');
+  const quantPlayers = document.getElementById('quant-players');
+  const time = document.getElementById('time');
+  const btnContato = document.getElementById('btn-contato');
+  const btnParticipar = document.getElementById('btn-participar');
+
+  title.textContent = matchData.name || 'Título não disponível';
+  cityState.textContent = matchData.cityState || 'Cidade e estado não disponíveis';
+  address.textContent = matchData.address || 'Endereço não disponível';
+  description.textContent = matchData.description || 'Descrição não disponível';
+  quantPlayers.textContent = matchData.quantPlayers || 'Quantidade de participantes não disponível';
+  time.textContent = matchData.time || 'Horário não disponível';
+
+  btnContato.addEventListener('click', () => {
+    alert('Botão "Entrar em contato" clicado');
+  });
+
+  btnParticipar.addEventListener('click', () => {
+    alert('Botão "Participar" clicado');
+  });
+
+  } catch {
+    console.error("Error:", e);
+  }
+
+  
+}
