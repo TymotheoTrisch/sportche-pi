@@ -1,3 +1,5 @@
+
+//Requisições HTTP
 const token = localStorage.getItem('token')
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -10,10 +12,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   
       const matchData = await response.json();
-      console.log(matchData);
+      // console.log(matchData);
   
     } catch (e) {
       console.error("Error:", e);
-      alert("Erro ao consultar o usuário")
+      // alert("Erro ao consultar o usuário")
     }
   });

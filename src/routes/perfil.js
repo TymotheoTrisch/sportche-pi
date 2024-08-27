@@ -5,12 +5,11 @@ const router = express.Router();
 const SECRET = "sportche"; 
 
 router.get("/", (req, res) => {
-  console.log(req.userId + "/" + req.username);
   pool.query(
     `SELECT * FROM users WHERE id_user = ? AND username = ?;`,
     [req.userId, req.username],
     (err, results) => {
-      console.log(results)
+
       if (err) {
         return res.status(500).send("Erro ao executar a consulta.");
       }

@@ -6,25 +6,24 @@ const SECRET = 'Sportche';
 const server = express();
 
 function verifyJWT(req, res, next) {
-  const authHeader = req.headers['authorization']; 
+  const authHeader = req.headers['authorization'];
 
   if (!authHeader) {
-      return res.status(401).json({ message: 'Token não fornecido', token: authHeader });
+    return res.redirect("../../index.html");
   }
 
-  const token = authHeader.split(' ')[1]; 
+  const token = authHeader.split(' ')[1];
 
 
   jwt.verify(token, SECRET, (err, decoded) => {
-      if (err) {
-          // window.location.href = './criarpartidas.html';
-          return res.status(403).json({ message: 'Token inválido', token: token });
-      }
+    if (err) {
+      return res.redirect("../../index.html");
+    }
 
-      req.userId = decoded.userId; 
-      req.username = decoded.username;
-      
-      next(); 
+    req.userId = decoded.userId;
+    req.username = decoded.username;
+
+    next();
   });
 }
 
@@ -45,8 +44,12 @@ server.listen(3000, () => {
   console.log("Server is running.");
 });
 
-server.use("/login", loginRoutes); 
+server.use("/login", loginRoutes);
 server.use("/criarpartidas", verifyJWT, criarPartidas);
 server.use("/register", signInRoutes);
 server.use("/search", verifyJWT, search)
 server.use("/profile", verifyJWT, perfil)
+
+server.post('/verifyToken', verifyJWT, (req, res) => {
+  res.status(200).json({ message: 'Token válido', userId: req.userId, username: req.username });
+});

@@ -3,6 +3,10 @@ document.getElementById('botaoEntrarLogin').addEventListener('click', async func
     event.preventDefault();
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    
+    if(!email && !password) {
+        return;
+    }
 
     try {
         const response = await fetch('http://localhost:3000/login', {
@@ -11,7 +15,13 @@ document.getElementById('botaoEntrarLogin').addEventListener('click', async func
             body: JSON.stringify({ email: email, password: password })
         });
         const result = await response.json();
-        console.log(response.status)
+        // console.log(response.status)
+
+        if (response.status == 404) {
+            // document.getElementById('loginResponse').innerHTML = result.message;
+            alert("Usuário não encontrado")
+        }
+
         if (response.status == 201) {
             sessionStorage.setItem('email', result.email);
             localStorage.setItem('token', result.token);

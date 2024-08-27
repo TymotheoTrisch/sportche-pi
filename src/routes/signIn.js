@@ -15,21 +15,21 @@ router.post("/", async (req, res) => {
     pool.query(
       "INSERT INTO users(username, email, password) VALUES (?, ?, ?)",
       [username, email, await getHash(password)],
-      async (error, results) => {
+      async (error, resultsInsert) => {
         if (error) {
           console.error("Error executing insert query: ", error);
           return res.status(500).json({message: 'Erro ao adicionar usuário.'});
         }
 
-        pool.query("SELECT id_user FROM users WHERE email = ? AND password = ?", [email, await getHash(password)], (err, results) => {
-          const user = results[0];
+        pool.query("SELECT id_user FROM users WHERE email = ? AND password = ?", [email, await getHash(password)], (err, resultsSelect) => {
+          const user = resultsSelect[0];
           const token = jwt.sign(
             { userId: user.id_user, username: user.username },
           SECRET,
-          { expiresIn: 300 }
+          { expiresIn: '1h' }
         );
           
-          console.log(token);
+          // console.log(token);
   
         return res.status(201).json({
           message: "Login realizado com sucesso",

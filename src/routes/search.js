@@ -11,8 +11,6 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     const city = req.body.city || null;
     const name = req.body.name || null;
-    
-    // console.log(req.userId)
 
     pool.query(
         `SELECT id_address FROM addresses WHERE city = ? OR ? IS NULL`,

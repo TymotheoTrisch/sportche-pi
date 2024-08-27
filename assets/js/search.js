@@ -3,6 +3,24 @@ const iconsSearch = document.querySelectorAll(".icon-search");
 const inputsSearch = document.querySelectorAll("#search");
 const token = localStorage.getItem('token');
 
+iconsClose.forEach((iconClose) => {
+  iconClose.addEventListener("click", () => {
+    iconClose.previousElementSibling.value = "";
+    iconClose.style.display = "none";
+    filterGames('')
+  });
+});
+
+inputsSearch.forEach((inputSearch) => {
+  inputSearch.addEventListener("input", () => {
+    inputSearch.nextElementSibling.style.display = "flex";
+    selectGeneral()
+  });
+});
+
+
+
+//Requisições HTTP
 async function getLocation() {
   try {
     const APIResponse = await fetch(`http://ip-api.com/json/`);
@@ -10,7 +28,6 @@ async function getLocation() {
       throw new Error("Failed to fetch location");
     }
     const matchData = await APIResponse.json();
-
 
     return matchData.city;
   } catch (error) {
@@ -54,10 +71,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const matchData = await response.json();
-
-    // console.log(matchData);
-    // console.log(token);
-
     addHTML(matchData)
     
 
@@ -69,10 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     const matchData = await response.json();
-    // console.log(matchData)
-    
     addHTML(matchData)
-    // alert("Erro ao consultar partidas, recarregue a página")
   }
 });
 
@@ -80,7 +90,6 @@ async function selectGeneral() {
 
   try {
     const inputName = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
-    // console.log(inputName);
 
     const response = await fetch("http://localhost:3000/search", {
       method: "POST",
@@ -89,9 +98,6 @@ async function selectGeneral() {
     });
 
     const matchData = await response.json();
-
-    // console.log(matchData);
-    
     addHTML(matchData)
 
 
@@ -135,43 +141,3 @@ function addHTML(matchData) {
       : renderMatch(matchData);
 }
 
-let gamesList;
-let gameHolders;
-
-// gamesList = document.getElementById('games-list');
-//     gameHolders = gamesList.querySelectorAll('.game-holder');
-    
-//     inputsSearch.forEach(inputSearch => {
-//       inputSearch.addEventListener('input', () => {
-//         const query = inputSearch.value.toLowerCase();
-//         inputSearch.nextElementSibling.style.display = 'flex';
-//         filterGames(query);
-//       })
-//     })
-
-
-iconsClose.forEach((iconClose) => {
-  iconClose.addEventListener("click", () => {
-    iconClose.previousElementSibling.value = "";
-    iconClose.style.display = "none";
-    filterGames('')
-  });
-});
-
-inputsSearch.forEach((inputSearch) => {
-  inputSearch.addEventListener("input", () => {
-    inputSearch.nextElementSibling.style.display = "flex";
-    selectGeneral()
-  });
-});
-
-function filterGames(query) {
-  gameHolders.forEach(gameHolder => {
-    const city = gameHolder.getAttribute('data-city').toLowerCase();
-    if (city.includes(query)) {
-      gameHolder.style.display = 'flex';
-    } else {
-      gameHolder.style.display = 'none';
-    }
-  });
-}
