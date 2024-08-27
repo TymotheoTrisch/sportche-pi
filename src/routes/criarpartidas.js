@@ -9,6 +9,7 @@ router.post("/", async (req, res) => {
     const { street, city, state, name, description, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, contact_phone } = req.body;
     const created_by = req.userId
     
+    
     // if(!street || !city || !state || !name || !description || !id_sport || !date_match || !start_match || !end_of_match || !total_players_needed || !players_registered || !contact_phone || !created_by) {
     //     return res.status(400).json({ message: 'Missing required fields: street, city, state, name, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, contact_phone, created_by.' });
     // }

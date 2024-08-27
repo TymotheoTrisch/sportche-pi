@@ -170,6 +170,10 @@ addSport();
 // Requisições HTTP
 const token = localStorage.getItem("token");
 
+function formatContact(value) {
+  return value.replace(/\D/g, '');
+}
+
 async function createMatch() {
     const formData = {
         nome: document.getElementById('input-nome').value,
@@ -211,9 +215,6 @@ async function createMatch() {
         return;
     }
 
-    const formatContact = (value) => {
-        return value.replace(/\D/g, '');
-    }
     
     // console.log(formatContact(formData.telefone));
 
@@ -244,6 +245,7 @@ async function createMatch() {
         if (response.ok) {
             alert("Partida criada com sucesso!");
         } else {
+          
             alert("Erro ao criar partida: " + result.message);
         }
     } catch (error) {

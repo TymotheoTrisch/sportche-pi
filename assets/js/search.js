@@ -7,7 +7,7 @@ iconsClose.forEach((iconClose) => {
   iconClose.addEventListener("click", () => {
     iconClose.previousElementSibling.value = "";
     iconClose.style.display = "none";
-    filterGames('')
+    selectGeneral();
   });
 });
 
@@ -69,6 +69,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         "Content-Type": "application/json" },
       body: JSON.stringify({ city: city })
     });
+    
+    console.log(response);
 
     const matchData = await response.json();
     addHTML(matchData)
@@ -80,6 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       method: "GET",
       headers: {'authorization': `Bearer ${token}`, "Content-Type": "application/json" }
     });
+    
 
     const matchData = await response.json();
     addHTML(matchData)
