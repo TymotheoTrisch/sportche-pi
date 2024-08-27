@@ -88,11 +88,10 @@
     }
 
     .titulo {
-
+        
+       margin-bottom: 10px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-
+        
         padding: 40px 25px 0px;
         position: relative;
         z-index: 2;
@@ -113,10 +112,19 @@
         margin-bottom: 15px;
         font-family: var(--poppins);
         color: #FFFFFF;
+        
     }
 
     .menu-mobile {
         display: none;
+    }
+    .menu-desktop{
+        margin-left: calc(100% - 800px);
+        gap: 20px;
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
     }
 
     .menu-desktop i {
@@ -125,9 +133,9 @@
         border-radius: 3px 3px 0 0;
         transition: .5s;
 
-        position: absolute;
-        top: 57px;
-        right: 50px;
+        display: flex;
+        
+        
 
         cursor: pointer;
     }
@@ -187,7 +195,7 @@
     }
 
     .icon h2 {
-        font-size: 28px;
+        font-size: 20px;
         transition: .2s;
         font-weight: 400;
 
@@ -205,4 +213,12 @@
     .icon.selected h2 {
         font-weight: 700;
     }
+    .icon.selecionado {
+        /* color: #0A0911; */
+        background-color: var(--purple-relative);
+        border: none;
+        /* backdrop-filter: blur(10px); */
+
+    }
+
 }
