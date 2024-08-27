@@ -44,6 +44,9 @@ document.getElementById('botaoCadastrarRegister').addEventListener('click', asyn
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username: username, email: email, password: password })
     });
+    
+    console.log(response.status);
+    
 
     const result = await response.json();
 
