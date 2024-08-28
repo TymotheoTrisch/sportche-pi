@@ -78,6 +78,11 @@ function formatTime(time) {
     return time.substring(0, 5); 
 }
 
+function formatPhoneNumber(number) {
+  return number.replace(/[()\-\+\s]/g, '');
+}
+
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -195,7 +200,7 @@ async function addHTMLDetailsMatch(matchId) {
   time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
 
   btnContato.addEventListener('click', () => {
-    alert('Botão "Entrar em contato" clicado');
+    window.location.href = `https://wa.me/${formatPhoneNumber(matchData[0].contact_phone)}`
   });
 
   btnParticipar.addEventListener('click', () => {

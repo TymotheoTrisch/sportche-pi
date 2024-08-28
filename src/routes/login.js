@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
 
   pool.query(
     "SELECT * FROM users WHERE email = ? AND password = ?",
-    [email, await getHash(password)],
+    [email,await getHash( password)],
     async (error, results) => {
       if (error) {
         console.error("Error executing query: ", error);
