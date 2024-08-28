@@ -179,8 +179,8 @@ async function createMatch() {
         nome: document.getElementById('input-nome').value,
         endereco: document.getElementById('input-endereco').value,
         cidade: document.getElementById('input-cidade').value,
-        estado: parseInt(document.getElementById('input-estado').value),
-        esporte: parseInt(document.getElementById('input-esporte').value),
+        estado: document.getElementById('input-estado').innerText,
+        esporte: parseInt(document.getElementById('input-esporte').dataset.id),
         data: document.getElementById('input-data').value,
         pendentes: parseInt(document.getElementById('input-pendentes').value),
         inicio: document.getElementById('input-inicio').value,
@@ -188,18 +188,18 @@ async function createMatch() {
         telefone: formatContact(document.getElementById('input-telefone').value),
         descricao: document.getElementById('input-descricao').value,
     };
+    
 
     for (const key in formData) {
-        if (!formData[key] && formData[key] !== 'criado_por') {
+        if (formData[key] === null || formData[key] === "" || typeof formData[key] === "undefined") {
             const inputId = `input-${key.replace('_', '-')}`;
             const $input = document.getElementById(inputId);
-
+    
             if ($input) {
                 const $error = $input.closest('.div-partida').querySelector('.error');
                 if ($error) {
                     $error.style.display = 'flex';
-                    if ($input.tagName != 'SPAN') {
-
+                    if ($input.tagName !== 'SPAN') {
                         $input.style.outline = '1px solid red';
                     } else {
                         $input.closest('.select-btn').style.outline = '1px solid red';
@@ -244,6 +244,7 @@ async function createMatch() {
 
         if (response.ok) {
             alert("Partida criada com sucesso!");
+            window.location.href = "./search.html"
         } else {
           
             alert("Erro ao criar partida: " + result.message);

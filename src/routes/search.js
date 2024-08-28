@@ -12,7 +12,12 @@ router.get("/", (req, res) => {
 });
 
 router.post("/id", (req, res) => {
-    pool.query(`SELECT * FROM matches WHERE id_match = ?`, [req.body.idMatch], (err, results) => {
+    pool.query(`SELECT matches.*, addresses.*, sports.name AS sport_name
+               FROM matches 
+               LEFT JOIN addresses ON matches.address_match = addresses.id_address 
+               LEFT JOIN sports ON matches.id_sport = sports.id_sport 
+               WHERE matches.id_match = ?`, 
+               [req.body.idMatch], (err, results) => {
         if (err) {
             return res.status(500).send("Erro ao executar a consulta.");
         }

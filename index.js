@@ -6,25 +6,25 @@ const SECRET = 'Sportche';
 const server = express();
 
 function verifyJWT(req, res, next) {
-  const authHeader = req.headers['authorization'];
+    const authHeader = req.headers['authorization'];
 
-  if (!authHeader) {
-    return res.redirect("../../index.html");
-  }
-
-  const token = authHeader.split(' ')[1];
-
-
-  jwt.verify(token, SECRET, (err, decoded) => {
-    if (err) {
-      return res.redirect("../../index.html");
+    if (!authHeader) {
+        return res.redirect("../../index.html");
     }
 
-    req.userId = decoded.userId;
-    req.username = decoded.username;
+    const token = authHeader.split(' ')[1];
 
-    next();
-  });
+
+    jwt.verify(token, SECRET, (err, decoded) => {
+        if (err) {
+            return res.redirect("../../index.html");
+        }
+
+        req.userId = decoded.userId;
+        req.username = decoded.username;
+
+        next();
+    });
 }
 
 
@@ -41,7 +41,7 @@ server.use(bodyParser.json());
 server.use(cors());
 
 server.listen(3000, () => {
-  console.log("Server is running.");
+    console.log("Server is running.");
 });
 
 server.use("/login", loginRoutes);
@@ -51,5 +51,5 @@ server.use("/search", verifyJWT, search)
 server.use("/profile", verifyJWT, perfil)
 
 server.post('/verifyToken', verifyJWT, (req, res) => {
-  res.status(200).json({ message: 'Token válido', userId: req.userId, username: req.username });
+    res.status(200).json({ message: 'Token válido', userId: req.userId, username: req.username });
 });

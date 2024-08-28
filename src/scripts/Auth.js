@@ -1,23 +1,28 @@
-window.onload = function() {
+window.onload = async function () {
     const token = localStorage.getItem('token');
-    console.log(token);
 
     if (!token) {
         window.location.href = "../../index.html";
     } else {
-        // fetch('/verifyToken', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': `Bearer ${token}`
-        //     }
-        // }).then(response => {
-        //     if (!response.ok) {
-        //         window.location.href = "../../index.html";
-        //     }
-        // }).catch(error => {
-        //     console.error('Erro ao verificar o token:', error);
-        //     window.location.href = "../../index.html";
-        // });
+        try {
+            const response = await fetch('http://localhost:3000/verifyToken', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Token inválido ou expirado');
+            }
+
+            console.log('Token válido');
+
+        } catch (error) {
+            console.error('Erro ao verificar o token:', error);
+            alert('Sua sessão expirou. Por favor, faça login novamente.');
+            window.location.href = "../../index.html"; 
+        }
     }
 };

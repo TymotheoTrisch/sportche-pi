@@ -64,6 +64,20 @@ function getSportIcon(number) {
   return iconPath;
 }
 
+function formatDate(date) {
+    const dateMatch = new Date(date);
+    
+    const day = String(dateMatch.getUTCDate()).padStart(2, '0');
+    const month = String(dateMatch.getUTCMonth() + 1).padStart(2, '0');
+    const year = dateMatch.getUTCFullYear();
+    
+    return `${day}-${month}-${year}`;
+}
+
+function formatTime(time) {
+    return time.substring(0, 5); 
+}
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -78,11 +92,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       body: JSON.stringify({ city: city })
     });
 
-    console.log(response);
-
     const matchData = await response.json();
     addHTMLMatch(matchData)
-
 
   } catch (e) {
     console.error("Error:", e);
@@ -90,7 +101,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       method: "GET",
       headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" }
     });
-
 
     const matchData = await response.json();
     addHTMLMatch(matchData)
@@ -159,25 +169,30 @@ async function addHTMLDetailsMatch(matchId) {
     headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
     body: JSON.stringify({ idMatch: matchId })
   });
-  const result = await response.json();
+  const matchData = await response.json();
 
   sectionDetails.style.display = "flex"
 
-  const title = document.getElementById('title');
-  const cityState = document.getElementById('city-state');
+  const title = document.getElementById('title-details');
+  const cityState = document.getElementById('city-state-details');
   const address = document.getElementById('address');
-  const description = document.getElementById('descruption');
-  const quantPlayers = document.getElementById('quant-players');
-  const time = document.getElementById('time');
+  const description = document.getElementById('description');
+  const quantPlayers = document.getElementById('quant-players-details');
+  const time = document.getElementById('time-details');
+  const date = document.getElementById('date');
   const btnContato = document.getElementById('btn-contato');
   const btnParticipar = document.getElementById('btn-participar');
+  
+  console.log(time);
+  
 
-  title.textContent = matchData.name || 'Título não disponível';
-  cityState.textContent = matchData.cityState || 'Cidade e estado não disponíveis';
-  address.textContent = matchData.address || 'Endereço não disponível';
-  description.textContent = matchData.description || 'Descrição não disponível';
-  quantPlayers.textContent = matchData.quantPlayers || 'Quantidade de participantes não disponível';
-  time.textContent = matchData.time || 'Horário não disponível';
+  title.innerText = matchData[0].name || 'Título não disponível';
+  cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
+  address.innerText = matchData[0].street || 'Endereço não disponível';
+  description.innerText = matchData[0].description || 'Descrição não disponível';
+  quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
+  date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
+  time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
 
   btnContato.addEventListener('click', () => {
     alert('Botão "Entrar em contato" clicado');
