@@ -1,7 +1,9 @@
 const express = require("express");
 const pool = require("../dist/connect"); 
+const jwt = require('jsonwebtoken')
 const getHash = require('../scripts/getHash')
 const router = express.Router();
+const SECRET = 'Sportche';
 
 router.post("/", async (req, res) => {
     const { username, email, password } = req.body;
@@ -13,12 +15,30 @@ router.post("/", async (req, res) => {
     pool.query(
       "INSERT INTO users(username, email, password) VALUES (?, ?, ?)",
       [username, email, await getHash(password)],
-      (error, results) => {
+      async (error, resultsInsert) => {
         if (error) {
           console.error("Error executing insert query: ", error);
           return res.status(500).json({message: 'Erro ao adicionar usuário.'});
         }
-        return res.status(201).json({message: 'Usuário adicionado com sucesso.'});
+
+        pool.query("SELECT id_user FROM users WHERE email = ? AND password = ?", [email, await getHash(password)], (err, resultsSelect) => {
+          const user = resultsSelect[0];
+          const token = jwt.sign(
+            { userId: user.id_user, username: user.username },
+          SECRET,
+          { expiresIn: '1h' }
+        );
+          
+          // console.log(token);
+  
+        return res.status(201).json({
+          message: "Login realizado com sucesso",
+          auth: true,
+          token: token,
+        });
+        })
+
+        
       }
     );
 });

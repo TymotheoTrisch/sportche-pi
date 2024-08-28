@@ -72,6 +72,7 @@
 .game-holder {
     display: flex;
     width: 100%;
+    cursor: pointer;
 }
 
 .sport {
@@ -95,6 +96,7 @@
     margin-bottom: 47px;
 }
 
+.game-title #title-details,
 .game-title #title {
     font-family: var(--poppins);
     margin-bottom: 5px;
@@ -158,6 +160,9 @@
     justify-content: end;
     width: calc(100% - 20px);
     margin-right: 20px;
+}
+
+.icon-close-section i {
     cursor: pointer;
 }
 
@@ -175,6 +180,7 @@
 }
 
 
+.content-game .game-title #title-details, 
 .content-game .game-title #title {
     margin-top: 30px;
     margin-bottom: 15px;
@@ -185,7 +191,7 @@
     margin-bottom: 25px;
 }
 
-#city-state {
+#city-state-details {
     font-size: 20px;
     font-weight: 600;
     font-family: var(--poppins);
@@ -209,24 +215,28 @@
 }
 
 .players-details,
-.time-details {
+.time-details,
+.date-details {
     display: flex;
     justify-content: space-between;
 }
 
-.time-details {
+.time-details,
+.date-details {
     border-top: 1px solid #d8d5d5;
     padding-top: 15px;
     margin-top: 5px;
 }
 
 .text-quantity,
-.text-time {
+.text-time,
+.text-date {
     font-weight: 900;
 }
 
-.content-game #quant-players,
-.content-game #time {
+.content-game #quant-players-details,
+.content-game #time-details,
+.content-game #date {
     color: var(--color-input);
 }
 
@@ -244,7 +254,8 @@
     font-family: var(--manrope);
     color: var(--white-default);
     border: none;
-    border-radius: 3px
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 #btn-contato {
@@ -304,11 +315,11 @@
         padding-right: 10%;
     }
 
-    .content-game .game-title #title {
+    .content-game .game-title #title-details, .content-game .game-title #title {
         font-size: 36px;
     }
 
-    #city-state {
+    #city-state-details {
         font-size: 27px;
     }
 
@@ -326,7 +337,7 @@
     }
 
     .content-game #quant-players,
-    .content-game #time {
+    .content-game #time-details {
         font-size: 18px;
     }
 

@@ -289,7 +289,7 @@ linhan 338
     }
     form a{
         float: right;
-        margin-right: 22%;
+        margin-right: 20px;
         
     }
 
@@ -328,7 +328,7 @@ linhan 338
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 22%;
+        margin-left: 20px;
         margin-bottom: 2%;
         font-family: var(--manrope);
     }
