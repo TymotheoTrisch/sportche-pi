@@ -14,14 +14,14 @@
 .item-user {
     display: flex;
     justify-content: space-between;
-    width: inherit;
-   
-
+   width: 100%;
 }
 
-.informacoes-main {
-    width: 100%;
+.information-main {
+    width: 80%;
     display: flex;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
 }
 
 .favoritos-main {
@@ -59,29 +59,34 @@
 
 .config-main {
     display: flex;
-    width: 100%;
+    width: 80%;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
 }
 
 .item-config{
     display: flex;
     justify-content: space-between;
-    width: inherit;
+    width: 100%;
 }
 
 .text-config{
     display: flex;
-    gap: 10px;
+ 
 }
 
 .access-main {
     display: flex;
-    width: 100%;
+    justify-content: space-between;
+    width: 80%;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
 }
 
 .item-access{
     display: flex;
     justify-content: space-between;
-    width: inherit;
+    width: 100%;
 }
 
 .text-access{
@@ -90,10 +95,12 @@
 }
 
 .main {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+   gap: 30px;
     
 }
 
@@ -152,10 +159,70 @@ header{
 }
 
 .userName {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
     margin-top: 70px;
 }
 
+dialog {
+    position: absolute;
+    height: 500px;
+    width: 500px;
+    top: 20%;
+    left: 35%;
+    translate: (-30%, -30%);
+    border:  none !important;
+    padding: 20px;
+
+    text-align: center;
+}
+
+dialog img {
+    margin-top: 80px;
+    height: 70px;
+}
+
+dialog.ng-star-inserted {
+    border: none !important;
+}
+
+dialog h3 {
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 26px;
+    
+}
+
+dialog span {
+    position: absolute;
+    font-weight: 900;
+    font-size: 20px;
+    right: 20px;
+    top: 10px;
+}
+
+dialog span:hover {
+    cursor: pointer;
+    color: red;
+}
+
+dialog h2 {
+    font-weight: 700;
+    font-size: 26px;
+    text-transform: uppercase;
+    color: var(--purple-default);
+    border-bottom: 1px solid var(--purple-default);
+}
+
+dialog p {
+    font-weight:  300;
+    font-size: 24px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
 
 
 

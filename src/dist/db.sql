@@ -3,6 +3,7 @@ CREATE TABLE users (
   username CHAR(55) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password CHAR(255) NOT NULL
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE sports (
