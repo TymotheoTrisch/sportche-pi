@@ -238,7 +238,7 @@ linhan 338
     /* css do login*/
     .main_login {
         position: fixed;
-        background-color: #fffffff8;
+        background-color: rgba(255, 255, 255, 0.9);
         width: 400px;
         height:400px;
         border-radius: 7px;
@@ -300,6 +300,8 @@ linhan 338
         margin-top: 55px;
         gap: 5px;
         float: right;
+        height: 30px;
+        
         
     }
     .divVoltarlogin{
@@ -308,24 +310,28 @@ linhan 338
         margin-top: 55px;
         gap: 5px;
         float: right;
+        font-size: 15px;
         
         height: 20px;
     }
     .text{
-        font-size: 15px;
+        margin-top: 3px;
     }
     .caminhoCadastro{
-        font-size: 16px;
-        background-color:#9AEBA3;
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 18px;
+        color: var(--purple-default);
         padding: 3px;
         border-radius: 5px;
         
     }
     .caminhoLogin{
-        font-size: 17px;
-        background-color:#9AEBA3;
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 15px;
+        color: var(--purple-default);
         border-radius: 5px;
-        padding: 1px;
         cursor: pointer;
     }
 
@@ -370,7 +376,7 @@ linhan 338
 
     /*css do cadastro*/
     .main_cadastro {
-        background-color: #fffffff8;
+        background-color: #fffffff9;
         width: 450px;
         height: 100x;
         border-radius: 7px;
