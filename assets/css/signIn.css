@@ -363,3 +363,129 @@ linhan 338
     font-family: var(--poppins);
     color: #FFFFFF;
 }
+
+/* css pro iphone de ladinho, igual a mina que eu to afim ta pra outro */
+
+@media (orientation: landscape) and (max-width: 736px) {
+    body{
+        background-color: white;
+    }
+    .main_login, .main_cadastro {
+        width: 100%;
+        height: auto;
+    }
+    
+    .header_login, .header_cadastro {
+        height: 20vh;
+    }
+
+    .font-bebas, .font-bebas-desktop {
+        font-size: 80px;
+    }
+
+    .input input {
+        font-size: 16px;
+    }
+    .input {
+        width: 80%;
+    }
+    .error{
+        margin-left: 40%;
+        
+    }
+
+    .entrarOuCadastrar {
+        flex-direction: column;
+        margin-top: 5%;
+        margin-left: 19%;
+    }
+
+    .botaoEntrar, .botaoCadastrar {
+        width: 80%;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .error {
+        font-size: 14px;
+    }
+}
+
+/* versão android de ladinho */
+
+@media (orientation: landscape) and (max-width: 684px) {
+    .main_login, .main_cadastro {
+        width: 100%;
+        height: auto;
+    }
+    
+    .header_login, .header_cadastro {
+        height: 20vh;
+    }
+
+    .font-bebas, .font-bebas-desktop {
+        font-size: 70px;
+    }
+
+    .input input {
+        font-size: 14px;
+    }
+
+    .entrarOuCadastrar {
+        flex-direction: column;
+        margin-top: 5%;
+        margin-right: 20%;
+    }
+
+    .botaoEntrar, .botaoCadastrar {
+        width: 90%;
+        height: 35px;
+        margin-bottom: 10px;
+    }
+
+    .error {
+        font-size: 12px;
+        margin-right: 40%;
+        /* margin-top: 1px; */
+    }
+}
+
+/* ajuste iphone finin */
+
+@media (max-width: 376px) {
+    .header_login {
+        height: 50vh;
+    }
+   
+    .main_login, .main_cadastro {
+        width: 95%;
+        height: auto;
+    }
+    
+    .header_login, .header_cadastro {
+        height: 15vh;
+    }
+
+    .font-bebas, .font-bebas-desktop {
+        font-size: 40px;
+    }
+
+    .input input {
+        font-size: 14px;
+    }
+
+    .entrarOuCadastrar {
+        flex-direction: column;
+        margin-top: 5%;
+    }
+
+    .botaoEntrar, .botaoCadastrar {
+        width: 100%;
+        height: 40px;
+        margin-bottom: 10px;
+    }
+
+    .error {
+        font-size: 12px;
+    }
+}
