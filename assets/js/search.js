@@ -65,17 +65,17 @@ function getSportIcon(number) {
 }
 
 function formatDate(date) {
-    const dateMatch = new Date(date);
-    
-    const day = String(dateMatch.getUTCDate()).padStart(2, '0');
-    const month = String(dateMatch.getUTCMonth() + 1).padStart(2, '0');
-    const year = dateMatch.getUTCFullYear();
-    
-    return `${day}-${month}-${year}`;
+  const dateMatch = new Date(date);
+
+  const day = String(dateMatch.getUTCDate()).padStart(2, '0');
+  const month = String(dateMatch.getUTCMonth() + 1).padStart(2, '0');
+  const year = dateMatch.getUTCFullYear();
+
+  return `${day}-${month}-${year}`;
 }
 
 function formatTime(time) {
-    return time.substring(0, 5); 
+  return time.substring(0, 5);
 }
 
 function formatPhoneNumber(number) {
@@ -115,19 +115,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function selectGeneral() {
 
   try {
-    const inputName = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
+    const input = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
 
-    const response = await fetch("http://localhost:3000/search", {
+    const response = await fetch("http://localhost:3000/search/name-city", {
       method: "POST",
       headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ name: inputName })
+      body: JSON.stringify({ name: input, city: input })
     });
 
     const matchData = await response.json();
     addHTMLMatch(matchData)
 
 
-  } catch {
+  } catch (e) {
     console.error("Error:", e);
   }
 }
@@ -154,7 +154,7 @@ function addHTMLMatch(matchData) {
             </div>
             <div class="time">
               <i class='bx bx-time-five'></i>
-              <p id="time">${match.start_match} - ${match.end_of_match}</p>
+              <p id="time">${formatTime(match.start_match)} - ${formatTime(match.end_of_match)}</p>
             </div>
           </div>
         </div>
@@ -167,49 +167,49 @@ function addHTMLMatch(matchData) {
 }
 
 async function addHTMLDetailsMatch(matchId) {
-  
+
   try {
     const response = await fetch("http://localhost:3000/search/id", {
-    method: "POST",
-    headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ idMatch: matchId })
-  });
-  const matchData = await response.json();
+      method: "POST",
+      headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ idMatch: matchId })
+    });
+    const matchData = await response.json();
 
-  sectionDetails.style.display = "flex"
+    sectionDetails.style.display = "flex"
 
-  const title = document.getElementById('title-details');
-  const cityState = document.getElementById('city-state-details');
-  const address = document.getElementById('address');
-  const description = document.getElementById('description');
-  const quantPlayers = document.getElementById('quant-players-details');
-  const time = document.getElementById('time-details');
-  const date = document.getElementById('date');
-  const btnContato = document.getElementById('btn-contato');
-  const btnParticipar = document.getElementById('btn-participar');
-  
-  console.log(time);
-  
+    const title = document.getElementById('title-details');
+    const cityState = document.getElementById('city-state-details');
+    const address = document.getElementById('address');
+    const description = document.getElementById('description');
+    const quantPlayers = document.getElementById('quant-players-details');
+    const time = document.getElementById('time-details');
+    const date = document.getElementById('date');
+    const btnContato = document.getElementById('btn-contato');
+    const btnParticipar = document.getElementById('btn-participar');
 
-  title.innerText = matchData[0].name || 'Título não disponível';
-  cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
-  address.innerText = matchData[0].street || 'Endereço não disponível';
-  description.innerText = matchData[0].description || 'Descrição não disponível';
-  quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
-  date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
-  time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
+    console.log(time);
 
-  btnContato.addEventListener('click', () => {
-    window.location.href = `https://wa.me/${formatPhoneNumber(matchData[0].contact_phone)}`
-  });
 
-  btnParticipar.addEventListener('click', () => {
-    alert('Botão "Participar" clicado');
-  });
+    title.innerText = matchData[0].name || 'Título não disponível';
+    cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
+    address.innerText = matchData[0].street || 'Endereço não disponível';
+    description.innerText = matchData[0].description || 'Descrição não disponível';
+    quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
+    date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
+    time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
 
-  } catch {
+    btnContato.addEventListener('click', () => {
+      window.location.href = `https://wa.me/${formatPhoneNumber(matchData[0].contact_phone)}`
+    });
+
+    btnParticipar.addEventListener('click', () => {
+      alert('Botão "Participar" clicado');
+    });
+
+  } catch (e) {
     console.error("Error:", e);
   }
 
-  
+
 }
