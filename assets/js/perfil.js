@@ -77,3 +77,68 @@ document.addEventListener("DOMContentLoaded", async () => {
     // alert("Erro ao consultar o usuário")
   }
 });
+
+function getSportIcon(number) {
+  let iconPath;
+
+  switch (number) {
+    case 1:
+      iconPath = "../img/icon_futebol.png";
+      break;
+    case 3:
+      iconPath = "../img/icon_volei.png";
+      break;
+    case 2:
+      iconPath = "../img/icon_basquete.png";
+      break;
+    case 4:
+      iconPath = "../img/icon_tenis.png";
+      break;
+  }
+
+  return iconPath;
+}
+
+function formatTime(time) {
+  return time.substring(0, 5);
+}
+
+const myMatches = document.getElementById("myMatches")
+
+myMatches.addEventListener('click', async () => {
+  try {
+    const response = await fetch("http://localhost:3000/profile/myMatches", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json()
+    console.log(data)
+    
+    const list = document.getElementById('minhas-partidas')
+    data.forEach(match => {
+      console.log(match);
+
+      let li = document.createElement("li")
+      li.innerHTML = `
+        <div style:"display: flex">
+          <img src=${getSportIcon(match.id_sport)}>
+          <h3>${match.name}</h3>
+        </div>
+      `
+      list.appendChild(li)
+    });
+    for(const match in data) {
+      console.log(match)
+
+    }
+    
+  document.getElementById("modalMyMatches").showModal()
+
+  } catch (e) {
+    console.error("Error:", e);
+    // alert("Erro ao consultar o usuário")
+  }
+})
