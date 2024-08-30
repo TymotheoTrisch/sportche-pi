@@ -5,10 +5,6 @@ const sectionDetails = document.querySelector('.section-details');
 const section = document.querySelector(".section-list-games");
 const iconCloseDetais = document.querySelector(".icon-close-section i");
 const token = localStorage.getItem('token');
-<<<<<<< HEAD
-const modal = document.querySelector('.content-game')
-const botaoFecharModal = document.getElementById('btn-voltar');
-
 
 iconsCloseSearch.forEach((iconClose) => {
   iconClose.addEventListener("click", () => {
@@ -18,83 +14,12 @@ iconsCloseSearch.forEach((iconClose) => {
   });
 });
 
-=======
-
-iconsCloseSearch.forEach((iconClose) => {
-  iconClose.addEventListener("click", () => {
-    iconClose.previousElementSibling.value = "";
-    iconClose.style.display = "none";
-    selectGeneral();
-  });
-});
-
->>>>>>> 83e9139b9ed50f341b147a7a0fb8f0d032ea767e
 inputsSearch.forEach((inputSearch) => {
   inputSearch.addEventListener("input", () => {
     inputSearch.nextElementSibling.style.display = "flex";
     selectGeneral()
   });
 });
-<<<<<<< HEAD
-
-iconCloseDetais.addEventListener('click', () => {
-  sectionDetails.style.display = "none"
-});
-
-
-
-//Requisições HTTP
-async function getLocation() {
-  try {
-    const APIResponse = await fetch(`http://ip-api.com/json/`);
-    if (!APIResponse.ok) {
-      throw new Error("Failed to fetch location");
-    }
-    const matchData = await APIResponse.json();
-
-    return matchData.city;
-  } catch (error) {
-    console.error("Error:", error);
-    throw error;
-  }
-}
-
-function getSportIcon(number) {
-  let iconPath;
-
-  switch (number) {
-    case 1:
-      iconPath = "../img/icon_futebol.png";
-      break;
-    case 3:
-      iconPath = "../img/icon_volei.png";
-      break;
-    case 2:
-      iconPath = "../img/icon_basquete.png";
-      break;
-    case 4:
-      iconPath = "../img/icon_tenis.png";
-      break;
-  }
-
-  return iconPath;
-}
-
-function formatDate(date) {
-    const dateMatch = new Date(date);
-    
-    const day = String(dateMatch.getUTCDate()).padStart(2, '0');
-    const month = String(dateMatch.getUTCMonth() + 1).padStart(2, '0');
-    const year = dateMatch.getUTCFullYear();
-    
-    return `${day}-${month}-${year}`;
-}
-
-function formatTime(time) {
-    return time.substring(0, 5); 
-}
-
-=======
 
 iconCloseDetais.addEventListener('click', () => {
   sectionDetails.style.display = "none"
@@ -158,7 +83,6 @@ function formatPhoneNumber(number) {
 }
 
 
->>>>>>> 83e9139b9ed50f341b147a7a0fb8f0d032ea767e
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -191,32 +115,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function selectGeneral() {
 
   try {
-<<<<<<< HEAD
-    const inputName = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
-
-    const response = await fetch("http://localhost:3000/search", {
-      method: "POST",
-      headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ name: inputName })
-=======
     const input = Array.from(inputsSearch).map(inputSearch => inputSearch.value.toLowerCase()).join('');
 
     const response = await fetch("http://localhost:3000/search/name-city", {
       method: "POST",
       headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({ name: input, city: input })
->>>>>>> 83e9139b9ed50f341b147a7a0fb8f0d032ea767e
     });
 
     const matchData = await response.json();
     addHTMLMatch(matchData)
 
 
-<<<<<<< HEAD
-  } catch {
-=======
   } catch (e) {
->>>>>>> 83e9139b9ed50f341b147a7a0fb8f0d032ea767e
     console.error("Error:", e);
   }
 }
@@ -243,11 +154,7 @@ function addHTMLMatch(matchData) {
             </div>
             <div class="time">
               <i class='bx bx-time-five'></i>
-<<<<<<< HEAD
-              <p id="time">${match.start_match} - ${match.end_of_match}</p>
-=======
               <p id="time">${formatTime(match.start_match)} - ${formatTime(match.end_of_match)}</p>
->>>>>>> 83e9139b9ed50f341b147a7a0fb8f0d032ea767e
             </div>
           </div>
         </div>
@@ -260,58 +167,6 @@ function addHTMLMatch(matchData) {
 }
 
 async function addHTMLDetailsMatch(matchId) {
-<<<<<<< HEAD
-  
-  try {
-    const response = await fetch("http://localhost:3000/search/id", {
-    method: "POST",
-    headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
-    body: JSON.stringify({ idMatch: matchId })
-  });
-  const matchData = await response.json();
-
-  sectionDetails.style.display = "flex"
-
-  const title = document.getElementById('title-details');
-  const cityState = document.getElementById('city-state-details');
-  const address = document.getElementById('address');
-  const description = document.getElementById('description');
-  const quantPlayers = document.getElementById('quant-players-details');
-  const time = document.getElementById('time-details');
-  const date = document.getElementById('date');
-  const btnContato = document.getElementById('btn-contato');
-  const btnParticipar = document.getElementById('btn-participar');
-  
-  console.log(time);
-  
-
-  title.innerText = matchData[0].name || 'Título não disponível';
-  cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
-  address.innerText = matchData[0].street || 'Endereço não disponível';
-  description.innerText = matchData[0].description || 'Descrição não disponível';
-  quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
-  date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
-  time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
-
-  btnContato.addEventListener('click', () => {
-    alert('Botão "Entrar em contato" clicado');
-  });
-
-  btnParticipar.addEventListener('click', () => {
-    alert('Botão "Participar" clicado');
-  });
-
-  } catch {
-    console.error("Error:", e);
-  }
-  botaoFecharModal.addEventListener('click', () => {
-    alert('passou aqui'); 
-     window.location.href = "./search.html"
-  });
-  
-
-  
-=======
 
   try {
     const response = await fetch("http://localhost:3000/search/id", {
@@ -323,33 +178,34 @@ async function addHTMLDetailsMatch(matchId) {
 
     sectionDetails.style.display = "flex"
 
-    const title = document.getElementById('title-details');
-    const cityState = document.getElementById('city-state-details');
-    const address = document.getElementById('address');
-    const description = document.getElementById('description');
-    const quantPlayers = document.getElementById('quant-players-details');
-    const time = document.getElementById('time-details');
-    const date = document.getElementById('date');
-    const btnContato = document.getElementById('btn-contato');
-    const btnParticipar = document.getElementById('btn-participar');
+    const matches = {
+      idMatch: document.querySelector('.content-game'),
+      title: document.getElementById('title-details'),
+      cityState: document.getElementById('city-state-details'),
+      address: document.getElementById('address'),
+      description: document.getElementById('description'),
+      quantPlayers: document.getElementById('quant-players-details'),
+      time: document.getElementById('time-details'),
+      date: document.getElementById('date'),
+      btnContato: document.getElementById('btn-contato'),
+      btnParticipar: document.getElementById('btn-participar'),
+    };
 
-    console.log(time);
+    matches.idMatch.dataset.id = matchData[0].id_match;
+    matches.title.innerText = matchData[0].name || 'Título não disponível';
+    matches.cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
+    matches.address.innerText = matchData[0].street || 'Endereço não disponível';
+    matches.description.innerText = matchData[0].description || 'Descrição não disponível';
+    matches.quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
+    matches.date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
+    matches.time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
 
-
-    title.innerText = matchData[0].name || 'Título não disponível';
-    cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
-    address.innerText = matchData[0].street || 'Endereço não disponível';
-    description.innerText = matchData[0].description || 'Descrição não disponível';
-    quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
-    date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
-    time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
-
-    btnContato.addEventListener('click', () => {
+    matches.btnContato.addEventListener('click', () => {
       window.location.href = `https://wa.me/${formatPhoneNumber(matchData[0].contact_phone)}`
     });
 
-    btnParticipar.addEventListener('click', () => {
-      alert('Botão "Participar" clicado');
+    matches.btnParticipar.addEventListener('click', () => {
+      addParticipant(matchData[0]);
     });
 
   } catch (e) {
@@ -357,5 +213,35 @@ async function addHTMLDetailsMatch(matchId) {
   }
 
 
->>>>>>> 83e9139b9ed50f341b147a7a0fb8f0d032ea767e
+}
+
+
+async function addParticipant(matchData) {
+  try {
+    console.log(matchData);
+
+    const response = await fetch('http://localhost:3000/search/join', {
+      method: "POST",
+      headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        idMatch: matchData.id_match,
+        playersRegistered: matchData.players_registered
+      })
+    })
+
+    const results = await response.json();
+
+    console.log(results);
+
+    if (response.ok) {
+      alert("Você ingressou nessa partida");
+      sectionDetails.style.display = "none"
+    } else {
+      alert("Ocorreu um erro ao participar na partida, atualize a página.")
+    }
+
+  } catch (e) {
+    console.log("Error: ", e);
+
+  }
 }
