@@ -2,11 +2,16 @@ const express = require("express");
 const pool = require("../dist/connect");
 const router = express.Router();
 
-router.post("/", async (req, res) => {
-    const { street, city, state, name, description, id_sport, date_match, start_match, end_of_match, total_player, players_needed, contact_phone, created_by } = req.body;
 
-    if (!street || !city || !state || !name || !id_sport || !date_match || !start_match || !end_of_match || !total_player || !players_needed || !contact_phone || !created_by) {
-        return res.status(400).json({ message: 'Missing required fields: street, city, state, name, id_sport, date_match, start_match, end_of_match, total_player, players_needed, contact_phone, created_by.' });
+
+router.post("/", async (req, res) => {
+    //Problema na verificação
+    const { street, city, state, name, description, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, contact_phone } = req.body;
+    const created_by = req.userId
+        
+    
+    if(!street || !city || !state || !name || !description || !id_sport || !date_match || !start_match || !end_of_match || !total_players_needed || !contact_phone || !created_by) {
+        return res.status(400).json({ message: 'Missing required fields: street, city, state, name, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, contact_phone, created_by.' });
     }
 
     try {
@@ -22,8 +27,8 @@ router.post("/", async (req, res) => {
                 const addressId = addressResult.insertId;
                 
                 pool.query(
-                    "INSERT INTO matches(name, description, address_match, id_sport, date_match, start_match, end_of_match, total_player, players_needed, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    [name, description, addressId, id_sport, date_match, start_match, end_of_match, total_player, players_needed, created_by],
+                    "INSERT INTO matches(name, description, address_match, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, created_by, contact_phone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    [name, description, addressId, id_sport, date_match, start_match, end_of_match, total_players_needed, players_registered, created_by, contact_phone],
                     (error, matchResult) => {
                         if (error) {
                             console.error("Error executing insert query: ", error);
@@ -47,8 +52,8 @@ router.put("/:id", (req, res) => {
     const updateMatch = req.body;
     
     pool.query(
-        "UPDATE matches SET name = ?, description = ?, address_match = ?, id_sport = ?, date_match = ?, time_match = ?, total_player = ?, players_needed = ?, created_by = ?) VALUES (?, ?, ?)",
-        [updateMatch.name, updateMatch.description, updateMatch.addressId, updateMatch.id_sport, updateMatch.date_match, updateMatch.time_match, updateMatch.total_player, updateMatch.players_needed, updateMatch.created_by],
+        "UPDATE matches SET name = ?, description = ?, address_match = ?, id_sport = ?, date_match = ?, time_match = ?, total_players = ?, players_registered = ?, created_by = ?) VALUES (?, ?, ?)",
+        [updateMatch.name, updateMatch.description, updateMatch.addressId, updateMatch.id_sport, updateMatch.date_match, updateMatch.time_match, updateMatch.total_players, updateMatch.players_registered, updateMatch.created_by],
         (error, res) => {
             if (error) {
                 console.error("Error executing insert query: ", error);

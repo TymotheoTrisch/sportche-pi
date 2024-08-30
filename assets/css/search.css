@@ -144,11 +144,11 @@
 
 /* section details */
 .section-details {
-    position: fixed;
+    position: fixed;    
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: #00000070;
     z-index: 1000;
     display: none;
@@ -157,7 +157,6 @@
 }
 
 .icon-close-section {
-    /* background-color: red; */
     display: flex;
     font-size: 30px;
     justify-content: end;
@@ -175,7 +174,6 @@
     font-family: var(--manrope);
     padding-right: 30px;
     padding-bottom: 20px;
-
 
     /* display: ; */
     flex-direction: column;
@@ -246,7 +244,7 @@
 .contato-participar {
     display: flex;
     flex-direction: column;
-    margin-top: 20%;
+    margin-top: 200px;
     gap: 5px;
 }
 
@@ -264,8 +262,8 @@
 
 #btn-contato {
     /* background-color: #5595D2; */
-    background-color: #F21F42;
-    /* background-color: #10F157; */
+    /* background-color: #F21F42; */
+    background-color: #0bce49;
     /* background-color: #FF860F; */
     /* background-color: #545AF9; */
 }
@@ -297,6 +295,10 @@
     .sport {
         width: 15%;
     }
+    
+    .section-details {
+    background-color: #0f0f0f8e;
+    }
 
     .content {
         width: 85% !important;
@@ -305,8 +307,22 @@
     .content-game {
         padding-left: 10%;
         padding-right: 10%;
+        height: min(720px, 95vh);
+    
+        overflow-y: auto;
+    }
+    
+    .bx-x  {
+        color: #d8d5d5;
     }
 }
+
+/* @media (min-width: 1000px) {
+    .content-game {
+        height: min(770px, 95vh);
+    }
+    
+} */
 
 
 @media (min-width: 1000px) {

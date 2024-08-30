@@ -237,11 +237,10 @@ linhan 338
     }
     /* css do login*/
     .main_login {
-        background-color: #fffffff8;
-        /* mudança */
-        /* width: 30%; */
-        width: 50vh;
-        height: 50%;
+        position: fixed;
+        background-color: rgba(255, 255, 255, 0.9);
+        width: 400px;
+        height:400px;
         border-radius: 7px;
     }
     .main_login h2 {
@@ -259,7 +258,7 @@ linhan 338
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 40vh;
+        width: 330px;
         background-color: var(--white-default);
         margin: auto;
         border-radius: 7px;
@@ -289,29 +288,66 @@ linhan 338
     }
     form a{
         float: right;
-        margin-right: 22%;
+        margin-right: 20px;
         
     }
 
     /* botões de login e cadastro*/
-    .entrarOuCadastrar{
-        
+    
+    .divCadastrar{
         display: flex;
-        justify-content: space-around;
+        
+        margin-top: 55px;
+        gap: 5px;
+        float: right;
+        height: 30px;
         
         
     }
+    .divVoltarlogin{
+        display: flex;
+        
+        margin-top: 55px;
+        gap: 5px;
+        float: right;
+        font-size: 15px;
+        
+        height: 20px;
+    }
+    .text{
+        margin-top: 3px;
+    }
+    .caminhoCadastro{
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 18px;
+        color: var(--purple-default);
+        padding: 3px;
+        border-radius: 5px;
+        
+    }
+    .caminhoLogin{
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 15px;
+        color: var(--purple-default);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
     .botaoEntrar {
-        width: 35%;
-        height: 50px;
+        width: 60%;
+        height: 45px;
         font-family: var(--poppins);
         background-color: #4024C0;
         color: var(--white-bg);
         border-radius: 5px;
         border: #4024C0;
         cursor: pointer;
+        margin-left: 75px;
     }
     .botaoCadastrar {
+        display: block;
         width: 48%;
         height: 50px;
         font-family: var(--poppins);
@@ -322,13 +358,16 @@ linhan 338
         margin-bottom: 2%;
         cursor: pointer;
     }
+    .caminhoCadastro{
+        cursor: pointer;
+    }
 
     /* avisos de email ou senha errados  */
     .error{
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 22%;
+        margin-left: 20px;
         margin-bottom: 2%;
         font-family: var(--manrope);
     }
@@ -337,9 +376,9 @@ linhan 338
 
     /*css do cadastro*/
     .main_cadastro {
-        background-color: #fffffff8;
-        width: 50vh;
-        height: 70vh;
+        background-color: #fffffff9;
+        width: 450px;
+        height: 100x;
         border-radius: 7px;
     }
     .main_cadastro h2{
@@ -356,6 +395,9 @@ linhan 338
         margin-bottom: 5%;
         font-size: small;
         color: rgba(0, 0, 0, 0.897);
+    }
+    .botaoCadastrar{
+        margin-left: 100px;
     }
 }
 

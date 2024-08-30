@@ -6,30 +6,15 @@ const selectState = document.querySelector('.select-state')
 const optionsState = selectState.querySelector(".content-state .options");
 const selectBtnState = selectState.querySelector('.select-btn-state');
 
-$('.number-increment-res').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-restantes');
+$('.number-increment').click(function () {
+  var $input = $(this).parents('.input-incrementor').find('#input-pendentes');
   var val = parseInt($input.val(), 10);
   
   $input.val(val + 1);
 });
 
-$('.number-decrement-res').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-restantes');
-  var val = parseInt($input.val(), 10);
-  if (val > 1) {
-    $input.val(val - 1);
-  }
-});
-
-$('.number-increment-total').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-total');
-  var val = parseInt($input.val(), 10);
-  
-  $input.val(val + 1);
-});
-
-$('.number-decrement-total').click(function () {
-  var $input = $(this).parents('.input-incrementor').find('#input-total');
+$('.number-decrement').click(function () {
+  var $input = $(this).parents('.input-incrementor').find('#input-pendentes');
   var val = parseInt($input.val(), 10);
   if (val > 1) {
     $input.val(val - 1);
@@ -75,6 +60,19 @@ $('.select-btn').on('click', function () {
       $(this).css('outline', '0px');
   }
 });
+
+const handlePhone = (event) => {
+  let input = event.target
+  input.value = phoneMask(input.value)
+}
+
+const phoneMask = (value) => {
+  if (!value) return ""
+  value = value.replace(/\D/g,'')
+  value = value.replace(/(\d{2})(\d)/,"($1) $2")
+  value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+  return value
+}
 
 const sports = [
   {
@@ -168,41 +166,91 @@ function updateNameSport(selectedLi) {
 
 addSport();
 
-// const itensMenuDesktop = document.querySelectorAll('.icon i');
 
-// itensMenuDesktop.forEach(icon => {
-//   icon.addEventListener('mouseover', () => {
-//     icon.classList.add('bx-tada-hover')
-//     setTimeout(
-//       () => {
-//         icon.classList.remove('bx-tada-hover')
-//       },
-//       1500
-//     );
-//   })
-// })
+// Requisições HTTP
+const token = localStorage.getItem("token");
 
-// const iconMenuDesktop = document.getElementById('menu-desktop')
-// const iconMenu = iconMenuDesktop.querySelector('i')
+function formatContact(value) {
+  return value.replace(/\D/g, '');
+}
 
-// iconMenuDesktop.addEventListener('click', () => {
-//   console.log(iconMenu);
-//   const itens = document.querySelector('.itens')
-//   if(itens.style.position === 'absolute' && itens.style.opacity === '0') {
-//     itens.style.position = 'inherit'
-//     itens.style.opacity = '1'
-//     itens.classList.add('openAnimationMenu')
-//     itens.classList.remove('closeAnimationMenu')
+async function createMatch() {
+    const formData = {
+        nome: document.getElementById('input-nome').value,
+        endereco: document.getElementById('input-endereco').value,
+        cidade: document.getElementById('input-cidade').value,
+        estado: document.getElementById('input-estado').innerText,
+        esporte: parseInt(document.getElementById('input-esporte').dataset.id),
+        data: document.getElementById('input-data').value,
+        pendentes: parseInt(document.getElementById('input-pendentes').value),
+        inicio: document.getElementById('input-inicio').value,
+        termino: document.getElementById('input-termino').value,
+        telefone: formatContact(document.getElementById('input-telefone').value),
+        descricao: document.getElementById('input-descricao').value,
+    };
     
-//     iconMenu.style.paddingBottom = '25px'
-//     iconMenu.classList.add('active')
-//   } else {
-//     itens.style.opacity = '0'
-//     itens.style.position = 'absolute'
-//     itens.classList.remove('openAnimationMenu')
-//     itens.classList.add('closeAnimationMenu')
-//     iconMenu.style.paddingBottom = '0px'
-//     iconMenu.classList.remove('active')
-//   }
-  
-// })
+
+    for (const key in formData) {
+        if (formData[key] === null || formData[key] === "" || typeof formData[key] === "undefined") {
+            const inputId = `input-${key.replace('_', '-')}`;
+            const $input = document.getElementById(inputId);
+    
+            if ($input) {
+                const $error = $input.closest('.div-partida').querySelector('.error');
+                if ($error) {
+                    $error.style.display = 'flex';
+                    if ($input.tagName !== 'SPAN') {
+                        $input.style.outline = '1px solid red';
+                    } else {
+                        $input.closest('.select-btn').style.outline = '1px solid red';
+                    }
+                }
+            }
+            return;
+        }
+    }
+
+    if (formData.inicio >= formData.termino) {
+        alert("O horário de início deve ser anterior ao horário de término.");
+        return;
+    }
+
+    
+    // console.log(formatContact(formData.telefone));
+
+
+    try {
+        const response = await fetch('http://localhost:3000/criarpartidas', {
+            method: 'POST',
+            headers: {'authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                street: formData.endereco,
+                city: formData.cidade,
+                state: formData.estado,
+                name: formData.nome,
+                description: formData.descricao,
+                id_sport: formData.esporte,
+                date_match: formData.data,
+                start_match: formData.inicio,
+                end_of_match: formData.termino,
+                total_players_needed: formData.pendentes,
+                players_registered: 0,
+                contact_phone: formData.telefone
+            })
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (response.ok) {
+            alert("Partida criada com sucesso!");
+            window.location.href = "./search.html"
+        } else {
+          
+            alert("Erro ao criar partida: " + result.message);
+        }
+    } catch (error) {
+        console.error("Erro ao enviar os dados:", error);
+        alert("Ocorreu um erro ao criar a partida.");
+    }
+}
