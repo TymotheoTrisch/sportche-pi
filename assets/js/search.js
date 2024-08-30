@@ -178,33 +178,34 @@ async function addHTMLDetailsMatch(matchId) {
 
     sectionDetails.style.display = "flex"
 
-    const title = document.getElementById('title-details');
-    const cityState = document.getElementById('city-state-details');
-    const address = document.getElementById('address');
-    const description = document.getElementById('description');
-    const quantPlayers = document.getElementById('quant-players-details');
-    const time = document.getElementById('time-details');
-    const date = document.getElementById('date');
-    const btnContato = document.getElementById('btn-contato');
-    const btnParticipar = document.getElementById('btn-participar');
+    const matches = {
+      idMatch: document.querySelector('.content-game'),
+      title: document.getElementById('title-details'),
+      cityState: document.getElementById('city-state-details'),
+      address: document.getElementById('address'),
+      description: document.getElementById('description'),
+      quantPlayers: document.getElementById('quant-players-details'),
+      time: document.getElementById('time-details'),
+      date: document.getElementById('date'),
+      btnContato: document.getElementById('btn-contato'),
+      btnParticipar: document.getElementById('btn-participar'),
+    };
 
-    console.log(time);
+    matches.idMatch.dataset.id = matchData[0].id_match;
+    matches.title.innerText = matchData[0].name || 'Título não disponível';
+    matches.cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
+    matches.address.innerText = matchData[0].street || 'Endereço não disponível';
+    matches.description.innerText = matchData[0].description || 'Descrição não disponível';
+    matches.quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
+    matches.date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
+    matches.time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
 
-
-    title.innerText = matchData[0].name || 'Título não disponível';
-    cityState.innerText = matchData[0].city + ", " + matchData[0].state || 'Cidade e estado não disponíveis';
-    address.innerText = matchData[0].street || 'Endereço não disponível';
-    description.innerText = matchData[0].description || 'Descrição não disponível';
-    quantPlayers.innerText = (matchData[0].total_players_needed - matchData[0].players_registered) || 'Quantidade de participantes não disponível';
-    date.innerText = formatDate(matchData[0].date_match) || 'Horário não disponível';
-    time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
-
-    btnContato.addEventListener('click', () => {
+    matches.btnContato.addEventListener('click', () => {
       window.location.href = `https://wa.me/${formatPhoneNumber(matchData[0].contact_phone)}`
     });
 
-    btnParticipar.addEventListener('click', () => {
-      alert('Botão "Participar" clicado');
+    matches.btnParticipar.addEventListener('click', () => {
+      addParticipant(matchData[0]);
     });
 
   } catch (e) {
@@ -212,4 +213,35 @@ async function addHTMLDetailsMatch(matchId) {
   }
 
 
+}
+
+
+async function addParticipant(matchData) {
+  try {
+    console.log(matchData);
+
+    const response = await fetch('http://localhost:3000/search/join', {
+      method: "POST",
+      headers: { 'authorization': `Bearer ${token}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        idMatch: matchData.id_match,
+        playersRegistered: matchData.players_registered
+      })
+    })
+
+    const results = await response.json();
+
+    console.log(results);
+
+    if (response.ok) {
+      alert("Você ingressou nessa partida");
+      sectionDetails.style.display = "none"
+    } else {
+      alert("Ocorreu um erro ao participar na partida, atualize a página.")
+    }
+
+  } catch (e) {
+    console.log("Error: ", e);
+
+  }
 }

@@ -37,7 +37,7 @@ CREATE TABLE matches (
 );
 
 CREATE TABLE game_players (
-  id_participants INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  id_game_players INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   user_id INT NOT NULL,
   game_id INT NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users(id_user),

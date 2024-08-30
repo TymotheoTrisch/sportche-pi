@@ -62,10 +62,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const city = document.getElementById("current-city");
         const date = document.getElementById("date");
 
-        console.log(matchData[0].created_at);
-
-        console.log(current_city)
-
         name.innerHTML = matchData[0].username;
         email.innerHTML = `<b>Email atual:</b><p>${matchData[0].email}</p>`;
         city.innerHTML = `<b>Cidade atual:</b><p>${current_city}</p> ` ;
