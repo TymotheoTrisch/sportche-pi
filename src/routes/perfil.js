@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
         return res.status(500).send("Erro ao executar a consulta.");
       }
 
-      if (results.length === 0) {
+      if (results.length === 0) {        
         return res.status(404).send("Endereço não encontrado.");
       }
 
