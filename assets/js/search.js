@@ -237,6 +237,11 @@ async function addParticipant(matchData) {
       window.location.reload()
       return alert("Você já está cadastrado nessa partida.")
     }
+    
+    if(response.status === 403) {
+      window.location.reload()
+      return alert("Você é o dono dessa partida, não pode se cadastrar nela.")
+    }
 
     if (response.ok) {
       alert("Você ingressou nessa partida");
