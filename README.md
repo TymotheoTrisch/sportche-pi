@@ -1,6 +1,4 @@
-Certamente! Abaixo está um exemplo de um README para um trabalho de conclusão de curso (TCC). Vou assumir que o TCC é sobre o desenvolvimento de um sistema web utilizando Node.js, Express e MySQL, já que você mencionou estar trabalhando com essas tecnologias. Sinta-se à vontade para adaptar o conteúdo conforme necessário.
 
----
 
 # Título do Trabalho de Conclusão de Curso
 
@@ -113,9 +111,6 @@ Este projeto foi desenvolvido como parte do Trabalho de Conclusão de Curso e, p
 [Instituição de Ensino]  
 
 ---
-
-Esse exemplo de README cobre uma visão geral do projeto, funcionalidades, tecnologias utilizadas, e instruções básicas de instalação e execução. É importante personalizar o conteúdo conforme o contexto e o propósito específico do seu TCC.
-
 
 
 
