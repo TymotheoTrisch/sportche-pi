@@ -123,7 +123,7 @@ myMatches.addEventListener('click', async () => {
 
       let li = document.createElement("li")
       li.innerHTML = `
-        <div style:"display: flex">
+        <div class="item-list">
           <img src=${getSportIcon(match.id_sport)}>
           <h3>${match.name}</h3>
         </div>
@@ -142,3 +142,38 @@ myMatches.addEventListener('click', async () => {
     // alert("Erro ao consultar o usuário")
   }
 })
+
+const schedule = document.getElementById('schedule')
+
+schedule.addEventListener('click', async () => {
+  try {
+    const response = await fetch("http://localhost:3000/profile/joined-matches", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json()
+    console.log(data)
+
+    const list = document.getElementById('partidas-agendadas')
+    data.forEach(match => {
+      console.log(match);
+
+      let li = document.createElement("li")
+      li.innerHTML = `
+        <div class="item-list">
+          <img src=${getSportIcon(match.id_sport)}>
+          <h3>${match.name}</h3>
+        </div>
+      `
+      list.appendChild(li)
+    });
+
+    document.getElementById("modalSchedule").showModal()
+    
+  } catch(err) {
+    console.error(err)
+  }
+});

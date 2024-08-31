@@ -224,6 +224,16 @@ dialog p {
     justify-content: space-between;
 }
 
+.item-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-user h3 {
+    font-size: 10px;
+}
+
 
 
 

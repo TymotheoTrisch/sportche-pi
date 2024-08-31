@@ -33,8 +33,23 @@ router.get("/myMatches", (req, res) => {
   });
 })
 
-router.get("/joined-macthes", (req, res) => {
-  // select * from matches WHERE id = (select id_match from game_players WHERE id_user = req.userId)
-})
+router.get("/joined-matches", (req, res) => {
+  pool.query(`SELECT game_id FROM game_players WHERE user_id = ?`, [req.userId], (err, results) => {
+    if (err) return res.status(404).json(err);
+
+    if (!results || results.length === 0) return res.status(400).json('Nenhuma partida.');
+
+    console.log(results)
+    const matchIds = results.map(row => row.game_id);
+    console.log(matchIds);
+    
+    pool.query(`SELECT * FROM matches WHERE id_match IN (?)`, [matchIds], (err, matches) => {
+      if (err) return res.status(404).json(err);
+
+      return res.json(matches);
+    });
+  });
+});
+
 
 module.exports = router;
