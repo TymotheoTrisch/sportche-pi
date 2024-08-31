@@ -168,7 +168,7 @@ header{
 dialog {
     position: absolute;
     height: 500px;
-    width: 500px;
+    width: 100px;
     top: 20%;
     left: 35%;
     translate: (-30%, -30%);
@@ -224,22 +224,57 @@ dialog p {
     justify-content: space-between;
 }
 
+
+/* edição modal */
+.customModal{
+    width: 500px;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .item-list {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
     border-bottom: 1px solid rgba(0, 0, 0, 0.322);
+    justify-content: space-between;
+    align-items: center;
+    
+    
 }
-
-.item-list h3 {
-    font-size: 18px;
+.item-list h3 :first-child{
+    text-transform: uppercase;
 }
 
 .item-list img {
     height: 50px;
-
+    margin: 40px 10px 12px 10px;
 }
+.item-list .nameTimeAndAdress{
+    
+    margin-bottom: 10px;
+}
+.item-list .timeAndCtt{
+    display: flex;
+    height: 50px;
+    gap: 10px;
+    margin-top: -12px;
+}
+.item-list .timeAndCtt h3{
+    font-size: 18px;
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.312);
+   border-radius: 24px;
+}
+.item-list .timeMatch{
+    font-size: 20px;
+}
+/* fim */
+.match-details{
+    background-color: red;
+}
+
 
 #modalMyMatches ul li, #modalSchedule ul li {
     list-style-type: none;

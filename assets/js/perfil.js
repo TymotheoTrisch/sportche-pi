@@ -125,10 +125,15 @@ myMatches.addEventListener('click', async () => {
       li.innerHTML = `
         <div class="item-list">
           <img src=${getSportIcon(match.id_sport)}>
-          <div>
-            <h3>${match.name}</h3>
-            <h3>${match.start_match} - ${match.end_of_match}</h3>
+          <div class="nameTimeAndAdress">
+            <h3>${match.name.toUpperCase()}</h3>
+            <div class ="timeAndCtt">
+              <h3>${match.start_match} - ${match.end_of_match}</h3>
+              <h3>${match.address_match}</h3>
+            </div>
           </div>
+
+             <img src="../img/whatsapp.png" alt="">
           
 
           
@@ -136,10 +141,7 @@ myMatches.addEventListener('click', async () => {
       `
       list.appendChild(li)
     });
-    for(const match in data) {
-      console.log(match)
-
-    }
+    
     
   document.getElementById("modalMyMatches").showModal()
 
