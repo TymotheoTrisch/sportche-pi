@@ -85,9 +85,9 @@ router.post("/name-city", async (req, res) => {
             [`%${city}%`]
         );
 
-        if (results.length === 0) {
-            return res.status(404).send("Endereço não encontrado.");
-        }
+        // if (results.length === 0) {
+        //     return res.status(404).send("Endereço não encontrado.");
+        // }
 
         const idAddress = results.length > 1
             ? results.map(address => address.id_address)
@@ -113,21 +113,46 @@ router.post("/name-city", async (req, res) => {
     }
 });
 
+
+
 // Post e update quando o usuário vai participar de uma partida
 router.post("/join", (req, res) => {
+    // console.log(req.userId +  "Primeiro")
+    
+    
+    pool.query(`SELECT * FROM matches WHERE created_by = ? AND id_match = ?;`, [req.userId, req.body.idMatch], (err, resultsCreatedBy) => {
+        // console.log(resultsCreatedBy);
+        console.log(req.userId);
+        
+        if (resultsCreatedBy.length > 0) {
+            return res.status(403).json("O usuário é o criador dessa partida.")
+        }
 
-    pool.query(`UPDATE matches SET players_registered = ?
+        pool.query(`SELECT * FROM game_players 
+            INNER JOIN matches ON game_players.game_id = matches.id_match
+            WHERE user_id = ? AND matches.id_match = ?;`,
+            [req.userId, req.body.idMatch], (err, resultsSelect) => {
+                if (resultsSelect.length > 0) {
+                    return res.status(401).json("Usuario já cadastrado nessa partida")
+                }
+
+                pool.query(`UPDATE matches SET players_registered = ?
                 WHERE id_match = ?;`,
-        [req.body.playersRegistered + 1, req.body.idMatch], (err, results) => {
-            if (err) return res.status(400).json("Não foi possível dar UPDATE.");
+                    [req.body.playersRegistered + 1, req.body.idMatch], (err, results) => {
+                        if (err) return res.status(400).json("Não foi possível dar UPDATE.");
 
-            pool.query(`INSERT INTO game_players (user_id, game_id) 
-                               VALUES(?, ?)`, [req.userId, req.body.idMatch], (err, results) => {
-                if (err) return res.status(400).json("Não foi possível adicionar os dados na tabela.");
+                        pool.query(`INSERT INTO game_players (user_id, game_id) 
+                       VALUES(?, ?)`, [req.userId, req.body.idMatch], (err, results) => {
+                            if (err) return res.status(400).json("Não foi possível adicionar os dados na tabela.");
 
-                return res.status(201).json("Operações realizadas com sucesso.");
+                            return res.status(201).json("Operações realizadas com sucesso.");
+                        });
+                    });
             });
-        });
+
+    })
+
+
 });
 
 

@@ -232,10 +232,20 @@ async function addParticipant(matchData) {
     const results = await response.json();
 
     console.log(results);
+    
+    if(response.status === 401) {
+      window.location.reload()
+      return alert("Você já está cadastrado nessa partida.")
+    }
+    
+    if(response.status === 403) {
+      window.location.reload()
+      return alert("Você é o dono dessa partida, não pode se cadastrar nela.")
+    }
 
     if (response.ok) {
       alert("Você ingressou nessa partida");
-      sectionDetails.style.display = "none"
+      window.location.reload()
     } else {
       alert("Ocorreu um erro ao participar na partida, atualize a página.")
     }
