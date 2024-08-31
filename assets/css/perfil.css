@@ -226,13 +226,36 @@ dialog p {
 
 .item-list {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.322);
 }
 
-.item-user h3 {
-    font-size: 10px;
+.item-list h3 {
+    font-size: 18px;
 }
+
+.item-list img {
+    height: 50px;
+
+}
+
+#modalMyMatches ul li, #modalSchedule ul li {
+    list-style-type: none;
+}
+
+#modalMyMatches h1, #modalSchedule h1 {
+    color: var(--purple-default);
+    font-size: 26px
+}
+
+/* <dialog id="modalMyMatches">
+<h1>Partidas criadas por você: </h1>
+<ul id="minhas-partidas">
+    
+</ul>
+</dialog> */
 
 
 

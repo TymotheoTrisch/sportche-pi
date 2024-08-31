@@ -125,7 +125,13 @@ myMatches.addEventListener('click', async () => {
       li.innerHTML = `
         <div class="item-list">
           <img src=${getSportIcon(match.id_sport)}>
-          <h3>${match.name}</h3>
+          <div>
+            <h3>${match.name}</h3>
+            <h3>${match.start_match} - ${match.end_of_match}</h3>
+          </div>
+          
+
+          
         </div>
       `
       list.appendChild(li)
@@ -136,6 +142,11 @@ myMatches.addEventListener('click', async () => {
     }
     
   document.getElementById("modalMyMatches").showModal()
+
+  document.getElementById('closeMM').addEventListener('click', () => {
+    list.innerHTML = ""
+    document.getElementById("modalMyMatches").close()
+  });
 
   } catch (e) {
     console.error("Error:", e);
@@ -166,12 +177,18 @@ schedule.addEventListener('click', async () => {
         <div class="item-list">
           <img src=${getSportIcon(match.id_sport)}>
           <h3>${match.name}</h3>
+          <a href="https://wa.me/${match.contact_phone}>Entrar em Contato</a>
         </div>
       `
       list.appendChild(li)
     });
 
     document.getElementById("modalSchedule").showModal()
+
+    document.getElementById('closeS').addEventListener('click', () => {
+      list.innerHTML = ""
+      document.getElementById("modalSchedule").close()
+    });
     
   } catch(err) {
     console.error(err)

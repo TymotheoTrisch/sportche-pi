@@ -39,13 +39,15 @@ router.get("/joined-matches", (req, res) => {
 
     if (!results || results.length === 0) return res.status(400).json('Nenhuma partida.');
 
-    console.log(results)
+   
     const matchIds = results.map(row => row.game_id);
-    console.log(matchIds);
+   
     
     pool.query(`SELECT * FROM matches WHERE id_match IN (?)`, [matchIds], (err, matches) => {
       if (err) return res.status(404).json(err);
 
+      console.log(matches);
+      
       return res.json(matches);
     });
   });
