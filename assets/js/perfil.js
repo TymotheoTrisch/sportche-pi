@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     document
       .querySelector(".information-main")
       .addEventListener("click", async () => {
-        const modal = document.querySelector("dialog")
+        const modal = document.querySelector("dialog");
         modal.showModal();
 
         const current_city = await getLocation();
@@ -64,13 +64,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         name.innerHTML = matchData[0].username;
         email.innerHTML = `<b>Email atual:</b><p>${matchData[0].email}</p>`;
-        city.innerHTML = `<b>Cidade atual:</b><p>${current_city}</p> ` ;
-        date.innerHTML = `<b>Criado em:</b><p>${convertDate(matchData[0].created_at)}</p>`;
+        city.innerHTML = `<b>Cidade atual:</b><p>${current_city}</p> `;
+        date.innerHTML = `<b>Criado em:</b><p>${convertDate(
+          matchData[0].created_at
+        )}</p>`;
 
-        document.getElementById('close').addEventListener('click', () => {
-          modal.close()
+        document.getElementById("close").addEventListener("click", () => {
+          modal.close();
         });
-
       });
   } catch (e) {
     console.error("Error:", e);
@@ -103,9 +104,9 @@ function formatTime(time) {
   return time.substring(0, 5);
 }
 
-const myMatches = document.getElementById("myMatches")
+const myMatches = document.getElementById("myMatches");
 
-myMatches.addEventListener('click', async () => {
+myMatches.addEventListener("click", async () => {
   try {
     const response = await fetch("http://localhost:3000/profile/myMatches", {
       method: "GET",
@@ -114,14 +115,63 @@ myMatches.addEventListener('click', async () => {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json()
-    console.log(data)
-    
-    const list = document.getElementById('minhas-partidas')
-    data.forEach(match => {
+    const data = await response.json();
+    console.log(data);
+
+    const list = document.getElementById("minhas-partidas");
+    data.forEach((match) => {
       console.log(match);
 
-      let li = document.createElement("li")
+      let li = document.createElement("li");
+      li.innerHTML = `
+        <div class="my-item-list">
+          <img src=${getSportIcon(match.id_sport)}>
+          <div class="nameTimeAndAdress">
+            <h4>${match.name.toUpperCase()}</h4>
+            <div class ="timeAndCtt">
+              <h3>${formatTime(match.start_match)} - ${formatTime(match.end_of_match)}</h3>
+              <h3>${match.street}</h3>
+            </div>
+          </div> 
+        </div>
+      `;
+      list.appendChild(li);
+    });
+
+    document.getElementById("modalMyMatches").showModal();
+
+    document.getElementById("closeMM").addEventListener("click", () => {
+      list.innerHTML = "";
+      document.getElementById("modalMyMatches").close();
+    });
+  } catch (e) {
+    console.error("Error:", e);
+    // alert("Erro ao consultar o usuário")
+  }
+});
+
+const schedule = document.getElementById("schedule");
+
+schedule.addEventListener("click", async () => {
+  try {
+    const response = await fetch(
+      "http://localhost:3000/profile/joined-matches",
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+
+    const list = document.getElementById("partidas-agendadas");
+    data.forEach((match) => {
+      console.log(match);
+
+      let li = document.createElement("li");
       li.innerHTML = `
         <div class="item-list">
           <img src=${getSportIcon(match.id_sport)}>
@@ -132,67 +182,19 @@ myMatches.addEventListener('click', async () => {
               <h3>${match.address_match}</h3>
             </div>
           </div>
-
-             <img src="../img/whatsapp.png" alt="">
-          
-
-          
+          <img src="../img/whatsapp.png" alt="">   
         </div>
-      `
-      list.appendChild(li)
-    });
-    
-    
-  document.getElementById("modalMyMatches").showModal()
-
-  document.getElementById('closeMM').addEventListener('click', () => {
-    list.innerHTML = ""
-    document.getElementById("modalMyMatches").close()
-  });
-
-  } catch (e) {
-    console.error("Error:", e);
-    // alert("Erro ao consultar o usuário")
-  }
-})
-
-const schedule = document.getElementById('schedule')
-
-schedule.addEventListener('click', async () => {
-  try {
-    const response = await fetch("http://localhost:3000/profile/joined-matches", {
-      method: "GET",
-      headers: {
-        authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json()
-    console.log(data)
-
-    const list = document.getElementById('partidas-agendadas')
-    data.forEach(match => {
-      console.log(match);
-
-      let li = document.createElement("li")
-      li.innerHTML = `
-        <div class="item-list">
-          <img src=${getSportIcon(match.id_sport)}>
-          <h3>${match.name}</h3>
-          <a href="https://wa.me/${match.contact_phone}>Entrar em Contato</a>
-        </div>
-      `
-      list.appendChild(li)
+      `;
+      list.appendChild(li);
     });
 
-    document.getElementById("modalSchedule").showModal()
+    document.getElementById("modalSchedule").showModal();
 
-    document.getElementById('closeS').addEventListener('click', () => {
-      list.innerHTML = ""
-      document.getElementById("modalSchedule").close()
+    document.getElementById("closeS").addEventListener("click", () => {
+      list.innerHTML = "";
+      document.getElementById("modalSchedule").close();
     });
-    
-  } catch(err) {
-    console.error(err)
+  } catch (err) {
+    console.error(err);
   }
 });
