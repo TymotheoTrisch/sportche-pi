@@ -2,6 +2,7 @@ const express = require("express");
 const pool = require("../dist/connect");
 const router = express.Router();
 
+// Get padrão buscando todas as partidas
 router.get("/", (req, res) => {
     pool.query(`SELECT matches.*, addresses.* FROM matches 
                LEFT JOIN addresses ON matches.address_match = addresses.id_address `, (err, results) => {
@@ -14,6 +15,8 @@ router.get("/", (req, res) => {
     });
 });
 
+// Usado para fazer a busca para obter todas as informações da partida.
+// Usado quando o usuário clica em saber mais
 router.post("/id", (req, res) => {
     pool.query(`SELECT matches.*, addresses.*, sports.name AS sport_name
                FROM matches 
@@ -28,6 +31,7 @@ router.post("/id", (req, res) => {
         });
 });
 
+// Get para buscar as partidas por CIDADE
 router.post("/", async (req, res) => {
     const city = req.body.city;
 
@@ -67,6 +71,8 @@ router.post("/", async (req, res) => {
     }
 });
 
+
+// Get usado para buscar todas as partidas por NOME e CIDADE
 router.post("/name-city", async (req, res) => {
     const city = req.body.city;
     const name = req.body.name;
@@ -79,9 +85,9 @@ router.post("/name-city", async (req, res) => {
             [`%${city}%`]
         );
 
-        // if (results.length === 0) {
-        //     return res.status(404).send("Endereço não encontrado.");
-        // }
+        if (results.length === 0) {
+            return res.status(404).send("Endereço não encontrado.");
+        }
 
         const idAddress = results.length > 1
             ? results.map(address => address.id_address)
@@ -108,6 +114,8 @@ router.post("/name-city", async (req, res) => {
 });
 
 
+
+// Post e update quando o usuário vai participar de uma partida
 router.post("/join", (req, res) => {
     pool.query(`SELECT * FROM matches WHERE created_by = ? AND id_match = ?;`, [req.userId, req.body.idMatch], (err, resultsCreatedBy) => {
         console.log(req.userId);
@@ -126,21 +134,17 @@ router.post("/join", (req, res) => {
 
                 pool.query(`UPDATE matches SET players_registered = ?
                 WHERE id_match = ?;`,
-                    [req.body.playersRegistered + 1, req.body.idMatch], (err, results) => {
-                        if (err) return res.status(400).json("Não foi possível dar UPDATE.");
 
-                        pool.query(`INSERT INTO game_players (user_id, game_id) 
-                       VALUES(?, ?)`, [req.userId, req.body.idMatch], (err, results) => {
-                            if (err) return res.status(400).json("Não foi possível adicionar os dados na tabela.");
+        [req.body.playersRegistered + 1, req.body.idMatch], (err, results) => {
+            if (err) return res.status(400).json("Não foi possível dar UPDATE.");
 
-                            return res.status(201).json("Operações realizadas com sucesso.");
-                        });
-                    });
+            pool.query(`INSERT INTO game_players (user_id, game_id) 
+                               VALUES(?, ?)`, [req.userId, req.body.idMatch], (err, results) => {
+                if (err) return res.status(400).json("Não foi possível adicionar os dados na tabela.");
+
+                return res.status(201).json("Operações realizadas com sucesso.");
             });
-
-    })
-
-
+        });
 });
 
 
