@@ -114,13 +114,10 @@ router.post("/name-city", async (req, res) => {
 });
 
 
+
 // Post e update quando o usuário vai participar de uma partida
 router.post("/join", (req, res) => {
-    // console.log(req.userId +  "Primeiro")
-    
-    
     pool.query(`SELECT * FROM matches WHERE created_by = ? AND id_match = ?;`, [req.userId, req.body.idMatch], (err, resultsCreatedBy) => {
-        // console.log(resultsCreatedBy);
         console.log(req.userId);
         
         if (resultsCreatedBy.length > 0) {
@@ -149,7 +146,6 @@ router.post("/join", (req, res) => {
             });
         });
 });
-
 
 
 module.exports = router;
