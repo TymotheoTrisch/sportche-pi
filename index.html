@@ -53,7 +53,7 @@
 
             <div id="email-invalid-error" class="error" style="display: none; color: red;">Email inválido</div>
             <div id="email-required-error" class="error" style="display: none; color: red;">Email obrigatório</div>
-         
+
 
             <div class="input password">
                 <input id="password" type="password" placeholder="senha" />
@@ -64,22 +64,26 @@
         </form>
 
 
-        <div class="entrarOuCadastrar">
+        <button id="botaoEntrarLogin" class="botaoEntrar">
+            <h2>Entrar</h2>
+        </button>
 
-            <button id="botaoCadastrar" class="botaoCadastrar">
-                <h2>Cadastrar</h2>
-            </button>
-            
-            <p class="text">Se ja possui uma conta
-                cadastrada faça login
+
+        <div class="divCadastrar">
+
+            <p class="text">Ainda não tem conta ?
             </p>
 
-            <h3>Ou</h3>
+            <p class="caminhoCadastro" id="botaoCadastrar">Cadastrar</p>
 
-            <button id="botaoEntrarLogin" class="botaoEntrar">
-                <h2>Entrar</h2>
-             </button>
+
+            <!-- <button id="botaoCadastrar" class="botaoCadastrar">
+                    <h2>Cadastrar</h2>
+                </button> -->
+
         </div>
+
+
     </main>
 
 
@@ -114,24 +118,22 @@
                 <input id="password_confirm" type="password" placeholder="confirme sua senha" />
                 <i class='bx bx-show view-password' style='color:#cdcdcd'></i>
             </div>
-            <p id="registerResponse"></p> 
+            <p id="registerResponse"></p>
         </form>
 
 
-            <div class="entrarOuCadastrar">
-                <button id="botaoEntrar" class="botaoEntrar">
-                    <h2>Entrar</h2>
-                </button>
-                
-                <h3>Ou</h3>
+        <button class="botaoCadastrar" id="botaoCadastrarRegister">
+            <h2>Cadastrar</h2>
+        </button>
 
-                <button class="botaoCadastrar" id="botaoCadastrarRegister">
-                    <h2>Cadastrar</h2>
-                </button>
+        <div class="divVoltarlogin">
+            <p class="text">
+                Já possui conta? faça
+                <span class="caminhoLogin" id="botaoEntrar">Login</span>
+            </p>
+        </div>
 
 
-
-            </div>
     </main>
 
 
@@ -140,7 +142,7 @@
 
     <script src="./assets/js/index.js"></script>
     <script src="./src/scripts/signIn.js"></script>
-    
+
 </body>
 
 </html>
