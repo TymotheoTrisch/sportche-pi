@@ -124,6 +124,7 @@ router.post("/name-city", async (req, res) => {
 });
 
 
+
 // Post e update quando o usuário vai participar de uma partida
 router.post("/join", (req, res) => {
     pool.query(`SELECT * FROM matches WHERE created_by = ? AND id_match = ?;`, [req.userId, req.body.idMatch], (err, resultsCreatedBy) => {
@@ -157,7 +158,6 @@ router.post("/join", (req, res) => {
 
     })
 });
-
 
 
 module.exports = router;
