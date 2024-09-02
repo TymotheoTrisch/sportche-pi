@@ -124,13 +124,8 @@ router.post("/name-city", async (req, res) => {
 });
 
 
-
-
-
 // Post e update quando o usuário vai participar de uma partida
 router.post("/join", (req, res) => {
-
-
     pool.query(`SELECT * FROM matches WHERE created_by = ? AND id_match = ?;`, [req.userId, req.body.idMatch], (err, resultsCreatedBy) => {
 
         if (resultsCreatedBy.length > 0) {
@@ -147,6 +142,7 @@ router.post("/join", (req, res) => {
 
                 pool.query(`UPDATE matches SET players_registered = ?
                 WHERE id_match = ?;`,
+                
                     [req.body.playersRegistered + 1, req.body.idMatch], (err, results) => {
                         if (err) return res.status(400).json("Não foi possível dar UPDATE.");
 
@@ -160,8 +156,6 @@ router.post("/join", (req, res) => {
             });
 
     })
-
-
 });
 
 
