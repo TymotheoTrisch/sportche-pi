@@ -180,7 +180,7 @@ schedule.addEventListener("click", async () => {
             <div class ="timeAndCtt">
               <h3 class = "time">${match.start_match} - ${match.end_of_match}</h3>
               <h3>${match.city}</h3>
-              <h3> rua : ${match.street}</h3>
+              <h3>${match.street}</h3>
             </div>
           </div>
           <img class="whats" src="../img/whats.png" alt="">   
