@@ -46,7 +46,7 @@ filtersMobile.forEach(option => {
             option.classList.add('active')
         } else {
             selectCity()
-            option.closest(".filters-mobile").querySelectorAll("div")[0].classList.remove('active')
+            option.closest(".filters").querySelectorAll("div")[0].classList.remove('active')
             option.classList.add('active')
         }
     })

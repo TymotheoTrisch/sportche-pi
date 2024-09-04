@@ -1,233 +1,219 @@
 @import url("../css/geral.css");
 
 * {
-  padding: 0;
-  margin: 0;
-  font-family: var(--poppins);
+    padding: 0;
+    margin: 0;
+    font-family: var(--poppins);
 }
 
 .text-icon {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .item-user {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .information-main {
-  width: 80%;
-  display: flex;
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
-  cursor: pointer;
+    width: 100%;
+    display: flex;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
 }
 
 .favoritos-main {
-  width: 100%;
-  display: flex;
+    width: 100%;
+    display: flex;
 }
 
 .item-favoritos {
-  display: flex;
-  justify-content: space-between;
-  width: inherit;
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
 }
 
 .text-fav {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .esportes-main {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 }
 
 .item-esportes {
-  display: flex;
-  justify-content: space-between;
-  width: inherit;
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
 }
 
 .text-esportes {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .config-main {
-  display: flex;
-  width: 80%;
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
-  cursor: pointer;
+    display: flex;
+    width: 80%;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
 }
 
 .item-config {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .text-config {
-  display: flex;
+    display: flex;
 }
 
 .access-main {
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
-  cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    /* width: 80%; */
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
+    cursor: pointer;
 }
 
 .item-access {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .text-access {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 }
 
 .main {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
 }
 
-.header-main {
-  background-color: var(--purple-default);
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  border-radius: 0px 0px 25px 25px;
-  height: 243px;
-  gap: 10px;
+.imagem-perfil-mobile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
-#img-user {
-  margin-top: 80px;
-
-  width: 150px;
-  height: 150px;
-}
-
-.header-conquista {
-  display: flex;
-  padding-left: 5px;
-  gap: 20px;
-  padding-top: 5px;
-  background-color: #3920b0;
-  border-radius: 10px;
-  height: 65px;
-  width: 95%;
-  justify-content: center;
-  margin: 10px;
-  position: absolute;
-  top: 210px;
-  transform: translateX(-30px);
-  color: aliceblue;
-}
-
-#header-partidas {
-  text-align: center;
-}
-
-#header-avaliaçoes {
-  text-align: center;
-}
-
-#header-esportes {
-  text-align: center;
-}
-
-header {
-  width: 100%;
-  color: aliceblue;
-  gap: 20px;
+.imagem-perfil-mobile img {
+    width: 80px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 7px;
 }
 
 .userName {
-  font-size: 28px;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-top: 70px;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.header-main {
+    background-color: var(--purple-default);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0px 0px 25px 25px;
+    height: 243px;
+    gap: 10px;
+}
+
+#img-user {
+    width: 150px;
+    height: 150px;
+}
+
+header {
+    width: 100%;
+    color: aliceblue;
+    gap: 20px;
 }
 
 dialog {
-  position: absolute;
-  height: 500px;
-  width: 500px;
-  top: 20%;
-  left: 35%;
-  translate: (-30%, -30%);
-  border: none !important;
-  padding: 20px;
+    height: 500px;
+    margin: auto;
+    width: 500px;
+    border: none !important;
+    padding: 20px;
 
-  text-align: center;
+    text-align: center;
+    outline: none;
 }
 
 dialog img {
-  margin-top: 80px;
-  height: 70px;
+    margin-top: 80px;
+    height: 70px;
 }
 
 dialog.ng-star-inserted {
-  border: none !important;
+    border: none !important;
 }
 
 dialog h3 {
-  margin-top: 10px;
-  font-weight: 500;
-  font-size: 26px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 26px;
 }
 
 dialog span {
-  position: absolute;
-  font-weight: 900;
-  font-size: 20px;
-  right: 20px;
-  top: 10px;
+    position: absolute;
+    font-weight: 900;
+    font-size: 20px;
+    right: 20px;
+    top: 10px;
 }
 
 dialog span:hover {
-  cursor: pointer;
-  color: red;
+    cursor: pointer;
+    color: red;
 }
 
 dialog h2 {
-  font-weight: 700;
-  font-size: 26px;
-  text-transform: uppercase;
-  color: var(--purple-default);
-  border-bottom: 1px solid var(--purple-default);
+    font-weight: 700;
+    font-size: 26px;
+    text-transform: uppercase;
+    color: var(--purple-default);
+    border-bottom: 1px solid var(--purple-default);
 }
 
 dialog p {
-  font-weight: 300;
-  font-size: 24px;
-  margin-top: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
+    font-weight: 300;
+    font-size: 24px;
+    margin-top: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
 }
 
 /* edição modal */
 
 .my-item-list {
-  display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.322);
-  justify-content: flex-start;
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.322);
+    justify-content: flex-start;
 
-  align-items: center;
+    align-items: center;
 }
 
 .my-item-list h4 {
@@ -236,79 +222,62 @@ dialog p {
 
 
 .my-item-list img {
-  height: 30px;
-  margin: 40px 10px 12px 10px;
+    height: 30px;
+    margin: 40px 10px 12px 10px;
 }
+
 .my-item-list .nameTimeAndAdress {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
 .my-item-list .timeAndCtt {
-  display: flex;
-height: 30px;
-  gap: 10px;
+    display: flex;
+    height: 30px;
+    gap: 10px;
 }
+
 .my-item-list .timeAndCtt h3 {
-  font-size: 14px;
-  height: 30px;
-  padding: 2px 10px !important;
-  border: 1px solid rgba(0, 0, 0, 0.312);
-  border-radius: 24px;
+    font-size: 14px;
+    height: 30px;
+    padding: 2px 10px !important;
+    border: 1px solid rgba(0, 0, 0, 0.312);
+    border-radius: 24px;
 }
+
 .my-item-list .timeMatch {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 #modalMyMatches ul li,
 #modalSchedule ul li {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 #modalMyMatches h1,
 #modalSchedule h1 {
-  color: var(--purple-default);
-  font-size: 26px;
+    color: var(--purple-default);
+    font-size: 26px;
 }
 
-/* <dialog id="modalMyMatches">
-<h1>Partidas criadas por você: </h1>
-<ul id="minhas-partidas">
-    
-</ul>
-</dialog> */
-
 @media (min-width: 721px) {
-  .header-main {
-    display: none;
-  }
-  body main {
-    padding: 5px 30px;
-  }
-  .header-conquista {
-    position: inherit;
-    justify-content: space-evenly;
-    width: 50%;
-    margin: auto;
-    transform: translateX(0px);
-  }
+    .header-main {
+        display: none;
+    }
 
-  .imagemPerfilmobile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100px;
-  }
-  .imagemPerfilmobile img {
-    width: 80px;
-    height: 80px;
-    padding: 10px;
-    border-radius: 7px;
-  }
-  .userName {
-    width: 100%;
-    margin-bottom: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    body main {
+        padding: 5px 30px;
+    }
+
+    .main {
+        margin-top: 30px;
+    }
+
+    #img-user {
+        margin-top: 80px;
+    }
+    
+    .information-main {
+        width: 80%;
+    }
+
 }
