@@ -144,6 +144,8 @@ linhan 338
     .botaoEntrar {
         width: 86%;
         height: 48px;
+        margin-left: 45px;
+        margin-top: 20px;
         font-family: var(--poppins);
         background-color: #4024C0;
         color: var(--white-bg);
@@ -171,6 +173,8 @@ linhan 338
     .botaoCadastrar {
         width: 86%;
         height: 48px;
+        margin-left: 45px;
+        margin-top: 20px;
         font-family: var(--poppins);
         background-color: var(--black-default);
         color: var(--white-bg);
@@ -178,8 +182,31 @@ linhan 338
         border: var(--black-default);
         margin-bottom: 2%;
         cursor: pointer;
-    }
 
+    }
+    .divCadastrar{
+    float: right;
+    margin-top: 35px;
+    margin-right:   50px;
+    }
+    .caminhoCadastro{
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 18px;
+        color: var(--purple-default);
+        padding: 3px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .caminhoLogin{
+        text-decoration: underline;
+        text-transform: capitalize;
+        font-size: 18px;
+        color: var(--purple-default);
+        padding: 3px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
 
 
@@ -324,7 +351,7 @@ linhan 338
         color: var(--purple-default);
         padding: 3px;
         border-radius: 5px;
-        
+        cursor: pointer;
     }
     .caminhoLogin{
         text-decoration: underline;
@@ -357,6 +384,7 @@ linhan 338
         border: var(--black-default);
         margin-bottom: 2%;
         cursor: pointer;
+        
     }
     .caminhoCadastro{
         cursor: pointer;
@@ -377,6 +405,7 @@ linhan 338
     /*css do cadastro*/
     .main_cadastro {
         background-color: #fffffff9;
+        
         width: 450px;
         height: 100x;
         border-radius: 7px;
@@ -398,6 +427,7 @@ linhan 338
     }
     .botaoCadastrar{
         margin-left: 100px;
+        
     }
 }
 
@@ -446,6 +476,10 @@ linhan 338
         width: 80%;
         height: 40px;
         margin-bottom: 10px;
+        margin-left: 65px;
+        margin-top: 20px;
+        
+        
     }
 
     .error {
@@ -483,6 +517,8 @@ linhan 338
         width: 90%;
         height: 35px;
         margin-bottom: 10px;
+        
+        
     }
 
     .error {
@@ -525,6 +561,7 @@ linhan 338
         width: 100%;
         height: 40px;
         margin-bottom: 10px;
+        
     }
 
     .error {
