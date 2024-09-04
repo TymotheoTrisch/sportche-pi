@@ -116,11 +116,9 @@ myMatches.addEventListener("click", async () => {
       },
     });
     const data = await response.json();
-    console.log(data);
 
     const list = document.getElementById("minhas-partidas");
     data.forEach((match) => {
-      console.log(match);
 
       let li = document.createElement("li");
       li.innerHTML = `
@@ -165,12 +163,9 @@ schedule.addEventListener("click", async () => {
       }
     );
     const data = await response.json();
-    console.log(data);
 
     const list = document.getElementById("partidas-agendadas");
     data.forEach((match) => {
-      console.log(match);
-
       let li = document.createElement("li");
       li.innerHTML = `
         <div class="item-list-match">
