@@ -258,6 +258,42 @@ height: 30px;
   font-size: 20px;
 }
 
+/* segundo modal */
+#partidas-agendadas{
+  overflow-y: auto;
+}
+.item-list-match{
+  border: 2px solid rgba(0, 0, 0, 0.322);
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  
+}
+.item-list-match .whats {
+ margin: 85px 0px 20px 50px;
+}
+
+.ball{
+  margin: 85px 50px 20px 0px;
+}
+.timeAndCtt h3{
+  font-size: 17px;
+  border: 2px solid rgba(0, 0, 0, 0.322);
+  border-radius: 24px;
+  padding: 4px;
+  
+}
+.timeAndCtt .time {
+  font-size: 17px;
+  padding: 4px 10px;
+}
+.timeAndCtt{
+  
+  margin-bottom: 12px;
+}
+/* fim */
+
 #modalMyMatches ul li,
 #modalSchedule ul li {
   list-style-type: none;
