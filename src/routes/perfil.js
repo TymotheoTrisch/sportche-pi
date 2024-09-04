@@ -1,8 +1,6 @@
 const express = require("express");
 const pool = require("../dist/connect");
-const jwt = require("jsonwebtoken");
 const router = express.Router();
-const SECRET = "sportche";
 
 router.get("/", (req, res) => {
   pool.query(
@@ -58,8 +56,6 @@ router.get("/joined-matches", (req, res) => {
         [matchIds],
         (err, matches) => {
           if (err) return res.status(404).json(err);
-
-          console.log(matches);
 
           return res.json(matches);
         }

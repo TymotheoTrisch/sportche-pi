@@ -42,11 +42,11 @@ filtersMobile.forEach(option => {
     option.addEventListener('click', () => {
         if (option.dataset.name === "todos") {
             selectGeneral()
-            option.closest(".filters").querySelectorAll("div")[1].classList.remove('active')
+            option.closest(".filters-mobile").querySelectorAll("div")[1].classList.remove('active')
             option.classList.add('active')
         } else {
             selectCity()
-            option.closest(".filters").querySelectorAll("div")[0].classList.remove('active')
+            option.closest(".filters-mobile").querySelectorAll("div")[0].classList.remove('active')
             option.classList.add('active')
         }
     })
