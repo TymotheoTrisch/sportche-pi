@@ -27,9 +27,8 @@ Este projeto é um trabalho de conclusão de curso que visa desenvolver um siste
 
 ## Requisitos do Sistema
 
-- Node.js (versão X.X.X ou superior)
-- MySQL (versão X.X.X ou superior)
-- [Outros requisitos, como bibliotecas específicas, etc.]
+- Node.js
+- MySQL
 
 ## Instalação
 
