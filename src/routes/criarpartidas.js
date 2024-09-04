@@ -46,26 +46,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-
-router.put("/:id", (req, res) => {
-    const idMatch = parseInt(req.params.id);
-    const updateMatch = req.body;
-    
-    pool.query(
-        "UPDATE matches SET name = ?, description = ?, address_match = ?, id_sport = ?, date_match = ?, time_match = ?, total_players = ?, players_registered = ?, created_by = ?) VALUES (?, ?, ?)",
-        [updateMatch.name, updateMatch.description, updateMatch.addressId, updateMatch.id_sport, updateMatch.date_match, updateMatch.time_match, updateMatch.total_players, updateMatch.players_registered, updateMatch.created_by],
-        (error, res) => {
-            if (error) {
-                console.error("Error executing insert query: ", error);
-                return res.status(500).json({ message: 'Erro ao adicionar partida.' });
-            }
-            res.status(201).json({ message: 'Partida adicionada com sucesso.' });
-        }
-    );
-
-    return res.json({ message: "Update sucessfully." });
-});
-
 router.delete("/:id", (req, res) => {
     const id = parseInt(req.params.id);
     data.Images = data.Images.filter((i) => i.id !== id);

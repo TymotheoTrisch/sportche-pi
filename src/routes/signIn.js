@@ -28,8 +28,6 @@ router.post("/", async (req, res) => {
           SECRET,
           { expiresIn: '1h' }
         );
-          
-          // console.log(token);
   
         return res.status(201).json({
           message: "Login realizado com sucesso",
