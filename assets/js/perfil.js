@@ -168,16 +168,17 @@ schedule.addEventListener("click", async () => {
     data.forEach((match) => {
       let li = document.createElement("li");
       li.innerHTML = `
-        <div class="item-list">
-          <img src=${getSportIcon(match.id_sport)}>
+        <div class="item-list-match">
+          <img class="ball" src=${getSportIcon(match.id_sport)}>
           <div class="nameTimeAndAdress">
             <h3>${match.name.toUpperCase()}</h3>
             <div class ="timeAndCtt">
-              <h3>${match.start_match} - ${match.end_of_match}</h3>
-              <h3>${match.address_match}</h3>
+              <h3 class = "time">${match.start_match} - ${match.end_of_match}</h3>
+              <h3>${match.city}</h3>
+              <h3>${match.street}</h3>
             </div>
           </div>
-          <img src="../img/whatsapp.png" alt="">   
+          <img class="whats" src="../img/whats.png" alt="">   
         </div>
       `;
       list.appendChild(li);

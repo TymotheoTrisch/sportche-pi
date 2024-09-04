@@ -322,7 +322,6 @@ async function addParticipant(matchData) {
 
     } catch (e) {
         console.log("Error: ", e);
-
     }
 }
 
