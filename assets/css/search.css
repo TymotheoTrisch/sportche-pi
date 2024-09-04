@@ -12,10 +12,37 @@
     }
 
     .search-container {
-        width: 90%;
-        margin: auto;
         display: flex;
+        width: 100%;
+    }
 
+    .mobile {
+        margin: auto;
+        width: 90vw;
+        gap: 5px;
+    }
+    
+    .filters-mobile {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+        margin-left: 10px;
+    }
+    
+    .option {
+        border-radius: 15px;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, 
+        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+        padding: 5px 10px;
+        font-size: 15px;
+        font-family: var(--manrope);
+    }
+    
+    .option.active {
+        box-shadow: var(--purple-relative) 0px 1px 3px 0px, 
+        var(--purple-relative) 0px 0px 0px 1px;
+        background-color: var(--purple-relative);
+        color: var(--white-bg);
     }
 
     body main {
@@ -38,11 +65,10 @@
 
 
 .search-container {
-    padding: 0 20px;
     justify-content: space-between;
     align-items: center;
-
     background: var(--white-default);
+    position: relative;
 }
 
 .icon-search,
@@ -51,6 +77,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 0 20px;
 }
 
 .icon-close {
@@ -60,14 +87,56 @@
 .search-container input {
     border: none;
     padding: 15px 5px;
-    margin: 0 10px;
+    margin-left: 10px;
     width: 100%;
     height: 50px;
     background: none;
     outline: none;
 }
 
+.filters-desktop {
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+    width: 200px;
+}
 
+.selects {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    padding: 0 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.filters-desktop:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 5px solid black;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    pointer-events: none;
+}
+
+.error {
+    font-size: 16px;
+    font-family: var(--manrope);
+    width: 100%;
+}
+
+.error p {
+    width: fit-content;
+    margin: 0 auto;
+}
 
 .game-holder {
     display: flex;
@@ -119,12 +188,6 @@
     border-radius: 15px;
     padding: 5px 10px;
     gap: 5px;
-    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; */
-    /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
-    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
-    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px; */
-    /* box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px; */
-    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px; */
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
@@ -141,7 +204,7 @@
 
 /* section details */
 .section-details {
-    position: fixed;    
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
@@ -178,7 +241,7 @@
 }
 
 
-.content-game .game-title #title-details, 
+.content-game .game-title #title-details,
 .content-game .game-title #title {
     margin-top: 30px;
     margin-bottom: 15px;
@@ -257,11 +320,7 @@
 }
 
 #btn-contato {
-    /* background-color: #5595D2; */
-    /* background-color: #F21F42; */
     background-color: #0bce49;
-    /* background-color: #FF860F; */
-    /* background-color: #545AF9; */
 }
 
 #btn-participar {
@@ -282,13 +341,21 @@
         margin: auto;
         margin-bottom: 70px;
     }
+    
+    .filters-desktop {
+        border-left: 1px solid var(--black-default);
+    }
+
+    /* .search-container input {
+        border-right: 1px solid var(--black-default);
+    } */
 
     .sport {
         width: 15%;
     }
-    
+
     .section-details {
-    background-color: #0f0f0f8e;
+        background-color: #0f0f0f8e;
     }
 
     .content {
@@ -299,21 +366,14 @@
         padding-left: 10%;
         padding-right: 10%;
         height: min(720px, 95vh);
-    
+
         overflow-y: auto;
     }
-    
-    .bx-x  {
+
+    .icon-close-section .bx-x {
         color: #d8d5d5;
     }
 }
-
-/* @media (min-width: 1000px) {
-    .content-game {
-        height: min(770px, 95vh);
-    }
-    
-} */
 
 
 @media (min-width: 1000px) {
@@ -331,7 +391,8 @@
         padding-right: 10%;
     }
 
-    .content-game .game-title #title-details, .content-game .game-title #title {
+    .content-game .game-title #title-details,
+    .content-game .game-title #title {
         font-size: 36px;
     }
 

@@ -5,9 +5,9 @@ const router = express.Router();
 // Get padrão buscando todas as partidas
 router.get("/", (req, res) => {
     pool.query(`SELECT matches.*, addresses.* FROM matches 
-               LEFT JOIN addresses ON matches.address_match = addresses.id_address `, (err, results) => {
+               LEFT JOIN addresses ON matches.address_match = addresses.id_address 
+               WHERE matches.total_players_needed - matches.players_registered  >  0`, (err, results) => {
         if (err) {
-            console.log(results);
             return res.status(500).send("Erro ao executar a consulta.");
         }
 
@@ -22,7 +22,8 @@ router.post("/id", (req, res) => {
                FROM matches 
                LEFT JOIN addresses ON matches.address_match = addresses.id_address 
                LEFT JOIN sports ON matches.id_sport = sports.id_sport 
-               WHERE matches.id_match = ?`,
+               WHERE matches.id_match = ? 
+               AND matches.total_players_needed - matches.players_registered  >  0`,
         [req.body.idMatch], (err, results) => {
             if (err) {
                 return res.status(500).send("Erro ao executar a consulta.");
@@ -56,7 +57,8 @@ router.post("/", async (req, res) => {
                 `SELECT * 
                  FROM matches 
                  LEFT JOIN addresses ON addresses.id_address = matches.address_match 
-                 WHERE addresses.id_address = ?;`,
+                 WHERE addresses.id_address = ? 
+                 AND matches.total_players_needed - matches.players_registered  >  0;`,
                 [addressMatch]
             );
         });
@@ -78,7 +80,7 @@ router.post("/name-city", async (req, res) => {
     const name = req.body.name;
 
     try {
-        // Consulta para buscar o(s) ID(s) de endereço baseado na cidade
+        // Consulta para buscar os IDs de endereço baseado na cidade atual
         const [addressResults] = await pool.promise().query(
             `SELECT id_address 
              FROM addresses 
@@ -93,9 +95,10 @@ router.post("/name-city", async (req, res) => {
                 `SELECT matches.*, addresses.* 
                  FROM matches 
                  LEFT JOIN addresses ON addresses.id_address = matches.address_match  
-                 WHERE name LIKE ?;`,
+                 WHERE name LIKE ?
+                 AND matches.total_players_needed - matches.players_registered  >  0;`,
                 [`%${name}%`]
-            );  
+            );
 
             return res.status(201).json(nameResults);
         }
@@ -108,7 +111,8 @@ router.post("/name-city", async (req, res) => {
                 `SELECT * 
                  FROM matches 
                  LEFT JOIN addresses ON addresses.id_address = matches.address_match 
-                 WHERE addresses.id_address = ?`,
+                 WHERE addresses.id_address = ?
+                 AND matches.total_players_needed - matches.players_registered  >  0`,
                 [id]
             );
         });
@@ -135,11 +139,13 @@ router.post("/join", (req, res) => {
 
         pool.query(`SELECT * FROM game_players 
             INNER JOIN matches ON game_players.game_id = matches.id_match
-            WHERE user_id = ? AND matches.id_match = ?;`,
+            WHERE user_id = ? AND matches.id_match = ?
+            AND matches.total_players_needed - matches.players_registered  >  0;`,
             [req.userId, req.body.idMatch], (err, resultsSelect) => {
+                if(err)  return res.status(400).json("Ocorreu um erro ao verificar a partida.")
                 if (resultsSelect.length > 0) {
                     return res.status(401).json("Usuario já cadastrado nessa partida")
-                }
+                }            
 
                 pool.query(`UPDATE matches SET players_registered = ?
                 WHERE id_match = ?;`,

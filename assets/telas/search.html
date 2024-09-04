@@ -5,10 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Link CSS da página -->
     <link rel="stylesheet" href="../css/search.css">
     <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="../css/geral.css">
+    
+    <!-- Link Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
     <link rel="shortcut icon" href="./assets/img/icon.ico" type="image/x-icon">
     <title>Sportchê - Buscar</title>
 </head>
@@ -30,18 +34,18 @@
                     <i class='bx bx-add-to-queue'></i>
                     <h2>Criar Partida</h2>
                 </a>
-                
+
                 <a href="./perfil.html" class="icon profile">
-                    <i class='bx bx-user' ></i>
+                    <i class='bx bx-user'></i>
                     <h2>Perfil</h2>
                 </a>
             </div>
-            
+
             <div class="menu-desktop hamburguer" id="menu-desktop">
                 <i class='bx bx-menu'></i>
             </div>
         </div>
-        
+
         <nav class="itens" style="position: absolute; opacity: 0; transform: translate(0px, -80%);">
             <a href="#" class="icon pesquisar">
                 <i class='bx bx-search'></i>
@@ -51,9 +55,9 @@
                 <i class='bx bx-add-to-queue'></i>
                 <h2>Criar Partida</h2>
             </a>
-            
+
             <a href="./perfil.html" class="icon profile">
-                <i class='bx bx-user' ></i>
+                <i class='bx bx-user'></i>
                 <h2>Perfil</h2>
             </a>
         </nav>
@@ -62,13 +66,23 @@
             <h3>Partidas</h3>
         </div>
 
-        <section class="search-container mobile">
-            <label class="icon-search" for="search">
-                <i class="bx bx-search"></i>
-            </label>
-            <input type="text" placeholder="Team, Sport or Avenue" id="search">
-            <div class="icon-close">
-                <i class='bx bx-x'></i>
+        <section class="mobile">
+            <div class="search-container">
+                <label class="icon-search" for="search">
+                    <i class="bx bx-search"></i>
+                </label>
+                <input type="text" placeholder="Team, Sport or Avenue" id="search">
+                <div class="icon-close">
+                    <i class='bx bx-x'></i>
+                </div>
+            </div>
+            <div class="filters-mobile">
+                <div data-name="todos" class="option">
+                    <p>Todos</p>
+                </div>
+                <div data-name="cidade-atual" class="option active">
+                    <p>Cidade Atual</p>
+                </div>
             </div>
         </section>
 
@@ -76,19 +90,28 @@
     </header> <!--Fim header-->
 
     <main id="container">
-    
+
         <section class="search-container desktop">
-            <label class="icon-search" for="search">
-                <i class="bx bx-search"></i>
-            </label>
-            <input type="text" name="q" placeholder="Team, Sport or Avenue" id="search">
-            <div class="icon-close">
-                <i class='bx bx-x'></i>
-            </div>
+                <label class="icon-search" for="search">
+                    <i class="bx bx-search"></i>
+                </label>
+                <input type="text" name="q" placeholder="Team, Sport or Avenue" id="search">
+                <div class="icon-close">
+                    <i class='bx bx-x'></i>
+                </div>
+                <div class="filters-desktop">
+                    <select class="selects">
+                        <option class="option-select" data-name="todos">Todos</option>
+                        <option class="option-select" data-name="cidade-atual" selected>Cidade Atual</option>
+                    </select>
+                </div>
         </section>
 
         <section class="section-list-games">
         </section>
+        <div class="error">
+            <p id="message-error"></p>
+        </div>
 
         <section class="section-details">
             <div class="icon-close-section">
@@ -105,9 +128,9 @@
                 <div class="description">
                     <p id="description"></p>
                 </div>
-                
+
                 <div class="info-match">
-                    
+
                     <div class="players-details">
                         <p class="text-quantity">Participantes que faltam</p>
                         <p id="quant-players-details"></p>
@@ -117,7 +140,7 @@
                         <p class="text-date">Data</p>
                         <p id="date"></p>
                     </div>
-                    
+
                     <div class="time-details">
                         <p class="text-time">Horário</p>
                         <p id="time-details"></p>
@@ -142,9 +165,9 @@
                 <i class='bx bx-add-to-queue'></i>
                 <h2>Criar</h2>
             </a>
-            
+
             <a href="./perfil.html" class="icon profile">
-                <i class='bx bx-user' ></i>
+                <i class='bx bx-user'></i>
                 <h2>Perfil</h2>
             </a>
         </div>
@@ -152,7 +175,7 @@
 
     <script src="../js/menu.js"></script>
     <script src="../js/search.js"></script>
-    <script src="../../src//scripts/Auth.js"></script>
+    <script src="../../src/scripts/Auth.js"></script>
 </body>
 
 </html>

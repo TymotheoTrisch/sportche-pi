@@ -21,10 +21,8 @@
         bottom: 30px;
         width: fit-content;
         padding: 15px;
-        /* background-color: #ffffff6b; */
+        z-index: 999;
         background-color: #ffffff;
-
-        /* backdrop-filter: blur(15px); */
 
         display: flex;
         justify-content: space-between;
