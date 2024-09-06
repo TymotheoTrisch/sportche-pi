@@ -271,7 +271,7 @@ async function addHTMLDetailsMatch(matchId) {
         matches.time.innerText = formatTime(matchData[0].start_match) + " - " + formatTime(matchData[0].end_of_match) || 'Horário não disponível';
 
         matches.btnContato.addEventListener('click', () => {
-            window.location.href = `https://wa.me/${formatPhoneNumber(matchData[0].contact_phone)}`
+            window.location.href = `https://wa.me/55${formatPhoneNumber(matchData[0].contact_phone)}`
         });
 
         matches.btnParticipar.addEventListener('click', () => {

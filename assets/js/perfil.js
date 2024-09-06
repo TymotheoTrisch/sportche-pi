@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   } catch (e) {
     console.error("Error:", e);
-    // alert("Erro ao consultar o usuário")
+    alert("Erro ao consultar o usuário")
   }
 });
 
@@ -132,6 +132,9 @@ myMatches.addEventListener("click", async () => {
             </div>
           </div> 
         </div>
+        <div class="btn-excluir">
+          <button id="btn-excluir-partidas" onclick="deleteMatch(${match.id_match})">Excluir</button>
+        </div>
       `;
       list.appendChild(li);
     });
@@ -147,6 +150,28 @@ myMatches.addEventListener("click", async () => {
     // alert("Erro ao consultar o usuário")
   }
 });
+
+async function  deleteMatch(id) {
+  try {
+    const response = await fetch(`http://localhost:3000/search/${id}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    
+    if(response.status === 201) {
+      alert("Partida deletada com sucesso")
+      window.location.reload();
+    } else if(response.status == 402) {
+      alert("Erro ao deletar a partida, por favor atualize a página.")
+    }
+  } catch (err) {
+    console.log(err);
+    
+  }
+}
 
 const schedule = document.getElementById("schedule");
 
@@ -171,14 +196,13 @@ schedule.addEventListener("click", async () => {
         <div class="item-list-match">
           <img class="ball" src=${getSportIcon(match.id_sport)}>
           <div class="nameTimeAndAdress">
-            <h3>${match.name.toUpperCase()}</h3>
+            <h3 class="name-match">${match.name}</h3>
             <div class ="timeAndCtt">
               <h3 class = "time">${match.start_match} - ${match.end_of_match}</h3>
-              <h3>${match.city}</h3>
-              <h3>${match.street}</h3>
+              <h3>${match.street}, ${match.city}</h3>
+              <h3 class="img-contato"><img class="whatsapp" src="../img/whats.png"> WhatsApp</h3>
             </div>
-          </div>
-          <img class="whats" src="../img/whats.png" alt="">   
+          </div>  
         </div>
       `;
       list.appendChild(li);

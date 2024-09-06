@@ -10,9 +10,6 @@
     .title-tela h3 {
         font-size: 26px;
     }
-    #btn-voltar{
-        display: none;
-    }
 
     .search-container {
         display: flex;
@@ -312,8 +309,7 @@
 }
 
 #btn-contato,
-#btn-participar,
-#btn-voltar {
+#btn-participar {
     padding: 10px;
     font-size: 17px;
     font-family: var(--manrope);
@@ -329,9 +325,6 @@
 
 #btn-participar {
     background-color: var(--purple-default);
-}
-#btn-voltar{
-    background-color:#28a746b6;
 }
 
 
@@ -431,20 +424,5 @@
         justify-content: space-between;
         flex-direction: row;
     }
-    
-    #btn-voltar{
-        padding: 10px;
-
-        font-size: 17px;
-        font-family: var(--manrope);
-        color: var(--white-default);
-        background-color: #28a746b6;
-        border: none;
-        border-radius: 3px;
-        cursor: pointer;
-        margin-right: 65%;
-    }
-
-    
 
 }

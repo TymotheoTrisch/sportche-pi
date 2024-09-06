@@ -87,7 +87,7 @@ router.post("/name-city", async (req, res) => {
              WHERE city LIKE ?`,
             [`%${city}%`]
         );
-        
+
 
         if (addressResults.length === 0) {
             // Se não encontrar a cidade, buscar pelo nome da partida
@@ -142,14 +142,14 @@ router.post("/join", (req, res) => {
             WHERE user_id = ? AND matches.id_match = ?
             AND matches.total_players_needed - matches.players_registered  >  0;`,
             [req.userId, req.body.idMatch], (err, resultsSelect) => {
-                if(err)  return res.status(400).json("Ocorreu um erro ao verificar a partida.")
+                if (err) return res.status(400).json("Ocorreu um erro ao verificar a partida.")
                 if (resultsSelect.length > 0) {
                     return res.status(401).json("Usuario já cadastrado nessa partida")
-                }            
+                }
 
                 pool.query(`UPDATE matches SET players_registered = ?
                 WHERE id_match = ?;`,
-                
+
                     [req.body.playersRegistered + 1, req.body.idMatch], (err, results) => {
                         if (err) return res.status(400).json("Não foi possível dar UPDATE.");
 
@@ -163,6 +163,27 @@ router.post("/join", (req, res) => {
             });
 
     })
+});
+
+router.delete('/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    
+
+    pool.query(`DELETE FROM game_players WHERE game_id = ?`, id, (err, results) => {
+        if (err) return res.status(400).json("Não foi possível excluir a partida.");
+
+        if(results.length === 0) {
+            return res.status(401).json("Nenhuma partida encontrada.");
+        }
+        
+        pool.query(`DELETE FROM matches WHERE id_match = ?`, id, (err, resultsParticipants) => {
+            if(err) return res.status(402).json("Não foi possível excluir os jogadores cadastrados na partida.")
+            
+                return res.status(201).json("Operações realizadas com sucesso.");
+            
+        })
+        
+    });
 });
 
 

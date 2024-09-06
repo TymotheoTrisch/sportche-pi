@@ -6,6 +6,10 @@
     font-family: var(--poppins);
 }
 
+.title-tela {
+    display: none;
+}
+
 .text-icon {
     display: flex;
     gap: 10px;
@@ -157,7 +161,7 @@ dialog {
     border: none !important;
     padding: 20px;
 
-    text-align: center;
+    /* text-align: center; */
     outline: none;
 }
 
@@ -206,14 +210,25 @@ dialog p {
     justify-content: space-between;
 }
 
+#name {
+    text-align: center;
+}
+.img-logo{
+    text-align: center;
+}
+
 /* edição modal */
+
+#minhas-partidas li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.322);
+    display: flex;
+}
 
 .my-item-list {
     display: flex;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.322);
     justify-content: flex-start;
-
-    align-items: center;
+    width: 80%;
+    margin-top: 10px;
 }
 
 .my-item-list h4 {
@@ -222,18 +237,22 @@ dialog p {
 
 
 .my-item-list img {
-    height: 30px;
-    margin: 40px 10px 12px 10px;
+    height: 30px;       
+    margin: 0px 15px;
 }
 
 .my-item-list .nameTimeAndAdress {
     margin-bottom: 10px;
 }
 
+.nameTimeAndAdress h3 {
+    margin-top: 0;
+}
+
 .my-item-list .timeAndCtt {
     display: flex;
-    height: 30px;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .my-item-list .timeAndCtt h3 {
@@ -248,40 +267,81 @@ dialog p {
     font-size: 20px;
 }
 
-/* segundo modal */
-#partidas-agendadas{
-  overflow-y: auto;
-}
-.item-list-match{
-  border: 2px solid rgba(0, 0, 0, 0.322);
-  border-radius: 7px;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  
-}
-.item-list-match .whats {
- margin: 85px 0px 20px 50px;
+.btn-excluir {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 20%;
 }
 
-.ball{
-  margin: 85px 50px 20px 0px;
+.btn-excluir button {
+    padding: 5px 10px;
+    border: 1px solid var(--button-cancelar);
+    background-color: transparent;
+    color: var(--button-cancelar);
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
 }
-.timeAndCtt h3{
-  font-size: 17px;
-  border: 2px solid rgba(0, 0, 0, 0.322);
-  border-radius: 24px;
-  padding: 4px;
-  
+
+/* segundo modal */
+#partidas-agendadas {
+    overflow-y: auto;
 }
+
+.item-list-match {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.322);
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 15px 0;
+}
+
+.ball {
+    margin: 0;
+    margin-right: 5px;
+    height: 30px;
+}
+
+.name-match {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.img-contato {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: #4bc95a;
+    color: #fff;
+    padding: 6px;
+}
+
+.whatsapp {
+    height: 19px;
+    margin: 0;
+}
+
+.item-list-match .timeAndCtt h3 {
+    font-size: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.322);
+    border-radius: 24px;
+    padding: 4px;
+
+}
+
+.item-list-match .timeAndCtt {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
 .timeAndCtt .time {
-  font-size: 17px;
-  padding: 4px 10px;
+    font-size: 17px;
+    padding: 4px 10px;
 }
-.timeAndCtt{
-  
-  margin-bottom: 12px;
-}
+
 /* fim */
 
 #modalMyMatches ul li,
@@ -296,24 +356,28 @@ dialog p {
 }
 
 @media (min-width: 721px) {
+    .title-tela {
+        display: block;
+    }
+    
     .header-main {
         display: none;
     }
 
     body main {
-        padding: 5px 30px;
+        padding: 30px;
     }
 
     .main {
         margin-top: 30px;
     }
 
-    #img-user {
-        margin-top: 80px;
-    }
-    
     .information-main {
         width: 80%;
+    }
+    
+    .name-match {
+        font-size: 24px;
     }
 
 }

@@ -185,7 +185,8 @@ async function validateCity(stateId, cityName) {
         const data = await response.json();
 
         const cityExists = data.some(city => city.nome.toLowerCase() === cityName.toLowerCase());
-
+        
+        
         return cityExists;
     } catch (error) {
         console.error('Erro:', error);
@@ -209,9 +210,8 @@ async function createMatch() {
         nome: document.getElementById('input-nome').value,
         endereco: document.getElementById('input-endereco').value,
         cidade: formatCity(document.getElementById('input-cidade').value),
-        estado: document.getElementById('input-estado').innerText,
-        idEstado: document.getElementById('input-estado').dataset.id,
-        esporte: parseInt(document.getElementById('input-esporte').dataset.id),
+        estado: document.getElementById('input-estado').dataset.id,
+        esporte: document.getElementById('input-esporte').dataset.id,
         data: document.getElementById('input-data').value,
         pendentes: parseInt(document.getElementById('input-pendentes').value),
         inicio: document.getElementById('input-inicio').value,
@@ -219,14 +219,23 @@ async function createMatch() {
         telefone: formatContact(document.getElementById('input-telefone').value),
         descricao: document.getElementById('input-descricao').value,
     };
+    
+    const nomeEstado = document.getElementById('input-estado').innerText;
+    // const nomeEsporte = document.getElementById('input-esporte').innerHTML;
+
 
 
     for (const key in formData) {
         if (formData[key] === null || formData[key] === "" || typeof formData[key] === "undefined") {
             const inputId = `input-${key.replace('_', '-')}`;
             const $input = document.getElementById(inputId);
+            
+            console.log(inputId);
+            
 
             if ($input) {
+                console.log($input);
+                
                 const $error = $input.closest('.div-partida').querySelector('.error');
                 if ($error) {
                     $error.style.display = 'flex';
@@ -236,7 +245,7 @@ async function createMatch() {
                         $input.closest('.select-btn').style.outline = '1px solid red';
                     }
                 }
-            }
+            } 
             return;
         }
     }
@@ -246,7 +255,7 @@ async function createMatch() {
         return;
     }
 
-    const validateCidade = await validateCity(formData.idEstado, formData.cidade);
+    const validateCidade = await validateCity(formData.estado, formData.cidade);
 
     if (!validateCidade) {
         alert("A cidade está incorreta, por favor digite uma cidade correspondente com o estado.")
@@ -261,7 +270,7 @@ async function createMatch() {
             body: JSON.stringify({
                 street: formData.endereco,
                 city: formData.cidade,
-                state: formData.estado,
+                state: nomeEstado,
                 name: formData.nome,
                 description: formData.descricao,
                 id_sport: formData.esporte,
