@@ -201,8 +201,9 @@ schedule.addEventListener("click", async () => {
               <h3 class = "time">${match.start_match} - ${match.end_of_match}</h3>
               <h3>${match.street}, ${match.city}</h3>
               <h3 class="img-contato"><img class="whatsapp" src="../img/whats.png"> WhatsApp</h3>
+             
             </div>
-          </div>  
+          </div>   <div class="div-botao"><button class="botao-sair">Sair da partida</button></div>
         </div>
       `;
       list.appendChild(li);
