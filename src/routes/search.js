@@ -165,26 +165,46 @@ router.post("/join", (req, res) => {
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('match/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    
+
 
     pool.query(`DELETE FROM game_players WHERE game_id = ?`, id, (err, results) => {
         if (err) return res.status(400).json("Não foi possível excluir a partida.");
 
-        if(results.length === 0) {
+        if (results.length === 0) {
             return res.status(401).json("Nenhuma partida encontrada.");
         }
-        
+
         pool.query(`DELETE FROM matches WHERE id_match = ?`, id, (err, resultsParticipants) => {
-            if(err) return res.status(402).json("Não foi possível excluir os jogadores cadastrados na partida.")
-            
-                return res.status(201).json("Operações realizadas com sucesso.");
-            
+            if (err) return res.status(402).json("Não foi possível excluir os jogadores cadastrados na partida.")
+
+            return res.status(201).json("Operações realizadas com sucesso.");
+
         })
-        
+
     });
 });
 
+
+router.delete('/participant/:id', (req, res) => {
+    const id = req.params.id;
+    const { playersRegistered, idMatch } = req.body;
+
+    pool.query(`DELETE FROM game_players WHERE game_id = ?`, [id], (err, results) => {
+        if (err) return res.status(400).json("Não foi possível excluir a partida.");
+
+        if (results.affectedRows === 0) {
+            return res.status(401).json("Nenhuma partida encontrada.");
+        }
+
+        pool.query(`UPDATE matches SET players_registered = ?
+                WHERE id_match = ?;`, [playersRegistered - 1, idMatch], (err, resultsUpdate) => {
+                if (err) return res.status(400).json("Não foi possível dar UPDATE.");
+
+                return res.status(201).json("Operações realizadas com sucesso.");
+            });
+    });
+});
 
 module.exports = router;
