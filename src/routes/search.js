@@ -165,7 +165,7 @@ router.post("/join", (req, res) => {
     })
 });
 
-router.delete('match/:id', (req, res) => {
+router.delete('/match/:id', (req, res) => {
     const id = parseInt(req.params.id);
 
 
@@ -188,10 +188,11 @@ router.delete('match/:id', (req, res) => {
 
 
 router.delete('/participant/:id', (req, res) => {
-    const id = req.params.id;
-    const { playersRegistered, idMatch } = req.body;
+    const idUser = req.userId;
+    const idMatch = req.params.id
+    const { playersRegistered } = req.body;
 
-    pool.query(`DELETE FROM game_players WHERE game_id = ?`, [id], (err, results) => {
+    pool.query(`DELETE FROM game_players WHERE user_id = ?`, [idUser], (err, results) => {
         if (err) return res.status(400).json("Não foi possível excluir a partida.");
 
         if (results.affectedRows === 0) {

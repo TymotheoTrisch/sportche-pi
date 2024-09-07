@@ -62,8 +62,8 @@ function limparFilters() {
 // Filtro para as partidas no desktop
 filtersDesktop.addEventListener('change', () => {
     const selectedValue = filtersDesktop.options[filtersDesktop.selectedIndex].getAttribute('data-name');
-    
-    if(selectedValue === "todos") {
+
+    if (selectedValue === "todos") {
         selectGeneral()
     } else {
         selectCity()
@@ -326,4 +326,4 @@ async function addParticipant(matchData) {
 }
 
 // Ocorre quando a página é renderizada, e chama a função selectCity
-selectCity();
+selectGeneral();

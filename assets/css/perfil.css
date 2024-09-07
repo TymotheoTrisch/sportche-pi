@@ -217,6 +217,10 @@ dialog p {
     text-align: center;
 }
 
+.err-modal {
+    font-size: 15px;
+}
+
 /* edição modal */
 
 #minhas-partidas li {
@@ -316,6 +320,7 @@ dialog p {
     background-color: #4bc95a;
     color: #fff;
     padding: 6px;
+    cursor: pointer;
 }
 
 .whatsapp {

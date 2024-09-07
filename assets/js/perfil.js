@@ -49,33 +49,29 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         });
 
-        document
-            .querySelector(".information-main")
-            .addEventListener("click", async () => {
-                const modal = document.querySelector("dialog");
-                modal.showModal();
+        document.querySelector(".information-main").addEventListener("click", async () => {
+            const modal = document.querySelector("dialog");
+            modal.showModal();
 
-                const current_city = await getLocation();
+            const current_city = await getLocation();
 
-                const name = document.getElementById("name");
-                const email = document.getElementById("email-in-use");
-                const city = document.getElementById("current-city");
-                const date = document.getElementById("date");
+            const name = document.getElementById("name");
+            const email = document.getElementById("email-in-use");
+            const city = document.getElementById("current-city");
+            const date = document.getElementById("date");
 
-                name.innerHTML = matchData[0].username;
-                email.innerHTML = `<b>Email atual:</b><p>${matchData[0].email}</p>`;
-                city.innerHTML = `<b>Cidade atual:</b><p>${current_city}</p> `;
-                date.innerHTML = `<b>Criado em:</b><p>${convertDate(
-                    matchData[0].created_at
-                )}</p>`;
+            name.innerHTML = matchData[0].username;
+            email.innerHTML = `<b>Email atual:</b><p>${matchData[0].email}</p>`;
+            city.innerHTML = `<b>Cidade atual:</b><p>${current_city}</p>`;
+            date.innerHTML = `<b>Criado em:</b><p>${convertDate(matchData[0].created_at)}</p>`;
 
-                document.getElementById("close").addEventListener("click", () => {
-                    modal.close();
-                });
+            document.getElementById("close").addEventListener("click", () => {
+                modal.close();
             });
+        });
     } catch (e) {
         console.error("Error:", e);
-        alert("Erro ao consultar o usuário")
+        alert("Erro ao consultar o usuário");
     }
 });
 
@@ -118,26 +114,34 @@ myMatches.addEventListener("click", async () => {
         const data = await response.json();
 
         const list = document.getElementById("minhas-partidas");
-        data.forEach((match) => {
+        list.innerHTML = ""; // Limpa a lista antes de adicionar novos itens
 
-            let li = document.createElement("li");
-            li.innerHTML = `
-        <div class="my-item-list">
-          <img src=${getSportIcon(match.id_sport)}>
-          <div class="nameTimeAndAdress">
-            <h4>${match.name.toUpperCase()}</h4>
-            <div class ="timeAndCtt">
-              <h3>${formatTime(match.start_match)} - ${formatTime(match.end_of_match)}</h3>
-              <h3>${match.street}</h3>
-            </div>
-          </div> 
-        </div>
-        <div class="btn-excluir">
-          <button id="btn-excluir-partidas" onclick="deleteMatch(${match.id_match})">Excluir</button>
-        </div>
-      `;
-            list.appendChild(li);
-        });
+        console.log(data);
+        
+
+        if (data.length === 0) {
+            list.innerHTML = "<p class='err-modal'>Você não cadastrou nenhuma partida.</p>";
+        } else {
+            data.forEach((match) => {
+                let li = document.createElement("li");
+                li.innerHTML = `
+                <div class="my-item-list">
+                    <img src=${getSportIcon(match.id_sport)}>
+                    <div class="nameTimeAndAdress">
+                        <h4>${match.name.toUpperCase()}</h4>
+                        <div class ="timeAndCtt">
+                            <h3>${formatTime(match.start_match)} - ${formatTime(match.end_of_match)}</h3>
+                            <h3>${match.street}</h3>
+                        </div>
+                    </div> 
+                </div>
+                <div class="btn-excluir">
+                    <button id="btn-excluir-partidas" onclick="deleteMatch(${match.id_match})">Excluir</button>
+                </div>
+                `;
+                list.appendChild(li);
+            });
+        }
 
         document.getElementById("modalMyMatches").showModal();
 
@@ -147,7 +151,7 @@ myMatches.addEventListener("click", async () => {
         });
     } catch (e) {
         console.error("Error:", e);
-        // alert("Erro ao consultar o usuário")
+        alert("Erro ao consultar o usuário");
     }
 });
 
@@ -162,20 +166,19 @@ async function deleteMatch(id) {
         });
 
         if (response.status === 201) {
-            alert("Partida deletada com sucesso.")
+            alert("Partida deletada com sucesso.");
             window.location.reload();
         } else if (response.status == 402) {
-            alert("Erro ao deletar a partida, por favor atualize a página.")
+            alert("Erro ao deletar a partida, por favor atualize a página.");
         }
     } catch (err) {
         console.log(err);
-
     }
 }
 
-async function exitMatch(id, playersRegistered, idMatch) {
+async function exitMatch(playersRegistered, idMatch) {
     try {
-        const response = await fetch(`http://localhost:3000/search/participant/${id}`, {
+        const response = await fetch(`http://localhost:3000/search/participant/${idMatch}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${token}`,
@@ -183,7 +186,6 @@ async function exitMatch(id, playersRegistered, idMatch) {
             },
             body: JSON.stringify({
                 playersRegistered: playersRegistered,
-                idMatch: idMatch
             }),
         });
 
@@ -201,42 +203,55 @@ async function exitMatch(id, playersRegistered, idMatch) {
     }
 }
 
+function redirectWpp(contact) {
+    window.location.href = `https://wa.me/55${contact}`
+}
 
 const schedule = document.getElementById("schedule");
 
 schedule.addEventListener("click", async () => {
     try {
-        const response = await fetch(
-            "http://localhost:3000/profile/joined-matches",
-            {
-                method: "GET",
-                headers: {
-                    authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+        const response = await fetch("http://localhost:3000/profile/joined-matches", {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+        });
         const data = await response.json();
 
         const list = document.getElementById("partidas-agendadas");
-        data.forEach((match) => {
-            let li = document.createElement("li");
-            li.innerHTML = `
-        <div class="item-list-match">
-          <img class="ball" src=${getSportIcon(match.id_sport)}>
-          <div class="nameTimeAndAdress">
-            <h3 class="name-match">${match.name}</h3>
-            <div class ="timeAndCtt">
-              <h3 class = "time">${match.start_match} - ${match.end_of_match}</h3>
-              <h3>${match.street}, ${match.city}</h3>
-              <h3 class="img-contato"><img class="whatsapp" src="../img/whats.png"> WhatsApp</h3>
-             
-            </div>
-          </div>   <div class="div-botao"><button class="botao-sair">Sair da partida</button></div>
-        </div>
-      `;
-            list.appendChild(li);
-        });
+        list.innerHTML = "";
+        
+        console.log(data);
+        
+
+        if (response.status === 400) {
+            list.innerHTML = "<p class='err-modal'>Você não se inscreveu em nenhuma partida.</p>";
+        } else {
+            data.forEach((match) => {
+                console.log(match);
+                
+                let li = document.createElement("li");
+                li.innerHTML = `
+                <div class="item-list-match">
+                    <img class="ball" src=${getSportIcon(match.id_sport)}>
+                    <div class="nameTimeAndAdress">
+                        <h3 class="name-match">${match.name}</h3>
+                        <div class ="timeAndCtt">
+                            <h3 class = "time">${match.start_match} - ${match.end_of_match}</h3>
+                            <h3>${match.street}, ${match.city}</h3>
+                            <h3 class="img-contato" onclick="redirectWpp(${match.contact_phone})"><img class="whatsapp" src="../img/whats.png"> WhatsApp</h3>
+                        </div>
+                    </div>   
+                    <div class="div-botao">
+                        <button class="botao-sair" onclick="exitMatch(${match.players_registered}, ${match.id_match})">Sair da partida</button>
+                    </div>
+                </div>
+                `;
+                list.appendChild(li);
+            });
+        }
 
         document.getElementById("modalSchedule").showModal();
 
