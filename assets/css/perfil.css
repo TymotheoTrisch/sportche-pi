@@ -324,7 +324,7 @@ dialog p {
 }
 
 .item-list-match .timeAndCtt h3 {
-    font-size: 15px;
+    font-size: 13.5px;
     border: 2px solid rgba(0, 0, 0, 0.322);
     border-radius: 24px;
     padding: 4px;
@@ -340,6 +340,21 @@ dialog p {
 .timeAndCtt .time {
     font-size: 17px;
     padding: 4px 10px;
+}
+.div-botao{
+    /* background-color: red; */
+    width: 70%;
+}
+.item-list-match button {
+    padding: 5px 10px;
+    border: 1px solid var(--button-cancelar);
+    background-color: transparent;
+    color: var(--button-cancelar);
+    border-radius: 3px;
+    cursor: pointer;
+    outline: none;
+   float: right;
+   margin-top: 45%;
 }
 
 /* fim */
