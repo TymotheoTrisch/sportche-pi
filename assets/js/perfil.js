@@ -104,7 +104,7 @@ const myMatches = document.getElementById("myMatches");
 
 myMatches.addEventListener("click", async () => {
     try {
-        const response = await fetch("http://localhost:3000/profile/myMatches", {
+        const response = await fetch("http://localhost:3000/profile/my-matches", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${token}`,
@@ -114,12 +114,9 @@ myMatches.addEventListener("click", async () => {
         const data = await response.json();
 
         const list = document.getElementById("minhas-partidas");
-        list.innerHTML = ""; // Limpa a lista antes de adicionar novos itens
+        list.innerHTML = "";     
 
-        console.log(data);
-        
-
-        if (data.length === 0) {
+        if (response.status === 400) {
             list.innerHTML = "<p class='err-modal'>Você não cadastrou nenhuma partida.</p>";
         } else {
             data.forEach((match) => {
@@ -157,7 +154,7 @@ myMatches.addEventListener("click", async () => {
 
 async function deleteMatch(id) {
     try {
-        const response = await fetch(`http://localhost:3000/search/match/${id}`, {
+        const response = await fetch(`http://localhost:3000/profile/match/${id}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${token}`,
@@ -178,7 +175,7 @@ async function deleteMatch(id) {
 
 async function exitMatch(playersRegistered, idMatch) {
     try {
-        const response = await fetch(`http://localhost:3000/search/participant/${idMatch}`, {
+        const response = await fetch(`http://localhost:3000/profile/participant/${idMatch}`, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${token}`,
