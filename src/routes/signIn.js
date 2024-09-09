@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
 
             // Após a inserção, busca o usuário para autenticação
             pool.query(
-                "SELECT id_user FROM users WHERE email = ? AND password = ?",
+                "SELECT * FROM users WHERE email = ? AND password = ?",
                 [email, await getHash(password)],
                 (err, resultsSelect) => {
                     if (err) {
