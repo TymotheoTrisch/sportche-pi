@@ -1,5 +1,7 @@
+// itens menu desktop
 const itensMenuDesktop = document.querySelectorAll('.itens .icon i');
 
+// Pequena animação para quando o mouse ficar em cima do icone
 itensMenuDesktop.forEach(icon => {
     icon.addEventListener('mouseover', () => {
         icon.classList.add('bx-tada-hover')
@@ -12,11 +14,12 @@ itensMenuDesktop.forEach(icon => {
     })
 })
 
+// Icons menu
 const iconMenuDesktop = document.querySelector('.hamburguer')
 const iconMenu = iconMenuDesktop.querySelector('i')
 
 
-
+// Animações Desktop
 iconMenuDesktop.addEventListener('click', () => {
     const itens = document.querySelector('.itens')
     if (itens.style.position === 'absolute' && itens.style.opacity === '0') {

@@ -2,6 +2,7 @@
 const token = localStorage.getItem("token");
 const profileName = document.getElementById("userName");
 
+// Fução para a formatação da data
 function convertDate(isoDate) {
     const date = new Date(isoDate);
 
@@ -12,6 +13,7 @@ function convertDate(isoDate) {
     return `${day}/${month}/${year}`;
 }
 
+// Função para pegar a localização do usuário conforme
 async function getLocation() {
     try {
         const APIResponse = await fetch(`http://ip-api.com/json/`);
@@ -27,6 +29,7 @@ async function getLocation() {
     }
 }
 
+// Evento que faz uma requisição para os dados do usuário
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await fetch("http://localhost:3000/profile", {
@@ -75,6 +78,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
+// Função para pegar a imagem do esporte
 function getSportIcon(number) {
     let iconPath;
 
@@ -96,12 +100,16 @@ function getSportIcon(number) {
     return iconPath;
 }
 
+// Função para formatar o horário
 function formatTime(time) {
     return time.substring(0, 5);
 }
 
+
+// Seção das partidas criadas
 const myMatches = document.getElementById("myMatches");
 
+// Evento que faz uma requisição para os dados das partidas criadas
 myMatches.addEventListener("click", async () => {
     try {
         const response = await fetch("http://localhost:3000/profile/my-matches", {
@@ -114,7 +122,7 @@ myMatches.addEventListener("click", async () => {
         const data = await response.json();
 
         const list = document.getElementById("minhas-partidas");
-        list.innerHTML = "";     
+        list.innerHTML = "";
 
         if (response.status === 400) {
             list.innerHTML = "<p class='err-modal'>Você não cadastrou nenhuma partida.</p>";
@@ -152,6 +160,7 @@ myMatches.addEventListener("click", async () => {
     }
 });
 
+// Função para deletar a partida
 async function deleteMatch(id) {
     try {
         const response = await fetch(`http://localhost:3000/profile/match/${id}`, {
@@ -173,39 +182,15 @@ async function deleteMatch(id) {
     }
 }
 
-async function exitMatch(playersRegistered, idMatch) {
-    try {
-        const response = await fetch(`http://localhost:3000/profile/participant/${idMatch}`, {
-            method: "DELETE",
-            headers: {
-                authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                playersRegistered: playersRegistered,
-            }),
-        });
-
-        if (response.status === 201) {
-            alert("Você saiu dessa partida com sucesso.");
-            window.location.reload();
-        } else if (response.status === 401) {
-            alert("Nenhuma partida encontrada.");
-        } else if (response.status === 400) {
-            alert("Erro ao sair da partida, por favor atualize a página.");
-        }
-    } catch (err) {
-        console.log(err);
-        alert("Ocorreu um erro inesperado. Tente novamente mais tarde.");
-    }
-}
-
+// Função para entrar em contato pelo WhatsApp
 function redirectWpp(contact) {
     window.location.href = `https://wa.me/55${contact}`
 }
 
+// Seção das partidas cadastradas
 const schedule = document.getElementById("schedule");
 
+// Evento que faz uma requisição para os dados das partidas registradas
 schedule.addEventListener("click", async () => {
     try {
         const response = await fetch("http://localhost:3000/profile/joined-matches", {
@@ -219,16 +204,12 @@ schedule.addEventListener("click", async () => {
 
         const list = document.getElementById("partidas-agendadas");
         list.innerHTML = "";
-        
-        console.log(data);
-        
+
 
         if (response.status === 400) {
             list.innerHTML = "<p class='err-modal'>Você não se inscreveu em nenhuma partida.</p>";
         } else {
             data.forEach((match) => {
-                console.log(match);
-                
                 let li = document.createElement("li");
                 li.innerHTML = `
                 <div class="item-list-match">
@@ -260,3 +241,32 @@ schedule.addEventListener("click", async () => {
         console.error(err);
     }
 });
+
+
+// Função para sair da partida
+async function exitMatch(playersRegistered, idMatch) {
+    try {
+        const response = await fetch(`http://localhost:3000/profile/participant/${idMatch}`, {
+            method: "DELETE",
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                playersRegistered: playersRegistered,
+            }),
+        });
+
+        if (response.status === 201) {
+            alert("Você saiu dessa partida com sucesso.");
+            window.location.reload();
+        } else if (response.status === 401) {
+            alert("Nenhuma partida encontrada.");
+        } else if (response.status === 400) {
+            alert("Erro ao sair da partida, por favor atualize a página.");
+        }
+    } catch (err) {
+        console.log(err);
+        alert("Ocorreu um erro inesperado. Tente novamente mais tarde.");
+    }
+}

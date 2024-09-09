@@ -6,6 +6,7 @@ const selectState = document.querySelector('.select-state')
 const optionsState = selectState.querySelector(".content-state .options");
 const selectBtnState = selectState.querySelector('.select-btn-state');
 
+// Evento que incrementa no número de participantes na partida
 $('.number-increment').click(function () {
     var $input = $(this).parents('.input-incrementor').find('#input-pendentes');
     var val = parseInt($input.val(), 10);
@@ -13,6 +14,7 @@ $('.number-increment').click(function () {
     $input.val(val + 1);
 });
 
+// Evento que decrementa no número de participantes na partida
 $('.number-decrement').click(function () {
     var $input = $(this).parents('.input-incrementor').find('#input-pendentes');
     var val = parseInt($input.val(), 10);
@@ -21,6 +23,8 @@ $('.number-decrement').click(function () {
     }
 });
 
+// Evento para verificar se o input for desfocado e ele não conter nada, 
+// aparecer uma mensagem de erro seguida de uma borda vermelha
 $('.div-partida input').on('blur', function () {
     var $error = $(this).siblings('.error');
 
@@ -34,6 +38,7 @@ $('.div-partida input').on('blur', function () {
     }
 });
 
+// Mesmo evento acima mas para o textarea
 $('.div-partida textarea').on('blur', function () {
     var $error = $(this).siblings('.error');
 
@@ -46,6 +51,8 @@ $('.div-partida textarea').on('blur', function () {
 
     }
 });
+
+// Mesmo evento acima mas para os selects
 $('.select-btn').on('click', function () {
     var $span = $(this).find('span');
     var $error = $(this).closest('.div-partida').find('.error');
@@ -61,11 +68,13 @@ $('.select-btn').on('click', function () {
     }
 });
 
+// Função chamada a cada vez que o usuário digitar nno numero de contato
 const handlePhone = (event) => {
     let input = event.target
     input.value = phoneMask(input.value)
 }
 
+// Função de formatação do input contato
 const phoneMask = (value) => {
     if (!value) return ""
     value = value.replace(/\D/g, '')
@@ -74,6 +83,8 @@ const phoneMask = (value) => {
     return value
 }
 
+// Array de esportes
+// Como a tabela sports ela está populada, esse array contém o id e o nome certo de cada esporte conforme o banco de dados
 const sports = [
     {
         "id": 1,
@@ -93,6 +104,8 @@ const sports = [
     }
 ]
 
+// Array de estados
+// Os IDs estão conforme a API da IBGE, para a consulta de verificação da cidade
 const states = [
     { "id": 12, "name": "Acre" },
     { "id": 27, "name": "Alagoas" },
@@ -123,7 +136,7 @@ const states = [
     { "id": 17, "name": "Tocantins" }
 ];
 
-
+// Inicio parte para o funcionamento do select estado
 selectBtnState.addEventListener("click", () => selectState.classList.toggle("activeted"));
 
 // Função para adicionar os estados
@@ -136,6 +149,7 @@ function addStates(selectedState) {
     });
 }
 
+// Função para atualizar o nome estado selecionado
 function updateNameState(selectedLi) {
     addStates(selectedLi.innerText);
     selectState.classList.remove("activeted");
@@ -144,7 +158,9 @@ function updateNameState(selectedLi) {
 }
 
 addStates();
+// Fim da parte de estados 
 
+// Inicio parte para o funcionamento do select esporte
 selectBtnSport.addEventListener("click", () => selectSport.classList.toggle("activeted"));
 
 // Função para adicionar os esportes
@@ -157,6 +173,7 @@ function addSport(selectedSport) {
     });
 }
 
+// Função para atualizar o nome esporte selecionado
 function updateNameSport(selectedLi) {
     addSport(selectedLi.innerText);
     selectSport.classList.remove("activeted");
@@ -165,6 +182,7 @@ function updateNameSport(selectedLi) {
 }
 
 addSport();
+// Fim da parte de esportes 
 
 
 // Requisições HTTP
@@ -221,20 +239,14 @@ async function createMatch() {
     };
     
     const nomeEstado = document.getElementById('input-estado').innerText;
-    // const nomeEsporte = document.getElementById('input-esporte').innerHTML;
 
-
-
+    // For para a verificação do formulário, se foi preenchido corretamente
     for (const key in formData) {
         if (formData[key] === null || formData[key] === "" || typeof formData[key] === "undefined") {
             const inputId = `input-${key.replace('_', '-')}`;
             const $input = document.getElementById(inputId);
-            
-            console.log(inputId);
-            
 
             if ($input) {
-                console.log($input);
                 
                 const $error = $input.closest('.div-partida').querySelector('.error');
                 if ($error) {
@@ -250,19 +262,22 @@ async function createMatch() {
         }
     }
 
+    // Verifica se o horário de início da partida e antes do fim
     if (formData.inicio >= formData.termino) {
         alert("O horário de início deve ser anterior ao horário de término.");
         return;
     }
 
+    // Chama a função para validar a cidade na API
     const validateCidade = await validateCity(formData.estado, formData.cidade);
 
+    // Se não existir ele retorna um alerta
     if (!validateCidade) {
         alert("A cidade está incorreta, por favor digite uma cidade correspondente com o estado.")
         return;
     }
 
-
+    // Envia os dados para o método POST para a criação da partida
     try {
         const response = await fetch('http://localhost:3000/criarpartidas', {
             method: 'POST',
@@ -283,14 +298,15 @@ async function createMatch() {
             })
         });
 
+        // Pega o resultado e transforma em JSON
         const result = await response.json();
-        console.log(result);
 
+        // Se foi adicionada com sucesso ele retorna um alerta de sucesso
+        // caso o contrário um alerta de erro
         if (response.ok) {
             alert("Partida criada com sucesso!");
             window.location.href = "./search.html"
         } else {
-
             alert("Erro ao criar partida: " + result.message);
         }
     } catch (error) {

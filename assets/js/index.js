@@ -1,5 +1,7 @@
+// Icone password
 const iconPassword = document.querySelectorAll('.view-password')
 
+// Evento para mostrar a senha para o usuário
 iconPassword.forEach(icon => {
     icon.addEventListener('click', () => {
         const inputPassword = icon.previousElementSibling
@@ -22,20 +24,17 @@ iconPassword.forEach(icon => {
 const botaoCadastrar = document.getElementById('botaoCadastrar') 
 const botaoEntrar = document.getElementById('botaoEntrar')
 const botaoEntrarLogin = document.getElementById('botaoEntrarLogin')
-// variaveis dos botões
 
 // variaveis do cadastro
 const mainCadastro = document.getElementById('mainCadastro')
 const headerCadastro = document.getElementById('headerCadastro')
-// variaveis do cadastro
 
 // variaveis do login
 const mainLogin = document.getElementById('mainLogin')
 const headerLogin = document.getElementById('headerLogin')
-// variaveis do login
 
 
-
+// Evento para mudar do cadastro para o login
 botaoCadastrar.addEventListener('click',()=>{
         mainLogin.style.display = "none"
         headerLogin.style.display = "none"
@@ -46,7 +45,7 @@ botaoCadastrar.addEventListener('click',()=>{
         }
 })
 
-
+// Evento para mudar do login para o cadastro
 botaoEntrar.addEventListener('click',()=>{
     mainCadastro.style.display = "none"
     headerCadastro.style.display = "none"
@@ -60,11 +59,12 @@ botaoEntrar.addEventListener('click',()=>{
     }
 })
 
-
+// Validação do email
 function validateEmail(email) {
     return /\S+@\S+\.\S+/.test(email);
 }
 
+// variavel para pegar todos os parâmetros do login, (inputs e mensagens de erros)
 const form = {
     email: () => document.getElementById("email"),
     emailInvalidError: () => document.getElementById("email-invalid-error"),
@@ -74,18 +74,17 @@ const form = {
     passwordRequiredError: () => document.getElementById("password-required-error"),
 }
 
-let divInputEmail = document.querySelector(".email")
-
+// Evento para verificar email e senha
 botaoEntrarLogin.addEventListener('click',()=>{
     verificarEmail(form.email())
     verificarSenha(form.password())
     
 })
 
+// Função para verificar o email
 function verificarEmail(email) {
     if (email.value == "") {
         form.emailRequiredError().style.display = "block";
-        // form.emailRequiredError().style.color = "#ff0000";
         form.emailInvalidError().style.display = "none";
 
     } else if(!validateEmail(email.value)) {
@@ -97,6 +96,7 @@ function verificarEmail(email) {
     }
 }
 
+// Função para verificar a senha
 function verificarSenha(senha) {
     if(senha.value === "") {
         form.passwordRequiredError().style.display = "block"
