@@ -39,15 +39,15 @@ iconCloseDetais.addEventListener('click', () => {
 
 // Filtro para as partidas no mobile
 filtersMobile.forEach(option => {
-    option.addEventListener('click', () => {
+    option.addEventListener('click', async () => {
         if (option.dataset.name === "todos") {
-            selectGeneral()
             option.closest(".filters-mobile").querySelectorAll("div")[1].classList.remove('active')
             option.classList.add('active')
+            await selectGeneral()
         } else {
-            selectCity()
-            option.closest(".filters").querySelectorAll("div")[0].classList.remove('active')
+            option.closest(".filters-mobile").querySelectorAll("div")[0].classList.remove('active')
             option.classList.add('active')
+            await selectCity()
         }
     })
 })
@@ -60,13 +60,13 @@ function limparFilters() {
 }
 
 // Filtro para as partidas no desktop
-filtersDesktop.addEventListener('change', () => {
+filtersDesktop.addEventListener('change', async () => {
     const selectedValue = filtersDesktop.options[filtersDesktop.selectedIndex].getAttribute('data-name');
 
     if (selectedValue === "todos") {
-        selectGeneral()
+        await selectGeneral()
     } else {
-        selectCity()
+        await selectCity()
     }
 });
 
@@ -78,7 +78,7 @@ async function getLocation() {
             throw new Error("Failed to fetch location");
         }
         const matchData = await APIResponse.json();
-
+         
         return matchData.city;
     } catch (error) {
         console.error("Error:", error);
@@ -148,7 +148,7 @@ async function selectCity() {
 
     } catch (e) {
         console.error("Error:", e);
-        selectGeneral();
+        await selectGeneral();
     }
 }
 

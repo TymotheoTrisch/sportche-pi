@@ -46,11 +46,4 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.delete("/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    data.Images = data.Images.filter((i) => i.id !== id);
-    saveData(data);
-    return res.status(200).json({ message: "Image deleted." });
-});
-
 module.exports = router;

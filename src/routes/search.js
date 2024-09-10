@@ -82,7 +82,7 @@ router.post("/name-city", (req, res) => {
     const city = req.body.city;
     const name = req.body.name;
 
-    // Consulta para buscar os IDs de endereço baseado na cidade atual
+    // Consulta para buscar os IDs de endereço
     pool.query(
         `SELECT id_address 
          FROM addresses 
