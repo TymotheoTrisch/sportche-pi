@@ -35,13 +35,13 @@ Este projeto é um trabalho de conclusão de curso que visa desenvolver um siste
 1. Clone este repositório:
 
     ```bash
-    git clone https://github.com/TymotheoTrisch/sportche-pi.git)
+    git clone https://github.com/TymotheoTrisch/sportche-pi.git
     ```
 
 2. Navegue até o diretório do projeto:
 
     ```bash
-    cd seu-repositorio
+    cd sportche-pi
     ```
 
 3. Instale as dependências do projeto:
@@ -103,7 +103,7 @@ Este projeto foi desenvolvido como parte da matéria de Projeto Integrador e, po
 
 ## Autores
 
-Victor Marin, Tymotheo Trisch, Bruno Maciel e Kainna Borth 
+Victor Marin, Tymótheo Trisch, Bruno Maciel e Kainna Borth 
 <br>SENAC São Leopoldo 
 
 ---
